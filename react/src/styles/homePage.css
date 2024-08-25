@@ -1,0 +1,39 @@
+.searchPanel
+{
+    border: 2px solid #28313b;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: aliceblue;
+    width: 80%;
+    margin-left: 9%;
+    display:flex;
+    justify-content: center;
+
+}
+.cards
+{
+    font-family: "Bookman Old Style";
+    text-align: left;
+    padding: 3%;
+}
+.cards div
+{
+    width: 300px;
+}
+.middlePanel
+{
+    background-color: #28313b;
+
+
+}
+.firstHeader
+{
+    padding: 30px;
+    color: aliceblue;
+}
+.searchForm .form-control
+{
+    border: 2px solid #28313b;
+    padding: 5px;
+
+}
