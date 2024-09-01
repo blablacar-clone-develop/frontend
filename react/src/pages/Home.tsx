@@ -5,7 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Loader } from '@googlemaps/js-api-loader';
 import '../styles/homePage.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-
+import CalendarInput from '../components/Calendar.tsx';
+import DropDownForm from '../components/CountPassenger.tsx';
 const HomePage: React.FC = () => {
     const searchInputRefFrom = useRef<HTMLInputElement>(null);
     const searchInputRefTo = useRef<HTMLInputElement>(null);
@@ -95,8 +96,9 @@ const HomePage: React.FC = () => {
                                className="me-2 flex-fill mb-2"/>
                         <input ref={searchInputRefTo} type="text" placeholder="Прямуєте до"
                                className="me-2 flex-fill mb-2"/>
-                        <input type="text" placeholder="Коли?" className="me-2 flex-fill mb-2"/>
-                        <input type="text" placeholder="1 пасажир" className="me-2 flex-fill mb-2"/>
+                        <CalendarInput></CalendarInput>
+                        <DropDownForm></DropDownForm>
+
                         <Button variant="primary" className="mb-2">Шукати</Button>
                     </Form>
                 </div>
