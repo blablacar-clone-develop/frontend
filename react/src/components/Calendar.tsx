@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Calendar, DayValue } from 'react-modern-calendar-datepicker';
 import 'react-modern-calendar-datepicker/lib/DatePicker.css';
-import {Simulate} from "react-dom/test-utils";
-import input = Simulate.input;
 
 const CalendarInput: React.FC = () => {
     const [selectedDay, setSelectedDay] = useState<DayValue>(null);

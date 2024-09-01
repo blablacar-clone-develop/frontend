@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import '../styles/homePage.css';
 
 const DropdownForm: React.FC = () => {
     const [showForm, setShowForm] = useState<boolean>(false);
