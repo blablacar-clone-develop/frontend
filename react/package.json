@@ -18,7 +18,8 @@
     "react-bootstrap": "^2.10.4",
     "react-datepicker": "^7.3.0",
     "react-dom": "^18.3.1",
-    "react-modern-calendar-datepicker": "^3.1.6"
+    "react-modern-calendar-datepicker": "^3.1.6",
+    "react-router-dom": "^6.26.1"
   },
   "devDependencies": {
     "@types/google.maps": "^3.57.0",
