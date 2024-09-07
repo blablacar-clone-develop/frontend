@@ -65,8 +65,12 @@ const Login: React.FC = () => {
                         />
                     </Form.Group>
 
-                    <Button variant="primary" type="submit" disabled={loading} className="w-100">
+                    <Button variant="primary" type="submit" disabled={loading} className="w-100 m-2">
                         {loading ? 'Виконується вхід' : 'Увійти'}
+                    </Button>
+
+                    <Button variant="secondary" className="w-100 m-2" href='/register'>
+                        Реестрація
                     </Button>
                 </Form>
             </Card>
