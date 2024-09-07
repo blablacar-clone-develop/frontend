@@ -1,9 +1,15 @@
 // src/components/Login.tsx
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import { Form, Button, Container, Alert } from 'react-bootstrap';
 
 const Login: React.FC = () => {
+
+    ///Зміна заголовку сторінки
+    useEffect(() => {
+        document.title = 'Увійти';
+    }, []);
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);

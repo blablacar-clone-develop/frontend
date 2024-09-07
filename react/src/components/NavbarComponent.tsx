@@ -18,10 +18,12 @@ const NavbarComponent: React.FC = () => {
         navigate('/login');
     };
 
+
+
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
-                <Navbar.Brand href="#">Logo</Navbar.Brand>
+                <Navbar.Brand href="/">BlablaCarCopY</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbar-nav" />
                 <Navbar.Collapse id="navbar-nav">
                     <Form className="d-flex">
@@ -49,7 +51,7 @@ const NavbarComponent: React.FC = () => {
                                 </Button>
                             </>
                         ) : (
-                            <Nav.Link href="/login"><i className="bi bi-person" />Login</Nav.Link>
+                            <Nav.Link href="/login"><i className="bi bi-person" />Увійти</Nav.Link>
                         )}
                     </Nav>
                 </Navbar.Collapse>
