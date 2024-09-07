@@ -24,8 +24,7 @@ const Login: React.FC = () => {
             localStorage.setItem('userId', response.data.id.toString());
             localStorage.setItem('username', response.data.username);
 
-            // Optionally, redirect the user to another page
-            // window.location.href = '/dashboard'; // Example redirect
+            window.location.href = '/'; //redirect
 
         } catch (err) {
             // Handle error
