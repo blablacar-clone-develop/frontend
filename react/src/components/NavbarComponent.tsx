@@ -26,14 +26,7 @@ const NavbarComponent: React.FC = () => {
                 <Navbar.Brand href="/">BlablaCarCopY</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbar-nav" />
                 <Navbar.Collapse id="navbar-nav">
-                    <Form className="d-flex">
-                        <FormControl
-                            type="search"
-                            placeholder="Search"
-                            className="me-2"
-                            aria-label="Search"
-                        />
-                    </Form>
+
                     <Nav className="me-auto">
                         <Nav.Link href="#">Something</Nav.Link>
                         <Nav.Link href="#">Something</Nav.Link>

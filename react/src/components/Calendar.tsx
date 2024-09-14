@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Calendar, DayValue } from 'react-modern-calendar-datepicker';
 import 'react-modern-calendar-datepicker/lib/DatePicker.css';
-
+import '../styles/homePage.css';
 const CalendarInput: React.FC = () => {
     const [selectedDay, setSelectedDay] = useState<DayValue>(null);
     const [showCalendar, setShowCalendar] = useState<boolean>(false);
@@ -21,13 +21,13 @@ const CalendarInput: React.FC = () => {
     }, []);
 
     return (
-        <div style={{ position: 'relative', width: 'fit-content' }} className='me-2 flex-fill mb-2'>
+        <div style={{ position: 'relative', width: 'fit-content' }} className='me-2 flex-fill mb-2 '>
             <input
                 value={selectedDay ? `${selectedDay.day}/${selectedDay.month}/${selectedDay.year}` : ''}
                 onClick={() => setShowCalendar(!showCalendar)}
                 placeholder="Коли?"
                 readOnly
-                className="form-control"
+                className="form-control inputs"
             />
             {showCalendar && (
                 <div ref={calendarRef} style={{ position: 'absolute', top: '100%', zIndex: 1000 }} >

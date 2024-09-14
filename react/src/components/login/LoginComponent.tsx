@@ -38,7 +38,7 @@ const Login: React.FC = () => {
     };
 
     return (
-        <Container className="d-flex justify-content-center align-items-center m-2">
+        <Container className="d-flex justify-content-center align-items-center m-4">
             <Card className="p-4 shadow-sm" style={{ maxWidth: '400px', width: '100%' }}>
                 <Card.Title className="text-center mb-4">Сторінка входу</Card.Title>
                 {error && <Alert variant="danger">{error}</Alert>}

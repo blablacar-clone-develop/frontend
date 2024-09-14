@@ -1,13 +1,17 @@
 .searchPanel
 {
-    border: 2px solid #28313b;
+
     padding: 5px;
-    border-radius: 8px;
-    background-color: aliceblue;
     width: 80%;
-    margin-left: 9%;
+    margin-left: 7%;
     display:flex;
     justify-content: center;
+
+}
+.inputs
+{
+    border: 2px solid #82858F;
+    border-radius: 4px;
 
 }
 .cards
@@ -22,18 +26,55 @@
 }
 .middlePanel
 {
-    background-color: #28313b;
+    background-color:#F9FBFF;
+
 
 
 }
+@font-face {
+    font-family: 'Octin Sports';
+    src: url('fonts/octin sports rg.otf') format('truetype');
+}
+
+
 .firstHeader
 {
     padding: 30px;
-    color: aliceblue;
+    color:#091528;
+    font-family: 'Octin Sports', sans-serif;
+    margin-left: 4.5%;
+    margin-top: 5%;
+}
+.subheader
+{
+    margin-left: 7%;
+    color: #0E1429;
+
 }
 .searchForm .form-control
 {
-    border: 2px solid #28313b;
+
     padding: 5px;
 
+}
+.inputs
+{
+    border: 2px solid #82858F !important;
+    border-radius: 4px !important;
+
+}
+.miniForm
+{
+    marginTop: 20px;
+    backgroundColor: #f9f9f9;
+    padding: 10px;
+    borderRadius: 5px;
+    boxShadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+
+}
+.miniForm button
+{
+    margin: 4px;
 }

@@ -14,7 +14,7 @@ const LoginPage: React.FC = () => {
     return (
         <main className="main">
             <NavbarComponent />
-            <MainContent />
+
             <Register />
             <Footer/>
         </main>

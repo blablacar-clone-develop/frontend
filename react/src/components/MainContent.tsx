@@ -6,8 +6,8 @@ import '../styles/homePage.css';
 const MainContent: React.FC = () => {
     return (
         <Container fluid className="text-center middlePanel">
-            <h1 className="display-4 firstHeader">Low price</h1>
-            <p className="lead">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            <h1 className="display-4 text-start firstHeader">Moving together <br/> achieving more</h1>
+            <p className="lead text-start subheader">consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
                 magna aliqua.</p>
         </Container>
     );

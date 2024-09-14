@@ -65,9 +65,9 @@ const SearchPanel: React.FC = () => {
         <div className="my-4 searchPanel">
             <Form className="d-flex justify-content-center flex-wrap w-100 searchForm">
                 <input ref={searchInputRefFrom} type="text" placeholder="Відправка з"
-                       className="me-2 flex-fill mb-2"/>
+                       className="me-2 flex-fill mb-2 inputs"/>
                 <input ref={searchInputRefTo} type="text" placeholder="Прямуєте до"
-                       className="me-2 flex-fill mb-2"/>
+                       className="me-2 flex-fill mb-2 inputs"/>
                 <CalendarInput />
                 <DropDownForm />
                 <Button variant="primary" className="mb-2">Шукати</Button>
