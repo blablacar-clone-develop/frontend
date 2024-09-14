@@ -19,7 +19,7 @@ const Register: React.FC = () => {
         setError(null);
 
         try {
-            const response = await axios.post('/api/signUp', {
+            const response = await axios.post('http://localhost:8080/api/signUp', {
                 name,
                 surname,
                 email,

@@ -35,7 +35,7 @@ const NavbarComponent: React.FC = () => {
 
                     <Nav className="ml-auto">
                         <Nav.Link href="#"><i className="bi bi-search" />1</Nav.Link>
-                        <Nav.Link href="#"><i className="bi bi-globe" />2</Nav.Link>
+                        <Nav.Link href="#"><i className="bi bi-person" />2</Nav.Link>
                         {token ? (
                             <>
                                 <span className="navbar-text me-3">Привіт! {username}</span>

@@ -4,13 +4,24 @@ import '../styles/homePage.css';
 interface Passenger {
     id: number;
     type: string;
-    isChecked: boolean; // Додаємо поле для відслідковування стану галочки
+    isChecked: boolean;
 }
 
 const DropdownForm: React.FC = () => {
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
+
+    // Ініціалізація пасажирів з перевіркою на наявність токена та імені користувача
+    const [passengers, setPassengers] = useState<Passenger[]>([
+        {
+            id: 1,
+            type: token && username ? username : 'Дорослий',
+            isChecked: true
+        }
+    ]);
+
     const [showForm, setShowForm] = useState<boolean>(false);
     const [showMiniForm, setShowMiniForm] = useState<boolean>(false);
-    const [passengers, setPassengers] = useState<Passenger[]>([{ id: 1, type: 'Дорослий', isChecked: true }]);
 
     const formRef = useRef<HTMLDivElement>(null);
 
@@ -28,30 +39,24 @@ const DropdownForm: React.FC = () => {
         };
     }, []);
 
-    // Функція для відкриття міні-форми
     const handleAddPassenger = () => {
         setShowMiniForm(true);
     };
 
-    // Функція для вибору типу пасажира
     const handleSelectPassengerType = (type: string) => {
         const newPassenger: Passenger = { id: passengers.length + 1, type, isChecked: true };
         setPassengers((prev) => [...prev, newPassenger]);
         setShowMiniForm(false);
     };
 
-
-
-    // Функція для обробки зміни стану галочки
     const handleCheckboxChange = (id: number) => {
         const checkedPassengersCount = passengers.filter((passenger) => passenger.isChecked).length;
 
         setPassengers((prev) =>
             prev.map((passenger) => {
                 if (passenger.id === id) {
-                    // Не дозволяємо зняти галочку, якщо це останній пасажир
                     if (checkedPassengersCount === 1 && passenger.isChecked) {
-                        return passenger; // Не знімаємо галочку
+                        return passenger;
                     }
                     return { ...passenger, isChecked: !passenger.isChecked };
                 }
@@ -60,9 +65,7 @@ const DropdownForm: React.FC = () => {
         );
     };
 
-    // Рахуємо кількість обраних пасажирів, мінімум 1
     const selectedPassengersCount = Math.max(1, passengers.filter((passenger) => passenger.isChecked).length);
-
 
     return (
         <div style={{ position: 'relative', width: 'fit-content' }} className='me-2 flex-fill mb-2'>
@@ -88,7 +91,6 @@ const DropdownForm: React.FC = () => {
                         padding: '10px',
                     }}
                 >
-                    {/* Виведення списку пасажирів */}
                     {passengers.map((passenger) => (
                         <div key={passenger.id} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
                             <input
@@ -104,15 +106,12 @@ const DropdownForm: React.FC = () => {
                         </div>
                     ))}
 
-                    {/* Лінк для додавання пільгової знижки */}
                     <div style={{ marginBottom: '10px' }}>
                         <a href="#" style={{ color: '#00f', textDecoration: 'underline' }}>+ Додати пільгову знижку</a>
                     </div>
 
-                    {/* Горизонтальна лінія */}
                     <hr />
 
-                    {/* Кнопка для додавання пасажира */}
                     <div style={{ textAlign: 'center', marginTop: '20px' }}>
                         <button
                             type="button"
@@ -124,7 +123,6 @@ const DropdownForm: React.FC = () => {
                         </button>
                     </div>
 
-                    {/* Міні-форма для вибору типу пасажира */}
                     {showMiniForm && (
                         <div className='miniForm'>
                             <h5>Виберіть тип пасажира:</h5>

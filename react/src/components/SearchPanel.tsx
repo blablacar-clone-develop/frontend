@@ -14,6 +14,7 @@ declare global {
 }
 
 const SearchPanel: React.FC = () => {
+
     const searchInputRefFrom = useRef<HTMLInputElement>(null);
     const searchInputRefTo = useRef<HTMLInputElement>(null);
     const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "KeyNOTfound";
