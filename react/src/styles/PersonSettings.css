@@ -1,0 +1,88 @@
+.profile-page {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.profile-icon {
+    font-size: 50px;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+}
+
+.profile-info .username {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.profile-section {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.profile-section h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.profile-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-section ul li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.car-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.car-details span {
+    display: block;
+    font-weight: bold;
+}
+
+.add-transport {
+    color: #007bff;
+    cursor: pointer;
+}
+
+.exit {
+    text-align: right;
+    color: red;
+    cursor: pointer;
+}

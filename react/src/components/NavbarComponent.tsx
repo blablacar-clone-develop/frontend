@@ -1,6 +1,6 @@
 // src/components/NavbarComponent.tsx
 import React from 'react';
-import { Navbar, Nav, Container, Form, FormControl, Button } from 'react-bootstrap';
+import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../styles/homePage.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -34,8 +34,8 @@ const NavbarComponent: React.FC = () => {
                     </Nav>
 
                     <Nav className="ml-auto">
-                        <Nav.Link href="#"><i className="bi bi-search" />1</Nav.Link>
-                        <Nav.Link href="#"><i className="bi bi-person" />2</Nav.Link>
+                        <Nav.Link href="/personSettings"><i className="bi bi-list" /></Nav.Link>
+                        <Nav.Link href="/profile"><i className="bi bi-person" /> </Nav.Link>
                         {token ? (
                             <>
                                 <span className="navbar-text me-3">Привіт! {username}</span>

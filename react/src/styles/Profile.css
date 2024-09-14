@@ -1,0 +1,87 @@
+.personalInfoContainer {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+.title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.personalInfoGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.inputGroup label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.inputField {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    background-color: #e9ecef;
+    font-size: 14px;
+}
+
+.inputPlaceholder {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.inputFieldPlaceholder {
+    flex-grow: 1;
+    background: none;
+    border: none;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.inputFieldPlaceholder:focus {
+    outline: none;
+}
+
+.photoSection {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.photoIcon {
+    font-size: 80px;
+    margin-bottom: 10px;
+}
+
+.changePhotoBtn {
+    border: none;
+    background-color: transparent;
+    color: #007bff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.changePhotoBtn:hover {
+    text-decoration: underline;
+}
