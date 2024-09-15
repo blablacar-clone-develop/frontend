@@ -1,0 +1,154 @@
+.car-brand-selection {
+    max-width: 500px;
+    margin: 40px auto;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #00303F;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f2f2f2;
+    font-size: 18px;
+    text-align: center;
+}
+
+.brand-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.brand-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 18px;
+    color: #00303F;
+    cursor: pointer;
+}
+
+.brand-item i {
+    font-size: 16px;
+}
+
+.brand-item:hover {
+    background-color: #f9f9f9;
+}
+/* Загальні стилі */
+.main {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Стилі для списку моделей */
+.carModelSelection, .carColorSelection {
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: left;
+}
+
+.modelList, .colorList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.modelItem, .colorItem {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modelItem:hover, .colorItem:hover {
+    background-color: #e9e9e9;
+}
+
+.modelItem i, .colorItem i {
+    color: #007bff;
+}
+
+/* Стилі для кольорів */
+.colorCircle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Кольорові круги для кожного кольору */
+.color-чорний {
+    background-color: #000000;
+}
+
+.color-білий {
+    background-color: #ffffff;
+    border: 1px solid #ccc; /* Щоб білий колір був видимим */
+}
+
+.color-темно-сірий {
+    background-color: #4f4f4f;
+}
+
+.color-сірий {
+    background-color: #808080;
+}
+
+.color-вишневий {
+    background-color: #800000;
+}
+
+.color-червоний {
+    background-color: #ff0000;
+}
+
+.color-темно-синій {
+    background-color: #00008b;
+}
+
+.color-синій {
+    background-color: #0000ff;
+}
+
+.color-темно-зелений {
+    background-color: #006400;
+}
+
+.color-зелений {
+    background-color: #008000;
+}
