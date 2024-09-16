@@ -14,6 +14,7 @@ const NavbarComponent: React.FC = () => {
     const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('username');
+        localStorage.removeItem('userId');
         // Redirect to login page after logout
         navigate('/login');
     };
@@ -34,10 +35,10 @@ const NavbarComponent: React.FC = () => {
                     </Nav>
 
                     <Nav className="ml-auto">
-                        <Nav.Link href="/personSettings"><i className="bi bi-list" /></Nav.Link>
+                        {token ? ( <> <Nav.Link href="/personSettings"><i className="bi bi-list" /></Nav.Link>
                         <Nav.Link href="/profile"><i className="bi bi-person" /> </Nav.Link>
-                        {token ? (
-                            <>
+
+
                                 <span className="navbar-text me-3">Привіт! {username}</span>
                                 <Button variant="outline-light" onClick={handleLogout}>
                                     Вийти

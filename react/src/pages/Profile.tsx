@@ -1,38 +1,91 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import '../styles/Profile.css';
 import NavBar from '../components/NavbarComponent.tsx';
 
 const PersonalInfo: React.FC = () => {
+    const [originalData, setOriginalData] = useState({
+        name: '',
+        surname: '',
+        birthdate: '',
+        email: '',
+        phoneNumber: '',
+        description: ''
+    });
+
     const [name, setName] = useState('');
     const [surname, setSurname] = useState('');
     const [birthdate, setBirthdate] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [description, setDescription] = useState('');
+    const [hasChanges, setHasChanges] = useState(false);
+
     const userId = localStorage.getItem("userId");
 
     useEffect(() => {
         const fetchPersonalInfo = async () => {
             try {
-                const response = await fetch('http://localhost:8080/api/usersData/${userId}');
-                if (response.ok) {
-                    const data = await response.json();
-                    setName(data.name);
-                    setSurname(data.surname);
-                    setBirthdate(data.birthdate);
-                    setEmail(data.email);
-                    setPhoneNumber(data.phoneNumber);
-                    setDescription(data.description);
-                } else {
-                    console.error('Failed to fetch personal info');
-                }
+                const response = await axios.get(`http://localhost:8080/api/usersData/${userId}`);
+                const data = response.data;
+
+                setOriginalData({
+                    name: data.name,
+                    surname: data.surname,
+                    birthdate: data.dateOfBirthday,
+                    email: data.email,
+                    phoneNumber: data.phoneNumber,
+                    description: data.description
+                });
+
+                setName(data.name);
+                setSurname(data.surname);
+                setBirthdate(data.dateOfBirthday);
+                setEmail(data.email);
+                setPhoneNumber(data.phoneNumber);
+                setDescription(data.description);
             } catch (error) {
                 console.error('Error fetching personal info:', error);
             }
         };
 
-        fetchPersonalInfo();
+        if (userId) {
+            fetchPersonalInfo();
+        }
     }, [userId]);
+
+    useEffect(() => {
+        const hasChanges = (
+            name !== originalData.name ||
+            surname !== originalData.surname ||
+            birthdate !== originalData.birthdate ||
+            email !== originalData.email ||
+            phoneNumber !== originalData.phoneNumber ||
+            description !== originalData.description
+        );
+
+        setHasChanges(hasChanges);
+    }, [name, surname, birthdate, email, phoneNumber, description, originalData]);
+
+    const handleSave = async () => {
+        try {
+            await axios.put(`http://localhost:8080/api/usersData/update/${userId}`, {
+                name,
+                surname,
+                dateOfBirthday: birthdate,
+                email,
+                phoneNumber,
+                description
+            });
+
+            setOriginalData({ name, surname, birthdate, email, phoneNumber, description });
+            localStorage.removeItem("username");
+            localStorage.setItem("username", originalData.name);
+            setHasChanges(false);
+        } catch (error) {
+            console.error('Error saving personal info:', error);
+        }
+    };
 
     return (
         <main className='main'>
@@ -117,9 +170,14 @@ const PersonalInfo: React.FC = () => {
                             />
                         </div>
                     </div>
-
-
                 </div>
+
+
+                {hasChanges && (
+                    <button className="saveButton" onClick={handleSave}>
+                        Save Changes
+                    </button>
+                )}
             </div>
         </main>
     );

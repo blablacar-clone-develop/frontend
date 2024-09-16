@@ -28,10 +28,10 @@ const Register: React.FC = () => {
                 password,
             });
 
-            // Отримання даних з відповіді бекенду
+
             const { token, id, username } = response.data;
 
-            // Збереження даних у localStorage
+
             localStorage.setItem('token', token);
             localStorage.setItem('userId', id.toString());
             localStorage.setItem('username', username);
