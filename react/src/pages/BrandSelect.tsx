@@ -1,22 +1,63 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/CreationTransport.css';
 import Navbar from "../components/NavbarComponent.tsx";
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 const CarBrandSelection: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const navigate = useNavigate(); // Для навігації між сторінками
-    const carBrands = ['KIA', 'VOLKSWAGEN', 'RENAULT', 'ВАЗ', 'OPEL', 'DAEWOO'];
-    const filteredBrands = carBrands.filter(brand =>
-        brand.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const [carBrands, setCarBrands] = useState<string[]>([]);
+    const [topBrands, setTopBrands] = useState<string[]>([]);
+    const [displayBrands, setDisplayBrands] = useState<string[]>([]);
+    const [filteredBrands, setFilteredBrands] = useState<string[]>([]);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchBrands = async () => {
+            try {
+                const allBrandsResponse = await axios.get('http://localhost:8080/api/autos/brands/all');
+                const topBrandsResponse = await axios.get('http://localhost:8080/api/autos/brands/top');
+
+                const allBrands = allBrandsResponse.data;
+                const topBrands = topBrandsResponse.data;
+
+                setCarBrands(allBrands);
+                setTopBrands(topBrands);
+                updateDisplayBrands(allBrands, topBrands);
+            } catch (error) {
+                console.error('Error fetching brands:', error);
+            }
+        };
+
+        fetchBrands();
+    }, []);
+
+    const updateDisplayBrands = (allBrands: string[], topBrands: string[]) => {
+        if (topBrands.length > 0) {
+            setDisplayBrands(topBrands);
+        } else {
+            setDisplayBrands(allBrands.slice(0, 5));
+        }
+    };
+
+    useEffect(() => {
+        if (searchTerm) {
+            const filtered = carBrands.filter(brand =>
+                brand.toLowerCase().includes(searchTerm.toLowerCase())
+            ).slice(0, 10);
+            setFilteredBrands(filtered);
+        } else {
+            setFilteredBrands(displayBrands);
+        }
+    }, [searchTerm, displayBrands]);
+
     const handleBrandSelect = (brand: string) => {
         navigate('/modelSelect', { state: { brand } });
     };
 
     return (
         <main className='main'>
-            <Navbar/>
+            <Navbar />
             <div className="car-brand-selection">
                 <h1 className="title">Яка марка вашого авто?</h1>
                 <input
@@ -28,7 +69,7 @@ const CarBrandSelection: React.FC = () => {
                 />
                 <ul className="brand-list">
                     {filteredBrands.map((brand, index) => (
-                        <li key={index} className="brand-item" onClick={() => handleBrandSelect(brand)}>
+                        <li key={index} className="modelItem" onClick={() => handleBrandSelect(brand)}>
                             {brand}
                             <i className="bi bi-chevron-right"></i>
                         </li>
