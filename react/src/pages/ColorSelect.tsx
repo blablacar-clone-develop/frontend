@@ -1,31 +1,95 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../styles/CreationTransport.css";
+
 import Navbar from '../components/NavbarComponent.tsx';
+import axios from "axios";
+import {useLocation, useNavigate} from "react-router-dom";
+
+interface CarColor {
+    id: number;
+    name: string;
+    hex: string;
+}
+interface LocationState {
+    brand: string;
+    model: string;
+}
 const CarColorSelection: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const carColors = ['Чорний', 'Білий', 'Темно-сірий', 'Сірий', 'Вишневий', 'Червоний', 'Темно-синій', 'Синій', 'Темно-зелений', 'Зелений'];
-
+    const [carColors, setCarColors] = useState<CarColor[]>([]);
+    const location = useLocation<LocationState>();
+    const { brand, model } = location.state || {};
     const filteredColors = carColors.filter(color =>
-        color.toLowerCase().includes(searchTerm.toLowerCase())
+        color.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            const token = localStorage.getItem("token");
+            if (token) {
+                try {
+                    const response = await axios.get('http://localhost:8080/api/user', {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    });
+                    if (response.data === "token") {
+                        localStorage.removeItem('token');
+                        localStorage.removeItem('username');
+                        localStorage.removeItem('userId');
+                        navigate("/login");
+                    }
+                } catch (error) {
+                    console.error('Error fetching user data:', error);
+                }
+                const fetchAllColors = async () => {
+                    try {
+                        const response = await axios.get<CarColor[]>("http://localhost:8080/api/autos/colors/all");
+                        setCarColors(response.data);
+                    } catch (error) {
+                        console.error('Error fetching colors:', error);
+                    }
+                }
+                fetchAllColors();
+            }
+        }
+        fetchUserData();
+    }, []);
+
+    async function handleColorSelect(id: number) {
+        try {
+            const response = await axios.put(`http://localhost:8080/api/autos/create`, {
+                id,
+                brand,
+                model
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            });
+            const createdAuto = response.data;
+            if(createdAuto)
+                navigate('/personSettings');
+
+        } catch (error) {
+            console.error('Error saving car:', error);
+        }
+    }
 
     return (
         <main className='main'>
-        <Navbar/>
+            <Navbar/>
             <div className="carColorSelection">
                 <h1 className="title">Якого кольору ваше авто?</h1>
-                <input
-                    type="text"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="searchInput"
-                    placeholder="Введіть колір авто"
-                />
                 <ul className="colorList">
                     {filteredColors.map((color, index) => (
-                        <li key={index} className="colorItem">
-                            <span className={`colorCircle color-${color.toLowerCase()}`}></span>
-                            {color}
+                        <li key={index} className="colorItem" onClick={() => handleColorSelect(color.id)}>
+                            <span
+                                className="colorCircle"
+                                style={{ backgroundColor: color.hex }}
+                            ></span>
+                            {color.name}
                         </li>
                     ))}
                 </ul>

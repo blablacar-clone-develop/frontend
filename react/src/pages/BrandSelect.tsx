@@ -13,23 +13,45 @@ const CarBrandSelection: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchBrands = async () => {
+        const fetchUserData = async () => {
+        const token = localStorage.getItem("token");
+        if(token) {
             try {
-                const allBrandsResponse = await axios.get('http://localhost:8080/api/autos/brands/all');
-                const topBrandsResponse = await axios.get('http://localhost:8080/api/autos/brands/top');
-
-                const allBrands = allBrandsResponse.data;
-                const topBrands = topBrandsResponse.data;
-
-                setCarBrands(allBrands);
-                setTopBrands(topBrands);
-                updateDisplayBrands(allBrands, topBrands);
+                const response = await axios.get('http://localhost:8080/api/user', {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                if (response.data === "token") {
+                    localStorage.removeItem('token');
+                    localStorage.removeItem('username');
+                    localStorage.removeItem('userId');
+                    navigate("/login");
+                }
             } catch (error) {
-                console.error('Error fetching brands:', error);
+                console.error('Error fetching user data:', error);
             }
-        };
 
-        fetchBrands();
+            const fetchBrands = async () => {
+                try {
+                    const allBrandsResponse = await axios.get('http://localhost:8080/api/autos/brands/all');
+                    const topBrandsResponse = await axios.get('http://localhost:8080/api/autos/brands/top');
+
+                    const allBrands = allBrandsResponse.data;
+                    const topBrands = topBrandsResponse.data;
+
+                    setCarBrands(allBrands);
+                    setTopBrands(topBrands);
+                    updateDisplayBrands(allBrands, topBrands);
+                } catch (error) {
+                    console.error('Error fetching brands:', error);
+                }
+            };
+            fetchBrands();
+        }
+
+        }
+        fetchUserData();
     }, []);
 
     const updateDisplayBrands = (allBrands: string[], topBrands: string[]) => {

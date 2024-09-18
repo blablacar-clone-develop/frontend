@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button, Container, Alert, Card } from 'react-bootstrap';
+import {useNavigate} from "react-router-dom";
 
 const Register: React.FC = () => {
     const [name, setName] = useState('');
@@ -12,6 +13,7 @@ const Register: React.FC = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -36,8 +38,7 @@ const Register: React.FC = () => {
             localStorage.setItem('userId', id.toString());
             localStorage.setItem('username', username);
 
-            // Перенаправлення на домашню сторінку або іншу потрібну сторінку
-            window.location.href = '/';
+            navigate("/");
 
         } catch (err: unknown) {
             if (axios.isAxiosError(err) && err.response && err.response.data) {

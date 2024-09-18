@@ -11,22 +11,49 @@ const CarModelSelection: React.FC = () => {
     const [displayModels, setDisplayModels] = useState<string[]>([]); // Моделі для відображення
     const { brand } = location.state || { brand: '' };
 
+
     useEffect(() => {
-        if (!brand) {
-            navigate('/brandSelect');
-            return;
-        }
-        const fetchCarModels = async () => {
-            try {
-                const response = await axios.get(`http://localhost:8080/api/autos/models/all/${brand}`);
-                setCarModels(response.data);
-                setDisplayModels(response.data.slice(0, 10));
-            } catch (error) {
-                console.error('Error fetching car models:', error);
+        const fetchUserData = async () => {
+            const token = localStorage.getItem("token");
+            if (token) {
+                try {
+                    const response = await axios.get('http://localhost:8080/api/user', {
+                        headers: {
+                            Authorization: `Bearer ${token}` // Використовуйте token замість this.token
+                        }
+                    });
+
+                    if (response.data === "token") {
+                        localStorage.removeItem('token');
+                        localStorage.removeItem('username');
+                        localStorage.removeItem('userId');
+                        navigate("/login");
+                        return;
+                    }
+
+                    if (!brand) {
+                        navigate('/brandSelect');
+                        return;
+                    }
+
+                    const fetchCarModels = async () => {
+                        try {
+                            const carModelsResponse = await axios.get(`http://localhost:8080/api/autos/models/all/${brand}`);
+                            setCarModels(carModelsResponse.data);
+                            setDisplayModels(carModelsResponse.data.slice(0, 10));
+                        } catch (error) {
+                            console.error('Error fetching car models:', error);
+                        }
+                    };
+
+                    fetchCarModels();
+                } catch (error) {
+                    console.error('Error fetching user data:', error);
+                }
             }
         };
 
-        fetchCarModels();
+        fetchUserData();
     }, [brand, navigate]);
     useEffect(() => {
         if (searchTerm) {

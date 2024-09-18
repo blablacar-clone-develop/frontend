@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/Profile.css';
 import NavBar from '../components/NavbarComponent.tsx';
+import {useNavigate} from "react-router-dom";
 
 const PersonalInfo: React.FC = () => {
     const [originalData, setOriginalData] = useState({
@@ -20,41 +21,63 @@ const PersonalInfo: React.FC = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [description, setDescription] = useState('');
     const [hasChanges, setHasChanges] = useState(false);
-
+    const navigate = useNavigate();
     const userId = localStorage.getItem("userId");
 
     useEffect(() => {
-        const fetchPersonalInfo = async () => {
-            try {
-                const response = await axios.get(`http://localhost:8080/api/usersData/${userId}`);
-                const data = response.data;
+        const fetchUserData = async () => {
+            const token = localStorage.getItem("token");
+            if (token) {
+                try {
+                    const response = await axios.get('http://localhost:8080/api/user', {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    });
+                    if (response.data === "token") {
+                        localStorage.removeItem('token');
+                        localStorage.removeItem('username');
+                        localStorage.removeItem('userId');
+                        navigate("/login");
+                    }
+                } catch (error) {
+                    console.error('Error fetching user data:', error);
+                }
+                const fetchPersonalInfo = async () => {
+                    try {
+                        const response = await axios.get(`http://localhost:8080/api/usersData/${userId}`);
+                        const data = response.data;
 
-                setOriginalData({
-                    name: data.name,
-                    surname: data.surname,
-                    birthdate: data.dateOfBirthday,
-                    email: data.email,
-                    phoneNumber: data.phoneNumber,
-                    description: data.description
-                });
+                        setOriginalData({
+                            name: data.name,
+                            surname: data.surname,
+                            birthdate: data.dateOfBirthday,
+                            email: data.email,
+                            phoneNumber: data.phoneNumber,
+                            description: data.description
+                        });
 
-                setName(data.name);
-                setSurname(data.surname);
-                setBirthdate(data.dateOfBirthday);
-                setEmail(data.email);
-                setPhoneNumber(data.phoneNumber);
-                setDescription(data.description);
-            } catch (error) {
-                console.error('Error fetching personal info:', error);
+                        setName(data.name);
+                        setSurname(data.surname);
+                        setBirthdate(data.dateOfBirthday);
+                        setEmail(data.email);
+                        setPhoneNumber(data.phoneNumber);
+                        setDescription(data.description);
+                    } catch (error) {
+                        console.error('Error fetching personal info:', error);
+                    }
+                };
+
+                if (userId) {
+                    fetchPersonalInfo();
+                }
             }
-        };
-
-        if (userId) {
-            fetchPersonalInfo();
         }
+        fetchUserData();
     }, [userId]);
 
     useEffect(() => {
+
         const hasChanges = (
             name !== originalData.name ||
             surname !== originalData.surname ||

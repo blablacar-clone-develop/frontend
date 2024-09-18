@@ -1,4 +1,4 @@
-// src/components/NavbarComponent.tsx
+
 import React from 'react';
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -36,7 +36,7 @@ const NavbarComponent: React.FC = () => {
 
                     <Nav className="ml-auto">
                         {token ? ( <> <Nav.Link href="/personSettings"><i className="bi bi-list" /></Nav.Link>
-                        <Nav.Link href="/profile"><i className="bi bi-person" /> </Nav.Link>
+                                <Nav.Link href="/profile"><i className="bi bi-person" /> </Nav.Link>
 
 
                                 <span className="navbar-text me-3">Привіт! {username}</span>

@@ -1,11 +1,15 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.node.json"
-    }
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "strict": true,
+    "jsx": "react",
+    "esModuleInterop": true
+  },
+  "include": [
+    "src/**/*",               // Усі файли та папки в src
+    "./*.ts",                 // Включає всі .ts файли, що на одному рівні з src
+    "./public/**/*",          // Включає файли з папки public, якщо вони тобі потрібні
+    "./styles/**/*"           // Включає файли з папки styles
   ]
 }
