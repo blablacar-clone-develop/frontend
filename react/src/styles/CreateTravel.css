@@ -1,0 +1,35 @@
+.suggestions-container2 {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    overflow-y: auto;
+    position: absolute;
+    background-color: white;
+    width: 95%;
+    z-index: 1000;
+}
+
+.suggestion-item2 {
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.suggestion-item2:last-child {
+    border-bottom: none;
+}
+.divInput
+{
+    text-align: center;
+}
+
+.suggestion-item2:hover {
+    background-color: #f0f0f0;
+}
+
+.suggestion-icon2 {
+    margin-left: auto;
+    color: #888;
+}

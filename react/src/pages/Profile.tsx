@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/Profile.css';
 import NavBar from '../components/NavbarComponent.tsx';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
 
 const PersonalInfo: React.FC = () => {
     const [originalData, setOriginalData] = useState({
@@ -19,6 +22,7 @@ const PersonalInfo: React.FC = () => {
     const [birthdate, setBirthdate] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [phoneValid, setPhoneValid] = useState(true);
     const [description, setDescription] = useState('');
     const [hasChanges, setHasChanges] = useState(false);
     const navigate = useNavigate();
@@ -78,6 +82,7 @@ const PersonalInfo: React.FC = () => {
 
     useEffect(() => {
 
+
         const hasChanges = (
             name !== originalData.name ||
             surname !== originalData.surname ||
@@ -91,6 +96,11 @@ const PersonalInfo: React.FC = () => {
     }, [name, surname, birthdate, email, phoneNumber, description, originalData]);
 
     const handleSave = async () => {
+        if (!phoneValid) {
+            alert('Phone number is not valid!');
+            return;
+        }
+
         try {
             await axios.put(`http://localhost:8080/api/usersData/update/${userId}`, {
                 name,
@@ -168,33 +178,26 @@ const PersonalInfo: React.FC = () => {
 
                     <div className="inputGroup">
                         <label htmlFor="phoneNumber">Phone number</label>
-                        <div className="inputPlaceholder">
-                            <span>+</span>
-                            <input
-                                type="text"
-                                id="phoneNumber"
-                                value={phoneNumber}
-                                onChange={(e) => setPhoneNumber(e.target.value)}
-                                className="inputFieldPlaceholder"
-                            />
-                        </div>
+                        <PhoneInput
+                            country={'ua'}
+                            value={phoneNumber}
+                            onChange={(phone) => setPhoneNumber(phone)}
+                            inputClass="phoneInputClass"
+                        />
+                        {!phoneValid && <p className="error">Invalid phone number for selected country!</p>}
                     </div>
 
                     <div className="inputGroup">
                         <label htmlFor="description">Brief description</label>
-                        <div className="inputPlaceholder">
-                            <span>+</span>
-                            <input
-                                type="text"
-                                id="description"
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                                className="inputFieldPlaceholder"
-                            />
-                        </div>
+                        <input
+                            type="text"
+                            id="description"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            className="inputField"
+                        />
                     </div>
                 </div>
-
 
                 {hasChanges && (
                     <button className="saveButton" onClick={handleSave}>

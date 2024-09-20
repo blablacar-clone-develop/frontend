@@ -29,7 +29,7 @@ const NavbarComponent: React.FC = () => {
                 <Navbar.Collapse id="navbar-nav">
 
                     <Nav className="me-auto">
-                        <Nav.Link href="#">Something</Nav.Link>
+                        <Nav.Link href="/createTravel">Post trip</Nav.Link>
                         <Nav.Link href="#">Something</Nav.Link>
                         <Nav.Link href="#">Something</Nav.Link>
                     </Nav>

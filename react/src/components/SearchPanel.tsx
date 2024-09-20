@@ -6,12 +6,7 @@ import CalendarInput from './Calendar';
 import DropDownForm from './CountPassenger';
 import '../styles/homePage.css';
 
-// Extend the window interface to include Google Maps types
-declare global {
-    interface Window {
-        google: typeof google;
-    }
-}
+
 
 const SearchPanel: React.FC = () => {
 
@@ -23,7 +18,7 @@ const SearchPanel: React.FC = () => {
         const loader = new Loader({
             apiKey: API_KEY,
             version: 'weekly',
-            libraries: ['places'],
+            libraries: ['places', 'marker'],
         });
 
         loader.load().then(() => {
