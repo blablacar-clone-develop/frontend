@@ -78,7 +78,7 @@ const EditCarPage: React.FC = () => {
                 }
             });
             handleCloseModal(); // Close the modal after successful delete
-            navigate('/personSettings'); // Navigate to the profile or other relevant page after delete
+            navigate('/personSettings');
         } catch (error) {
             console.error('Error deleting car:', error);
         }

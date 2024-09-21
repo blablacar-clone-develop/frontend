@@ -55,6 +55,7 @@ const CarModelSelection: React.FC = () => {
 
         fetchUserData();
     }, [brand, navigate]);
+
     useEffect(() => {
         if (searchTerm) {
             const filtered = carModels.filter(model =>

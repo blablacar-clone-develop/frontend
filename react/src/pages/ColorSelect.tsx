@@ -63,6 +63,11 @@ const CarColorSelection: React.FC = () => {
 
             if(carId) {
                 ///Оновити існуюче авто
+                // console.log("CARid: " +carId);
+                // console.log("brand\n: " +brand);
+                // console.log("\nmodel\n: " +model);
+                // console.log("colorId\n: " + id);
+
                 const response = await axios.put(`http://localhost:8080/api/autos/update/${carId}`, {
                     id,
                     brand,
