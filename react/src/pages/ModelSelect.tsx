@@ -9,7 +9,7 @@ const CarModelSelection: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [carModels, setCarModels] = useState<string[]>([]);
     const [displayModels, setDisplayModels] = useState<string[]>([]); // Моделі для відображення
-    const { brand } = location.state || { brand: '' };
+    const { brand, carId} = location.state || { brand: '' };
 
 
     useEffect(() => {
@@ -67,7 +67,11 @@ const CarModelSelection: React.FC = () => {
     }, [searchTerm, carModels]);
 
     const handleModelSelect = (model: string) => {
-        navigate('/colorSelect', { state: { brand, model } });
+        if(carId) {
+            navigate('/colorSelect', { state: { brand, model, carId } });
+        } else
+            navigate('/colorSelect', { state: { brand, model } });
+
     };
 
     return (

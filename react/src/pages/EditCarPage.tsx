@@ -78,7 +78,7 @@ const EditCarPage: React.FC = () => {
                 <h2 className="text-center">{car.brand.name} {car.model.name}</h2>
 
                 <div className="car-details text-center">
-                    <Link to={`/edit-car/${car.id}`} className="btn btn-primary m-2">
+                    <Link to={`/brandSelect/${car.id}`} className="btn btn-primary m-2">
                         Edit auto
                     </Link>
                     <Link to={`/delete-car/${car.id}`} className="btn btn-danger m-2">

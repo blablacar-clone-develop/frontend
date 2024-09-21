@@ -18,7 +18,8 @@ const CarColorSelection: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [carColors, setCarColors] = useState<CarColor[]>([]);
     const location = useLocation<LocationState>();
-    const { brand, model } = location.state || {};
+    const { brand, model, carId } = location.state || {};
+
     const filteredColors = carColors.filter(color =>
         color.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
@@ -59,18 +60,37 @@ const CarColorSelection: React.FC = () => {
 
     async function handleColorSelect(id: number) {
         try {
-            const response = await axios.put(`http://localhost:8080/api/autos/create`, {
-                id,
-                brand,
-                model
-            }, {
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
-                }
-            });
-            const createdAuto = response.data;
-            if(createdAuto)
-                navigate('/personSettings');
+
+            if(carId) {
+                ///Оновити існуюче авто
+                const response = await axios.put(`http://localhost:8080/api/autos/update/${carId}`, {
+                    id,
+                    brand,
+                    model
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
+                });
+                const createdAuto = response.data;
+                if(createdAuto)
+                    navigate('/personSettings');
+            } else {
+                ///Створити нове авто
+                const response = await axios.put(`http://localhost:8080/api/autos/create`, {
+                    id,
+                    brand,
+                    model
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
+                });
+                const createdAuto = response.data;
+                if(createdAuto)
+                    navigate('/personSettings');
+            }
+
 
         } catch (error) {
             console.error('Error saving car:', error);

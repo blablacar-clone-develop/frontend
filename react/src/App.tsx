@@ -29,6 +29,7 @@ function App() {
                     <Route path="/cars/:carId/edit" element={<EditCarPage />} />
                     <Route path="/personSettings" element={<PersonSettings/>}/>
                     <Route path="/brandSelect" element={<BrandSelect/>}/>
+                    <Route path="/brandSelect/:carId" element={<BrandSelect/>}/>
                     <Route path="/modelSelect" element={<ModelSelect/>}/>
                     <Route path="/colorSelect" element={<ColorSelect/>}/>
                     <Route path="/createTravel" element={<CreateTravel/>}/>
