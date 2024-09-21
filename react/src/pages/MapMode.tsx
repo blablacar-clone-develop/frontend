@@ -13,7 +13,7 @@ declare global {
 const MapMode: React.FC = () => {
     const location = useLocation();
     const navigate = useNavigate();
-
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
     const { fromLoc, loc, step } = location.state || { fromLoc: '', loc: '', step: 'from' };
     const [myLatitude, setMyLatitude] = useState<number | null>(null);
     const [myLongitude, setMyLongitude] = useState<number | null>(null);
@@ -55,7 +55,7 @@ const MapMode: React.FC = () => {
             const token = localStorage.getItem("token");
             if (token) {
                 try {
-                    const response = await axios.get('http://localhost:8080/api/user', {
+                    const response = await axios.get(`${API_URL}/api/user`, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }

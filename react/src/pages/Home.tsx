@@ -9,6 +9,7 @@ import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
 const HomePage: React.FC = () => {
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
     const navigate = useNavigate();
@@ -17,7 +18,7 @@ const HomePage: React.FC = () => {
         const checkToken = async () => {
             if (token) {
                 try {
-                    const response = await axios.get('http://localhost:8080/api/user', {
+                    const response = await axios.get(`${API_URL}/api/user`, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }

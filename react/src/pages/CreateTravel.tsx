@@ -7,6 +7,7 @@ import axios from "axios";
 
 
 const CreationTravel: React.FC = () => {
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "UrlNOTfound";
     const location = useLocation();
     const navigate = useNavigate();
     const searchInputRefFrom = useRef<HTMLInputElement>(null);
@@ -19,7 +20,7 @@ const CreationTravel: React.FC = () => {
             const token = localStorage.getItem("token");
             if (token) {
                 try {
-                    const response = await axios.get('http://localhost:8080/api/user', {
+                    const response = await axios.get(`${API_URL}/api/user`, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }

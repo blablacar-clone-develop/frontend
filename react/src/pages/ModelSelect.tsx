@@ -4,6 +4,7 @@ import Navbar from "../components/NavbarComponent.tsx";
 import axios from 'axios';
 
 const CarModelSelection: React.FC = () => {
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
     const location = useLocation();
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');
@@ -17,7 +18,7 @@ const CarModelSelection: React.FC = () => {
             const token = localStorage.getItem("token");
             if (token) {
                 try {
-                    const response = await axios.get('http://localhost:8080/api/user', {
+                    const response = await axios.get(`${API_URL}/api/user`, {
                         headers: {
                             Authorization: `Bearer ${token}` // Використовуйте token замість this.token
                         }
@@ -38,7 +39,7 @@ const CarModelSelection: React.FC = () => {
 
                     const fetchCarModels = async () => {
                         try {
-                            const carModelsResponse = await axios.get(`http://localhost:8080/api/autos/models/all/${brand}`);
+                            const carModelsResponse = await axios.get(`${API_URL}/api/autos/models/all/${brand}`);
                             setCarModels(carModelsResponse.data);
                             setDisplayModels(carModelsResponse.data.slice(0, 10));
                         } catch (error) {

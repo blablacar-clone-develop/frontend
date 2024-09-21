@@ -42,7 +42,8 @@ interface Color {
 
 
 const ProfilePage: React.FC = () => {
-    const username = localStorage.getItem('username') || 'Vladimir';
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
+    const username = localStorage.getItem('username') || '...';
     const [cars, setCars] = useState<Autos[]>([]);
     const navigate = useNavigate();
     const [user, setUser] = useState<User | null>(null);
@@ -52,7 +53,7 @@ const ProfilePage: React.FC = () => {
             const token = localStorage.getItem("token");
             if (token) {
                 try {
-                    const response = await axios.get('http://localhost:8080/api/user', {
+                    const response = await axios.get(`${API_URL}/api/user`, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }

@@ -8,6 +8,7 @@ import 'react-phone-input-2/lib/style.css';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 
 const PersonalInfo: React.FC = () => {
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
     const [originalData, setOriginalData] = useState({
         name: '',
         surname: '',
@@ -33,7 +34,7 @@ const PersonalInfo: React.FC = () => {
             const token = localStorage.getItem("token");
             if (token) {
                 try {
-                    const response = await axios.get('http://localhost:8080/api/user', {
+                    const response = await axios.get(`${API_URL}/api/user`, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
@@ -49,7 +50,7 @@ const PersonalInfo: React.FC = () => {
                 }
                 const fetchPersonalInfo = async () => {
                     try {
-                        const response = await axios.get(`http://localhost:8080/api/usersData/${userId}`);
+                        const response = await axios.get(`${API_URL}/api/usersData/${userId}`);
                         const data = response.data;
 
                         setOriginalData({

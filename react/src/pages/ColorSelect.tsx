@@ -15,6 +15,7 @@ interface LocationState {
     model: string;
 }
 const CarColorSelection: React.FC = () => {
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
     const [searchTerm, setSearchTerm] = useState('');
     const [carColors, setCarColors] = useState<CarColor[]>([]);
     const location = useLocation<LocationState>();
@@ -30,7 +31,7 @@ const CarColorSelection: React.FC = () => {
             const token = localStorage.getItem("token");
             if (token) {
                 try {
-                    const response = await axios.get('http://localhost:8080/api/user', {
+                    const response = await axios.get(`${API_URL}/api/user`, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
@@ -46,7 +47,7 @@ const CarColorSelection: React.FC = () => {
                 }
                 const fetchAllColors = async () => {
                     try {
-                        const response = await axios.get<CarColor[]>("http://localhost:8080/api/autos/colors/all");
+                        const response = await axios.get<CarColor[]>(`${API_URL}/api/autos/colors/all`);
                         setCarColors(response.data);
                     } catch (error) {
                         console.error('Error fetching colors:', error);
@@ -63,12 +64,13 @@ const CarColorSelection: React.FC = () => {
 
             if(carId) {
                 ///Оновити існуюче авто
+
                 // console.log("CARid: " +carId);
                 // console.log("brand\n: " +brand);
                 // console.log("\nmodel\n: " +model);
                 // console.log("colorId\n: " + id);
 
-                const response = await axios.put(`http://localhost:8080/api/autos/update/${carId}`, {
+                const response = await axios.put(`${API_URL}/api/autos/update/${carId}`, {
                     id,
                     brand,
                     model
@@ -82,7 +84,7 @@ const CarColorSelection: React.FC = () => {
                     navigate('/personSettings');
             } else {
                 ///Створити нове авто
-                const response = await axios.put(`http://localhost:8080/api/autos/create`, {
+                const response = await axios.put(`${API_URL}/api/autos/create`, {
                     id,
                     brand,
                     model
