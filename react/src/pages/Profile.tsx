@@ -83,7 +83,6 @@ const PersonalInfo: React.FC = () => {
 
     useEffect(() => {
 
-
         const hasChanges = (
             name !== originalData.name ||
             surname !== originalData.surname ||

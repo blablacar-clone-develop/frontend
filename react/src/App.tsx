@@ -10,7 +10,6 @@ import PersonSettings from "./pages/PersonSettings";
 import MapMode from "./pages/MapMode";
 import RouteSelection from "./pages/RouteSelection";
 import CreateTravel from "./pages/CreateTravel";
-import React from "react";
 import EditCarPage from "./pages/EditCarPage";
 
 

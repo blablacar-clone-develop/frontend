@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import NavbarComponent from '../components/NavbarComponent';
 import MainContent from '../components/MainContent';
 import SearchPanel from '../components/SearchPanel';
@@ -11,7 +11,7 @@ import {useNavigate} from "react-router-dom";
 const HomePage: React.FC = () => {
     const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
     const token = localStorage.getItem('token');
-    const username = localStorage.getItem('username');
+    //const username = localStorage.getItem('username');
     const navigate = useNavigate();
 
     useEffect(() => {

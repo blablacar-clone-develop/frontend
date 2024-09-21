@@ -69,10 +69,9 @@ const CreationTravel: React.FC = () => {
 
     }, []);
     const handleSelectFrom = (loc: string) => {
-
-
                 navigate('/mapMode', { state: { fromLoc, loc, step } });
     };
+
     return (
         <main className="main">
             <Navbar />

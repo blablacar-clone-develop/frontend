@@ -10,15 +10,12 @@ interface CarColor {
     name: string;
     hex: string;
 }
-interface LocationState {
-    brand: string;
-    model: string;
-}
+
 const CarColorSelection: React.FC = () => {
     const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm] = useState('');
     const [carColors, setCarColors] = useState<CarColor[]>([]);
-    const location = useLocation<LocationState>();
+    const location = useLocation();
     const { brand, model, carId } = location.state || {};
 
     const filteredColors = carColors.filter(color =>

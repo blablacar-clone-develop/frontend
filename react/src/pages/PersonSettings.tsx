@@ -5,20 +5,6 @@ import { Nav } from 'react-bootstrap';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
-interface Car {
-    id: number;
-    model: string;
-    color: string;
-}
-interface User {
-    id: number;
-    name: string;
-    surname: string;
-    dateOfBirthday?: string;
-    gender?: string;
-    autos?: Autos[];
-
-}
 interface Autos {
     id: number;
     brand: Brand;
@@ -46,7 +32,6 @@ const ProfilePage: React.FC = () => {
     const username = localStorage.getItem('username') || '...';
     const [cars, setCars] = useState<Autos[]>([]);
     const navigate = useNavigate();
-    const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -64,29 +49,14 @@ const ProfilePage: React.FC = () => {
                         localStorage.removeItem('userId');
                         navigate("/login");
                     }
-                    setUser(response.data);
+
                     if (response.data.autos) {
                         setCars(response.data.autos);
                     }
                 } catch (error) {
                     console.error('Error fetching user data:', error);
                 }
-                /*const fetchUserCars = async () => {
-                    try {
-                        const userId = localStorage.getItem('userId');
-                        const response = await fetch(`http//localhost:8080/api/users/${userId}/cars`);
-                        if (response.ok) {
-                            const data = await response.json();
-                            setCars(data);
-                        } else {
-                            console.error('Failed to fetch cars');
-                        }
-                    } catch (error) {
-                        console.error('Error fetching cars:', error);
-                    }
-                };
 
-                fetchUserCars();*/
             }
         }
         fetchUserData();
