@@ -1,15 +1,15 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import Home from "./pages/Home.tsx";
-import Login from "./pages/Login.tsx";
-import Register from "./pages/Register.tsx";
-import Profile from "./pages/Profile.tsx";
-import BrandSelect from "./pages/BrandSelect.tsx";
-import ModelSelect from "./pages/ModelSelect.tsx";
-import ColorSelect from "./pages/ColorSelect.tsx";
-import PersonSettings from "./pages/PersonSettings.tsx";
-import MapMode from "./pages/MapMode.tsx";
-import RouteSelection from "./pages/RouteSelection.tsx";
-import CreateTravel from "./pages/CreateTravel.tsx";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Profile from "./pages/Profile";
+import BrandSelect from "./pages/BrandSelect";
+import ModelSelect from "./pages/ModelSelect";
+import ColorSelect from "./pages/ColorSelect";
+import PersonSettings from "./pages/PersonSettings";
+import MapMode from "./pages/MapMode";
+import RouteSelection from "./pages/RouteSelection";
+import CreateTravel from "./pages/CreateTravel";
 import React from "react";
 import EditCarPage from "./pages/EditCarPage";
 
