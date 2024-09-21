@@ -9,7 +9,7 @@ const CarBrandSelection: React.FC = () => {
     const { carId } = useParams<{ carId: string }>();
     const [searchTerm, setSearchTerm] = useState('');
     const [carBrands, setCarBrands] = useState<string[]>([]);
-    const [topBrands, setTopBrands] = useState<string[]>([]);
+    const [,setTopBrands] = useState<string[]>([]);
     const [displayBrands, setDisplayBrands] = useState<string[]>([]);
     const [filteredBrands, setFilteredBrands] = useState<string[]>([]);
     const navigate = useNavigate();

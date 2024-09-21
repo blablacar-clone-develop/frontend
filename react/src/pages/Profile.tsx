@@ -23,7 +23,7 @@ const PersonalInfo: React.FC = () => {
     const [birthdate, setBirthdate] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [phoneValid, setPhoneValid] = useState(true);
+    const [phoneValid] = useState(true);
     const [description, setDescription] = useState('');
     const [hasChanges, setHasChanges] = useState(false);
     const navigate = useNavigate();
