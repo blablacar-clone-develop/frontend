@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Navbar from "../components/NavbarComponent.tsx";
+import Navbar from "../components/NavbarComponent";
 import axios from 'axios';
 
 const CarModelSelection: React.FC = () => {

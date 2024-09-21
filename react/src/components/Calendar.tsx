@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Calendar, DayValue } from 'react-modern-calendar-datepicker';
 import 'react-modern-calendar-datepicker/lib/DatePicker.css';
 import '../styles/homePage.css';
+
 const CalendarInput: React.FC = () => {
     const [selectedDay, setSelectedDay] = useState<DayValue>(null);
     const [showCalendar, setShowCalendar] = useState<boolean>(false);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/PersonSettings.css';
-import NavBar from '../components/NavbarComponent.tsx';
+import NavBar from '../components/NavbarComponent';
 import { Nav } from 'react-bootstrap';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";

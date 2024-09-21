@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Navbar from "../components/NavbarComponent.tsx";
+import Navbar from "../components/NavbarComponent";
 import { Loader } from '@googlemaps/js-api-loader';
 import "../styles/CreateTravel.css";
 import {useLocation, useNavigate} from "react-router-dom";

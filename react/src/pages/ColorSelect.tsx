@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../styles/CreationTransport.css";
 
-import Navbar from '../components/NavbarComponent.tsx';
+import Navbar from '../components/NavbarComponent';
 import axios from "axios";
 import {useLocation, useNavigate} from "react-router-dom";
 

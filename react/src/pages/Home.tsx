@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import NavbarComponent from '../components/NavbarComponent.tsx';
+import NavbarComponent from '../components/NavbarComponent';
 import MainContent from '../components/MainContent';
 import SearchPanel from '../components/SearchPanel';
-import BusImage from '../components/MainImage.tsx';
+import BusImage from '../components/MainImage';
 import CardsSection from '../components/CardsSection';
-import Footer from '../components/main/Footer/Footer.tsx';
+import Footer from '../components/main/Footer/Footer';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
