@@ -19,7 +19,6 @@ interface User {
     autos?: Autos[];
 
 }
-
 interface Autos {
     id: number;
     brand: Brand;
@@ -31,14 +30,10 @@ interface Model {
     name: string;
     brand: Brand;
 }
-
 interface Brand {
     id: number;
     name: string;
 }
-
-
-
 interface Color {
     id: number;
     name: string;
@@ -51,6 +46,7 @@ const ProfilePage: React.FC = () => {
     const [cars, setCars] = useState<Autos[]>([]);
     const navigate = useNavigate();
     const [user, setUser] = useState<User | null>(null);
+
     useEffect(() => {
         const fetchUserData = async () => {
             const token = localStorage.getItem("token");
@@ -94,6 +90,10 @@ const ProfilePage: React.FC = () => {
         }
         fetchUserData();
     }, []);
+
+    const handleCarClick = (carId: number) => {
+        navigate(`/cars/${carId}/edit`);
+    };
 
     return (
         <main className="main">
@@ -141,7 +141,7 @@ const ProfilePage: React.FC = () => {
                     <h3>Transport</h3>
                     {cars.length > 0 ? (
                         cars.map((car) => (
-                            <div className="car-info" key={car.id}>
+                            <div className="car-info" key={car.id} onClick={() => handleCarClick(car.id)}>
                                 <div className="car-details">
                                     <span>{car.brand.name.toUpperCase()} {car.model.name.toUpperCase()}</span>
                                     <span>{car.color.name}</span>
@@ -153,7 +153,8 @@ const ProfilePage: React.FC = () => {
                         <p>No cars available</p>
                     )}
 
-                    <Nav.Link href='/brandSelect'> <p className="add-transport" >Add transport <i className="bi bi-box-arrow-up-right"></i></p></Nav.Link>
+                    <Nav.Link href='/brandSelect'><p className="add-transport">Add transport <i
+                        className="bi bi-box-arrow-up-right"></i></p></Nav.Link>
                 </div>
 
                 <div className="exit">

@@ -10,6 +10,8 @@ import PersonSettings from "./pages/PersonSettings.tsx";
 import MapMode from "./pages/MapMode.tsx";
 import RouteSelection from "./pages/RouteSelection.tsx";
 import CreateTravel from "./pages/CreateTravel.tsx";
+import React from "react";
+import EditCarPage from "./pages/EditCarPage";
 
 
 
@@ -24,6 +26,7 @@ function App() {
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/register" element={<Register/>}/>
                     <Route path="/profile" element={<Profile/>}/>
+                    <Route path="/cars/:carId/edit" element={<EditCarPage />} />
                     <Route path="/personSettings" element={<PersonSettings/>}/>
                     <Route path="/brandSelect" element={<BrandSelect/>}/>
                     <Route path="/modelSelect" element={<ModelSelect/>}/>
