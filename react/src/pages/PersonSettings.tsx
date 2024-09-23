@@ -66,6 +66,14 @@ const ProfilePage: React.FC = () => {
         navigate(`/cars/${carId}/edit`);
     };
 
+    const handleConfirmIdentity = () => {
+        navigate("/confirmIdentity");
+    };
+    const handleConfirmEmail = () => {
+        navigate("/confirmEmail");
+    };
+
+
     return (
         <main className="main">
             <NavBar />
@@ -85,8 +93,8 @@ const ProfilePage: React.FC = () => {
                 <div className="profile-section">
                     <h3>Confirm your profile</h3>
                     <ul>
-                        <li>Confirm your identity <i className="bi bi-box-arrow-up-right"></i></li>
-                        <li>Confirm your email address <i className="bi bi-box-arrow-up-right"></i></li>
+                        <li onClick={handleConfirmIdentity}>Confirm your identity <i className="bi bi-box-arrow-up-right"></i></li>
+                        <li onClick={handleConfirmEmail}>Confirm your email address <i className="bi bi-box-arrow-up-right"></i></li>
                         <li>Confirm phone number <i className="bi bi-box-arrow-up-right"></i></li>
                     </ul>
                 </div>

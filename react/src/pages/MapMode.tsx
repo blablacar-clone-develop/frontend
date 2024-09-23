@@ -172,6 +172,7 @@ const MapMode: React.FC = () => {
     const handleSuggestionClick = (description: string) => {
         const geocoder = new window.google.maps.Geocoder();
 
+        // @ts-ignore
         geocoder.geocode({ address: description }, (results: google.maps.GeocoderResult[], status: google.maps.GeocoderStatus) => {
             if (status === 'OK' && results[0]) {
                 const newLocation = results[0].geometry.location;
@@ -212,11 +213,11 @@ const MapMode: React.FC = () => {
                 }
             });
         } else if (step.step === "to") {
+            console.log(fromLoc.fromAddress);
             navigate('/routeSelection', {
                 state: {
-                    fromAddress: fromLoc,
+                    fromAddress: fromLoc.fromAddress,
                     toAddress: currentAddress
-
                 }
             });
         }

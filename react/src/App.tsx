@@ -10,6 +10,9 @@ import PersonSettings from "./pages/PersonSettings";
 import MapMode from "./pages/MapMode";
 import RouteSelection from "./pages/RouteSelection";
 import CreateTravel from "./pages/CreateTravel";
+import ConfirmIdentity from "./pages/ConfirmIdentity.tsx";
+import ConfirmDocument from "./pages/ConfirmDocument.tsx";
+import ConfirmEmail from "./pages/ConfirmEmail.tsx";
 import EditCarPage from "./pages/EditCarPage";
 
 
@@ -34,6 +37,9 @@ function App() {
                     <Route path="/createTravel" element={<CreateTravel/>}/>
                     <Route path="/mapMode" element={<MapMode/>}/>
                     <Route path="/routeSelection" element={<RouteSelection/>}/>
+                    <Route path="/confirmIdentity" element={<ConfirmIdentity/>}/>
+                    <Route path="/confirmDocument" element={<ConfirmDocument/>}/>
+                    <Route path="/confirmEmail" element={<ConfirmEmail/>}/>
                 </Routes>
             </Router>
 

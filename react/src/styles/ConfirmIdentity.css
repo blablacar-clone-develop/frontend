@@ -1,0 +1,66 @@
+.main3 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+.identity-confirm-container {
+    text-align: center;
+    margin: 10rem auto;
+}
+
+.identity-confirm-container h2 {
+    font-size: 1.8rem;
+    color: #1a1a1a;
+    margin-bottom: 2rem;
+}
+
+.identity-options {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.option-card {
+    width: 200px;
+    padding: 1.5rem;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.option-card:hover {
+    transform: translateY(-5px);
+}
+
+.option-card .icon {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 1rem;
+    background-size: contain;
+    margin-left: 34%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.id-passport {
+    background-image: url('../assets/idPass.png');
+}
+
+.foreign-passport {
+    background-image: url('../assets/foreignPass.png');
+}
+
+.drivers-license {
+    background-image: url('../assets/driverLicense.png');
+}
+
+p {
+    font-size: 0.9rem;
+    color: #333;
+}
