@@ -9,14 +9,14 @@ const UserVerification: React.FC = () => {
     const location = useLocation();
     const {emailVerified, phoneVerified, documentVerified} = location.state || {};
     const handleVerifyIdentity = () => {
-       navigate("");
+       navigate("/confirmIdentity");
     };
 
     const handleVerifyEmail = () => {
-        navigate("");
+        navigate("/confirmEmail");
     };
     const handleVerifyPhone = () => {
-        navigate("");
+        navigate("/confirmPhone");
     };
 
     function handleShowTrip() {
@@ -24,6 +24,7 @@ const UserVerification: React.FC = () => {
     }
 
     return (
+        <main className="main">
         <div className="container6">
             <div className="heade6">
                 <h1>Trip Published</h1>
@@ -74,6 +75,7 @@ const UserVerification: React.FC = () => {
                 <button onClick={handleShowTrip} className="button">View Trip</button>
             </div>
         </div>
+        </main>
     );
 };
 
