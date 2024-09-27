@@ -1,0 +1,88 @@
+.passenger-selection-container {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    margin-top: 5%;
+}
+
+h2 {
+    font-size: 24px;
+    color: #033849;
+    margin-bottom: 20px;
+}
+
+.passenger-counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.passenger-counter button {
+    font-size: 30px;
+    padding: 10px;
+    border: 2px solid #00aaf2;
+    border-radius: 50%;
+    background-color: white;
+    color: #00aaf2;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.passenger-counter span {
+    font-size: 50px;
+    color: #033849;
+}
+
+.divider {
+    width: 80%;
+    margin: 20px auto;
+    border: none;
+    height: 2px;
+    background-color: #e0e0e0;
+}
+
+.passenger-options {
+    text-align: center;
+    margin-bottom: 20px;
+
+}
+
+.passenger-options div {
+    margin-bottom: 20px;
+}
+
+.passenger-options input {
+    margin-right: 10px;
+}
+
+.passenger-options label {
+    font-size: 18px;
+    color: #033849;
+}
+
+.passenger-options p {
+    font-size: 14px;
+    color: #666666;
+    margin-left: 28px;
+}
+
+.continue-button {
+    background-color: #00aaf2;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.continue-button:hover {
+    background-color: #008bcc;
+}

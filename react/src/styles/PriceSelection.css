@@ -1,0 +1,69 @@
+.price-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    margin: auto;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.price-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.decrease, .increase {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+}
+
+.price {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.price-info {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.recommended-price {
+    background-color: #48c78e;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+}
+
+.next-button {
+    background-color: #008cff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}

@@ -13,8 +13,14 @@ import CreateTravel from "./pages/CreateTravel";
 import ConfirmIdentity from "./pages/ConfirmIdentity.tsx";
 import ConfirmDocument from "./pages/ConfirmDocument.tsx";
 import ConfirmEmail from "./pages/ConfirmEmail.tsx";
+import DateSelection from "./pages/DateSelection.tsx";
+import TimeSelection from "./pages/TimeSelection.tsx";
+import CountPassengerSelection from "./pages/CountPassengerSelection.tsx";
+import ModeBookingSelection from "./pages/ModeBookingSelection.tsx";
+import PriceSelection from "./pages/PriceSelection.tsx";
+import AddInfoRoute from "./pages/AddInfoRoute.tsx";
 import EditCarPage from "./pages/EditCarPage";
-
+import UserVerification from "./pages/UserVerification";
 
 
 function App() {
@@ -40,6 +46,13 @@ function App() {
                     <Route path="/confirmIdentity" element={<ConfirmIdentity/>}/>
                     <Route path="/confirmDocument" element={<ConfirmDocument/>}/>
                     <Route path="/confirmEmail" element={<ConfirmEmail/>}/>
+                    <Route path="/dateSelection" element={<DateSelection/>}/>
+                    <Route path="/timeSelection" element={<TimeSelection/>}/>
+                    <Route path="/countPassengerSelection" element={<CountPassengerSelection/>}/>
+                    <Route path="/modeBookingSelection" element={<ModeBookingSelection/>}/>
+                    <Route path="/priceSelection" element={<PriceSelection/>}/>
+                    <Route path="/addInfoRoute" element={<AddInfoRoute/>}/>
+                    <Route path="/userVerification" element={<UserVerification/>}/>
                 </Routes>
             </Router>
 
