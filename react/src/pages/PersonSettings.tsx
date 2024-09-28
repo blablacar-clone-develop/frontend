@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import '../styles/PersonSettings.css';
 import NavBar from '../components/NavbarComponent';
 import { Nav } from 'react-bootstrap';
-import axios from "axios";
 import {useNavigate} from "react-router-dom";
+import {fetchUserData} from "../utils/tokenUtils.ts";
 
 interface Autos {
     id: number;
@@ -28,39 +28,19 @@ interface Color {
 
 
 const ProfilePage: React.FC = () => {
-    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
-    const username = localStorage.getItem('username') || '...';
+    const username = localStorage.getItem('username');
     const [cars, setCars] = useState<Autos[]>([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchUserData = async () => {
-            const token = localStorage.getItem("token");
-            if (token) {
-                try {
-                    const response = await axios.get(`${API_URL}/api/user`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    });
-                    if (response.data === "token") {
-                        localStorage.removeItem('token');
-                        localStorage.removeItem('username');
-                        localStorage.removeItem('userId');
-                        navigate("/login");
-                    }
-
-                    if (response.data.autos) {
-                        setCars(response.data.autos);
-                    }
-                } catch (error) {
-                    console.error('Error fetching user data:', error);
-                }
-
+        const fetchData = async () => {
+            const userData = await fetchUserData(navigate); // Використовуємо утиліту для перевірки токену
+            if (userData.autos) {
+                setCars(userData.autos);
             }
         }
-        fetchUserData();
-    }, []);
+        fetchData();
+    }, [navigate]);
 
     const handleCarClick = (carId: number) => {
         navigate(`/cars/${carId}/edit`);

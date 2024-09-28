@@ -1,38 +1,20 @@
 import React, { useEffect } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/NavbarComponent.tsx";
 import Footer from "../components/main/Footer/Footer.tsx";
 
 import "../styles/ConfirmIdentity.css";
+import {fetchUserData} from "../utils/tokenUtils.ts";
 
 const ConfirmIdentity: React.FC = () => {
     const navigate = useNavigate();
     const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
 
     useEffect(() => {
-        const fetchUserData = async () => {
-            const token = localStorage.getItem("token");
-            if (token) {
-                try {
-                    const response = await axios.get(`${API_URL}/api/user`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    });
-                    if (response.data === "token") {
-                        localStorage.removeItem("token");
-                        localStorage.removeItem("username");
-                        localStorage.removeItem("userId");
-                        navigate("/login");
-                    }
-                } catch (error) {
-                    console.error("Помилка під час отримання даних користувача:", error);
-                }
-            }
+        const fetchData = async () => {
+            await fetchUserData(navigate); // Використовуємо утиліту для перевірки токену
         };
-
-        fetchUserData();
+        fetchData();
     }, [API_URL, navigate]);
 
     function handleIdPass() {

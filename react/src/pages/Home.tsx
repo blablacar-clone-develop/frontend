@@ -11,7 +11,6 @@ import {useNavigate} from "react-router-dom";
 const HomePage: React.FC = () => {
     const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
     const token = localStorage.getItem('token');
-    //const username = localStorage.getItem('username');
     const navigate = useNavigate();
 
     useEffect(() => {

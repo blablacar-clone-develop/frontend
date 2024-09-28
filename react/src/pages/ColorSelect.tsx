@@ -4,6 +4,7 @@ import "../styles/CreationTransport.css";
 import Navbar from '../components/NavbarComponent';
 import axios from "axios";
 import {useLocation, useNavigate} from "react-router-dom";
+import {fetchUserData} from "../utils/tokenUtils.ts";
 
 interface CarColor {
     id: number;
@@ -24,37 +25,22 @@ const CarColorSelection: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchUserData = async () => {
-            const token = localStorage.getItem("token");
-            if (token) {
-                try {
-                    const response = await axios.get(`${API_URL}/api/user`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    });
-                    if (response.data === "token") {
-                        localStorage.removeItem('token');
-                        localStorage.removeItem('username');
-                        localStorage.removeItem('userId');
-                        navigate("/login");
-                    }
-                } catch (error) {
-                    console.error('Error fetching user data:', error);
-                }
-                const fetchAllColors = async () => {
-                    try {
-                        const response = await axios.get<CarColor[]>(`${API_URL}/api/autos/colors/all`);
-                        setCarColors(response.data);
-                    } catch (error) {
-                        console.error('Error fetching colors:', error);
-                    }
-                }
+        const fetchData = async () => {
+            const userData = await fetchUserData(navigate); // Використовуємо утиліту для перевірки токену
+            if (userData) {
                 fetchAllColors();
             }
         }
-        fetchUserData();
-    }, []);
+        const fetchAllColors = async () => {
+            try {
+                const response = await axios.get<CarColor[]>(`${API_URL}/api/autos/colors/all`);
+                setCarColors(response.data);
+            } catch (error) {
+                console.error('Error fetching colors:', error);
+            }
+        }
+        fetchData();
+    }, [navigate]);
 
     async function handleColorSelect(id: number) {
         try {

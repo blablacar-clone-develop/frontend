@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Loader } from '@googlemaps/js-api-loader';
 import '../styles/MapMode.css';
-import axios from "axios";
+import {fetchUserData} from "../utils/tokenUtils.ts";
 
 declare global {
     interface Window {
@@ -13,7 +13,6 @@ declare global {
 const MapMode: React.FC = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
     const { fromLoc, loc, step } = location.state || { fromLoc: '', loc: '', step: 'from' };
     const [myLatitude, setMyLatitude] = useState<number | null>(null);
     const [myLongitude, setMyLongitude] = useState<number | null>(null);
@@ -51,28 +50,11 @@ const MapMode: React.FC = () => {
     ];
 
     useEffect(() => {
-        const fetchUserData = async () => {
-            const token = localStorage.getItem("token");
-            if (token) {
-                try {
-                    const response = await axios.get(`${API_URL}/api/user`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    });
-                    if (response.data === "token") {
-                        localStorage.removeItem('token');
-                        localStorage.removeItem('username');
-                        localStorage.removeItem('userId');
-                        navigate("/login");
-                    }
-                } catch (error) {
-                    console.error('Помилка під час отримання даних користувача:', error);
-                }
-            }
+        const fetchData = async () => {
+            await fetchUserData(navigate);
         };
 
-        fetchUserData();
+        fetchData();
 
         const loader = new Loader({
             apiKey: API_KEY,

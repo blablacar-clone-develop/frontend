@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from "../components/NavbarComponent";
 import axios from 'axios';
+import {fetchUserData} from "../utils/tokenUtils.ts";
 
 const CarModelSelection: React.FC = () => {
     const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
@@ -14,29 +15,14 @@ const CarModelSelection: React.FC = () => {
 
 
     useEffect(() => {
-        const fetchUserData = async () => {
-            const token = localStorage.getItem("token");
-            if (token) {
+        const fetchData = async () => {
+            const userData = await fetchUserData(navigate); // Використовуємо утиліту для перевірки токену
+            if (userData) {
                 try {
-                    const response = await axios.get(`${API_URL}/api/user`, {
-                        headers: {
-                            Authorization: `Bearer ${token}` // Використовуйте token замість this.token
-                        }
-                    });
-
-                    if (response.data === "token") {
-                        localStorage.removeItem('token');
-                        localStorage.removeItem('username');
-                        localStorage.removeItem('userId');
-                        navigate("/login");
-                        return;
-                    }
-
                     if (!brand) {
                         navigate('/brandSelect');
                         return;
                     }
-
                     const fetchCarModels = async () => {
                         try {
                             const carModelsResponse = await axios.get(`${API_URL}/api/autos/models/all/${brand}`);
@@ -54,7 +40,7 @@ const CarModelSelection: React.FC = () => {
             }
         };
 
-        fetchUserData();
+        fetchData();
     }, [brand, navigate]);
 
     useEffect(() => {

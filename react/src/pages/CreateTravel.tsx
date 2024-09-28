@@ -3,11 +3,10 @@ import Navbar from "../components/NavbarComponent";
 import { Loader } from '@googlemaps/js-api-loader';
 import "../styles/CreateTravel.css";
 import {useLocation, useNavigate} from "react-router-dom";
-import axios from "axios";
+import {fetchUserData} from "../utils/tokenUtils.ts";
 
 
 const CreationTravel: React.FC = () => {
-    const API_URL = import.meta.env.VITE_BASE_URL_API || "UrlNOTfound";
     const location = useLocation();
     const navigate = useNavigate();
     const searchInputRefFrom = useRef<HTMLInputElement>(null);
@@ -15,28 +14,13 @@ const CreationTravel: React.FC = () => {
     const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "KeyNOTfound";
     const step =location.state || { step: 'from' };
     const fromLoc =location.state || { fromLoc: '' };
+
     useEffect(() => {
-        const fetchUserData = async () => {
-            const token = localStorage.getItem("token");
-            if (token) {
-                try {
-                    const response = await axios.get(`${API_URL}/api/user`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    });
-                    if (response.data === "token") {
-                        localStorage.removeItem('token');
-                        localStorage.removeItem('username');
-                        localStorage.removeItem('userId');
-                        navigate("/login");
-                    }
-                } catch (error) {
-                    console.error('Error fetching user data:', error);
-                }
-            }
+        const fetchData = async () => {
+            await fetchUserData(navigate);
         }
-        fetchUserData();
+
+        fetchData();
                 const loader = new Loader({
                     apiKey: API_KEY,
                     version: 'weekly',
@@ -68,6 +52,7 @@ const CreationTravel: React.FC = () => {
 
 
     }, []);
+
     const handleSelectFrom = (loc: string) => {
                 navigate('/mapMode', { state: { fromLoc, loc, step } });
     };
