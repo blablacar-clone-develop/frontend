@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/PriceSelection.css';
 import { useLocation, useNavigate } from "react-router-dom";
+import {fetchUserData} from "../utils/tokenUtils.ts";
 
 const PriceSelection: React.FC = () => {
     const location = useLocation();
@@ -10,6 +11,14 @@ const PriceSelection: React.FC = () => {
     const [price, setPrice] = useState(5);
     const [minPrice, setMinPrice] = useState(5);
     const [maxPrice, setMaxPrice] = useState(10);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await fetchUserData(navigate);
+
+        };
+        fetchData();
+    }, []);
 
     useEffect(() => {
         if (selectedRoute && selectedRoute.distance) {

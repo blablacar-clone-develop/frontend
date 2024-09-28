@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import '../styles/AddInfoRoute.css';
 import {useLocation, useNavigate} from "react-router-dom";
 import axios from "axios";
+import {fetchUserData} from "../utils/tokenUtils.ts";
 
 const AddInfoRoute: React.FC = () => {
     const location = useLocation();
@@ -11,6 +12,16 @@ const AddInfoRoute: React.FC = () => {
     const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
     const [verificationData, setVerificationData] = useState(null);
     const { fromAddress, toAddress, selectedRoute, date, selectedTime, passengers, options, selectBooking, price} = location.state || {};
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await fetchUserData(navigate);
+
+        };
+        fetchData();
+    }, []);
+
+
     const handleDetailsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setDetails(e.target.value);
     };

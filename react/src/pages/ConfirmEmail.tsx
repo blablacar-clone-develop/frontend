@@ -1,8 +1,19 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import '../styles/ConfirmEmail.css';
+import {fetchUserData} from "../utils/tokenUtils.ts";
+import {useNavigate} from "react-router-dom";
 
 const ConfirmEmail: React.FC = () => {
     const [code, setCode] = useState<string[]>(new Array(6).fill("")); // масив для 6 цифр
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await fetchUserData(navigate);
+
+        };
+        fetchData();
+    }, []);
 
     // Обробка введення цифр
     const handleInputChange = (element: HTMLInputElement, index: number) => {

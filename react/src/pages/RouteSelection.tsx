@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom"; // Додаємо useNavigate
 import { Loader } from "@googlemaps/js-api-loader";
 import "../styles/RouteSelection.css";
+import {fetchUserData} from "../utils/tokenUtils.ts";
 
 const RouteSelection: React.FC = () => {
     const location = useLocation();
@@ -15,6 +16,14 @@ const RouteSelection: React.FC = () => {
     const mapRef = useRef<HTMLDivElement>(null);
     const directionsRenderers = useRef<google.maps.DirectionsRenderer[]>([]);
     const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "KeyNOTfound";
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await fetchUserData(navigate);
+
+        };
+        fetchData();
+    }, []);
 
     useEffect(() => {
         const loader = new Loader({

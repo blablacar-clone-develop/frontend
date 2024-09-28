@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "../styles/ModeBookingSelection.css";
 import {useLocation, useNavigate} from "react-router-dom";
+import {fetchUserData} from "../utils/tokenUtils.ts";
 
 const ModeBookingSelection: React.FC = () => {
     const location = useLocation();
@@ -8,6 +9,14 @@ const ModeBookingSelection: React.FC = () => {
     const navigate = useNavigate();
 
     const { fromAddress, toAddress, selectedRoute, date, selectedTime, passengers, options} = location.state || {};
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await fetchUserData(navigate);
+
+        };
+        fetchData();
+    }, []);
 
     function nextPage(selectBooking: string) {
         navigate("/priceSelection", {
