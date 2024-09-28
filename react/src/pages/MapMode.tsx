@@ -16,7 +16,11 @@ const MapMode: React.FC = () => {
     const { fromLoc, loc, step } = location.state || { fromLoc: '', loc: '', step: 'from' };
     const [myLatitude, setMyLatitude] = useState<number | null>(null);
     const [myLongitude, setMyLongitude] = useState<number | null>(null);
-    const [currentAddress, setCurrentAddress] = useState<string>(loc || '');
+    const [currentAddress, setCurrentAddress] = useState<string>(loc || null);
+
+    const [country, setCountry] = useState<string | null>(null);
+    const [city, setCity] = useState<string | null>(null);
+
     const [showContinue, setShowContinue] = useState<boolean>(false);
     const [firstMovementDetected, setFirstMovementDetected] = useState<boolean>(false);
     const mapRef = useRef<HTMLDivElement>(null);
@@ -108,6 +112,8 @@ const MapMode: React.FC = () => {
                                 geocoder.geocode({ location: center.toJSON() }, (results: google.maps.GeocoderResult[], status: google.maps.GeocoderStatus) => {
                                     if (status === 'OK' && results[0]) {
                                         setCurrentAddress(results[0].formatted_address);
+                                        setCountry(results[0].address_components.find(f => f.types.includes('country')).long_name || 'unknown');
+                                        setCity(results[0].address_components.find(f => f.types.includes('locality')).long_name || 'unknown');
                                     } else {
                                         console.error('Не вдалося знайти адресу для даних координат:', status);
                                     }
@@ -186,23 +192,35 @@ const MapMode: React.FC = () => {
 
     const handleContinue = () => {
 
-
         if (step.step === "from") {
             navigate('/createTravel', {
                 state: {
                     fromAddress: currentAddress,
+                    fromLongitude: myLongitude,
+                    fromLatitude: myLatitude,
+                    fromCity: city,
+                    fromCountry: country,
                     step: "to"
                 }
             });
+
         } else if (step.step === "to") {
-            console.log(fromLoc.fromAddress);
             navigate('/routeSelection', {
                 state: {
                     fromAddress: fromLoc.fromAddress,
-                    toAddress: currentAddress
+                    fromLongitude: fromLoc.fromLongitude,
+                    fromLatitude: fromLoc.fromLatitude,
+                    fromCity: fromLoc.fromCity,
+                    fromCountry: fromLoc.fromCountry,
+                    toAddress: currentAddress,
+                    toLongitude: myLongitude,
+                    toLatitude: myLatitude,
+                    toCity: city,
+                    toCountry: country
                 }
             });
         }
+
     };
 
     return (

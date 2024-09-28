@@ -5,7 +5,9 @@ import "../styles/RouteSelection.css";
 
 const RouteSelection: React.FC = () => {
     const location = useLocation();
-    const { fromAddress, toAddress } = location.state || { fromAddress: '', toAddress: '' };
+
+    const { fromAddress, toAddress, fromCity, toCity} = location.state || { fromAddress: '', toAddress: '' , toCity: '', fromCity: ''};
+
     const navigate = useNavigate(); // Використовуємо для переходу на іншу сторінку
 
     const [routes, setRoutes] = useState<google.maps.DirectionsRoute[]>([]);

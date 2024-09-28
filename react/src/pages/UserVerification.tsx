@@ -20,7 +20,8 @@ const UserVerification: React.FC = () => {
     };
 
     function handleShowTrip() {
-
+        console.log(location.state.fromAddress);
+        console.log(location.state.toAddress);
     }
 
     return (

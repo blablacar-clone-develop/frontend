@@ -64,7 +64,7 @@ const CreationTravel: React.FC = () => {
             <input
                 ref={searchInputRefFrom}
                 type="text"
-                placeholder="Відправка з"
+                placeholder={step === "from" ? "Select from" : "Select to"}
                 className="me-2 flex-fill mb-2 inputs"
             />
             </div>
