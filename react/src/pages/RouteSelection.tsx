@@ -6,7 +6,7 @@ import "../styles/RouteSelection.css";
 const RouteSelection: React.FC = () => {
     const location = useLocation();
 
-    const { fromAddress, toAddress, fromCity, toCity} = location.state || { fromAddress: '', toAddress: '' , toCity: '', fromCity: ''};
+    const { fromAddress, toAddress} = location.state || { };
 
     const navigate = useNavigate(); // Використовуємо для переходу на іншу сторінку
 
@@ -29,11 +29,11 @@ const RouteSelection: React.FC = () => {
                 center: { lat: 49.8397, lng: 24.0297 },
                 zoom: 7,
             });
-
-            if (fromAddress && toAddress) {
+            console.log(toAddress);
+            if (fromAddress?.fromAddress.fullAddress && toAddress?.fullAddress) {
                 const request: google.maps.DirectionsRequest = {
-                    origin: fromAddress,
-                    destination: toAddress,
+                    origin: fromAddress?.fromAddress.fullAddress,
+                    destination: toAddress?.fullAddress,
                     travelMode: google.maps.TravelMode.DRIVING,
                     provideRouteAlternatives: true,
                 };
@@ -82,10 +82,12 @@ const RouteSelection: React.FC = () => {
                 duration: routes[selectedRoute].legs[0].duration.text,
                 distance: routes[selectedRoute].legs[0].distance.text,
             };
+            console.log(fromAddress);
+            console.log(toAddress);
 
             navigate("/dateSelection", {
                 state: {
-                    fromAddress,
+                    fromAddress: fromAddress?.fromAddress,
                     toAddress,
                     selectedRoute: routeInfo,
                 },

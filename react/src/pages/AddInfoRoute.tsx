@@ -15,8 +15,8 @@ const AddInfoRoute: React.FC = () => {
         setDetails(e.target.value);
     };
 
-    function saveTrip() {
-        /*const bookingData = {
+    async function saveTrip() {
+        const bookingData = {
             fromAddress,
             toAddress,
             selectedRoute,
@@ -25,14 +25,18 @@ const AddInfoRoute: React.FC = () => {
             passengers,
             options,
             selectBooking,
-            price,
-            userId
-        };*/
-        //const bookingResponse = await axios.post(`${API_URL}/api/trip/save`, bookingData);
-
+            price
+        };
+        const bookingResponse = await axios.post(`${API_URL}/api/trips/create`, bookingData, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+        console.log(bookingResponse.data);
     }
 
     const handleSubmit =  async () => {
+        console.log(location.state);
         saveTrip();
         try {
             const response = await axios.get(`${API_URL}/api/user/verification/${userId}`);

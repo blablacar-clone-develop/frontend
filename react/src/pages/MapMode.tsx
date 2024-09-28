@@ -160,7 +160,7 @@ const MapMode: React.FC = () => {
     const handleSuggestionClick = (description: string) => {
         const geocoder = new window.google.maps.Geocoder();
 
-        // @ts-ignore
+
         geocoder.geocode({ address: description }, (results: google.maps.GeocoderResult[], status: google.maps.GeocoderStatus) => {
             if (status === 'OK' && results[0]) {
                 const newLocation = results[0].geometry.location;
@@ -192,14 +192,17 @@ const MapMode: React.FC = () => {
 
     const handleContinue = () => {
 
+        const ob = {
+            fullAddress:  currentAddress,
+            longitude: myLongitude,
+            latitude: myLatitude,
+            city: city,
+            country: country
+        };
         if (step.step === "from") {
             navigate('/createTravel', {
                 state: {
-                    fromAddress: currentAddress,
-                    fromLongitude: myLongitude,
-                    fromLatitude: myLatitude,
-                    fromCity: city,
-                    fromCountry: country,
+                    fromAddress: ob,
                     step: "to"
                 }
             });
@@ -207,16 +210,8 @@ const MapMode: React.FC = () => {
         } else if (step.step === "to") {
             navigate('/routeSelection', {
                 state: {
-                    fromAddress: fromLoc.fromAddress,
-                    fromLongitude: fromLoc.fromLongitude,
-                    fromLatitude: fromLoc.fromLatitude,
-                    fromCity: fromLoc.fromCity,
-                    fromCountry: fromLoc.fromCountry,
-                    toAddress: currentAddress,
-                    toLongitude: myLongitude,
-                    toLatitude: myLatitude,
-                    toCity: city,
-                    toCountry: country
+                    fromAddress: fromLoc,
+                    toAddress: ob,
                 }
             });
         }
