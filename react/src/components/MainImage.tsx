@@ -5,7 +5,7 @@ import busImage from '../assets/mainBus.jpg'
 const BusImage: React.FC = () => {
 
     return (
-        <div style={{ textAlign: 'center', margin: '20px' }}>
+        <div style={{ textAlign: 'center', margin: '10px' }}>
             <img
                 src={busImage}
                 alt="Bus"

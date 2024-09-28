@@ -3,7 +3,7 @@ import { Calendar, DayValue } from 'react-modern-calendar-datepicker';
 import 'react-modern-calendar-datepicker/lib/DatePicker.css';
 import '../styles/homePage.css';
 
-const CalendarInput: React.FC = () => {
+const CompactCalendar: React.FC = () => {
     const [selectedDay, setSelectedDay] = useState<DayValue>(null);
     const [showCalendar, setShowCalendar] = useState<boolean>(false);
     const calendarRef = useRef<HTMLDivElement>(null);
@@ -22,16 +22,20 @@ const CalendarInput: React.FC = () => {
     }, []);
 
     return (
-        <div style={{ position: 'relative', width: 'fit-content' }} className='me-2 flex-fill mb-2 '>
-            <input
-                value={selectedDay ? `${selectedDay.day}/${selectedDay.month}/${selectedDay.year}` : ''}
-                onClick={() => setShowCalendar(!showCalendar)}
-                placeholder="Коли?"
-                readOnly
-                className="form-control inputs"
-            />
+        <div style={{ position: 'relative', width: 'fit-content' }}>
+            <div className="input-container">
+                <input
+                    value={selectedDay ? `${selectedDay.day}/${selectedDay.month}/${selectedDay.year}` : ''}
+                    onClick={() => setShowCalendar(!showCalendar)}
+                    placeholder="When?"
+                    readOnly
+                    className="location-input"
+                />
+                <span className="iconS C"></span>
+            </div>
+
             {showCalendar && (
-                <div ref={calendarRef} style={{ position: 'absolute', top: '100%', zIndex: 1000 }} >
+                <div ref={calendarRef} style={{ position: 'absolute', top: '100%', zIndex:1000, width:'250px' }} className="compact-calendar-wrapper">
                     <Calendar
                         value={selectedDay}
                         onChange={setSelectedDay}
@@ -45,4 +49,4 @@ const CalendarInput: React.FC = () => {
     );
 };
 
-export default CalendarInput;
+export default CompactCalendar;

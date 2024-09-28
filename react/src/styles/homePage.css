@@ -1,12 +1,76 @@
+.main
+{
+    padding: 0px !important;
+}
 .searchPanel
 {
-
     padding: 5px;
-    width: 80%;
-    margin-left: 7%;
+    width: 90%;
+    margin-left: 3%;
     display:flex;
     justify-content: center;
 
+}
+.myNavBar
+{
+    background-color: #F3F3F3;
+    height:70px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+}
+
+.butSearch
+{
+    margin-top: 5px;
+    max-width: 120px;
+    height:45px;
+    background-color:#4389E4 !important;
+    width: 100%;
+}
+.input-container {
+    position: relative;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.location-input {
+    max-width: 300px;
+    padding: 10px 40px 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    padding-left: 40px;
+}
+.iconS {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
+    top: 45%;
+    left: 10px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #888;
+
+}
+.M
+{
+    background-image: url('../assets/marker.png');
+}
+.C
+{
+
+    background-image: url('../assets/calendar.png');
+}
+.P
+{
+
+    background-image: url('../assets/passenger.png');
+}
+.custom-link
+{
+    color:#383838 !important;
+    font-size:18px !important;
 }
 .inputs
 {
@@ -20,6 +84,33 @@
     text-align: left;
     padding: 3%;
 }
+
+.icon3 {
+    display: flex;
+    justify-content: center; /* Centers the icon horizontally */
+    align-items: center; /* Centers the icon vertically */
+    width: 100px; /* Adjust width as necessary */
+}
+.burgerMenu
+{
+    background-image: url('../assets/burgerMenu.png');
+    width: 30px ; /* Adjust icon size as needed */
+    height: 30px ;
+    background-size: 30px;
+}
+.person
+{
+    background-image: url('../assets/person.png');
+    width: 30px; /* Adjust icon size as needed */
+    height: 30px;
+    background-size: 30px;
+}
+.myIconImage {
+    width: 50px; /* Adjust icon size as needed */
+    height: 50px; /* Maintain aspect ratio */
+    background-image: url('../assets/logo.png');
+    margin-right: 20%;
+}
 .cards div
 {
     width: 300px;
@@ -27,29 +118,32 @@
 .middlePanel
 {
     background-color:#F9FBFF;
-
-
-
+    background-image:url('../assets/backLogo.png') ;
+    width: 351px;
+    height: 351px;
+    background-size: 351px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 @font-face {
     font-family: 'Octin Sports';
     src: url('fonts/octin sports rg.otf') format('truetype');
 }
 
-
 .firstHeader
 {
     padding: 30px;
+
     color:#091528;
     font-family: 'Octin Sports', sans-serif;
     margin-left: 4.5%;
-    margin-top: 5%;
+
 }
 .subheader
 {
     margin-left: 7%;
     color: #0E1429;
-
+    max-width: 800px;
 }
 .searchForm .form-control
 {
@@ -77,4 +171,34 @@
 .miniForm button
 {
     margin: 4px;
+}
+
+
+
+
+
+
+.compact-calendar-wrapper .Calendar__header {
+    padding: 5px;
+}
+
+.custom-calendar-wrapper .Calendar__monthSelector,
+.custom-calendar-wrapper .Calendar__yearSelector {
+    padding: 0 5px;
+}
+.compact-calendar-wrapper {
+    font-size: 12px;
+    max-width: 200px !important;
+}
+
+
+
+.compact-calendar-wrapper .Calendar__day {
+    width: 30px;
+    height: 30px;
+}
+
+.compact-calendar-wrapper .Calendar__monthYear,
+.compact-calendar-wrapper .Calendar__day {
+    padding: 5px;
 }

@@ -68,14 +68,17 @@ const DropdownForm: React.FC = () => {
     const selectedPassengersCount = Math.max(1, passengers.filter((passenger) => passenger.isChecked).length);
 
     return (
-        <div style={{ position: 'relative', width: 'fit-content' }} className='me-2 flex-fill mb-2'>
-            <input
-                type="text"
-                placeholder={`Кількість пасажирів: ${selectedPassengersCount}`}
-                onClick={() => setShowForm(!showForm)}
-                readOnly
-                className="form-control inputs"
-            />
+        <div style={{ position: 'relative', width: 'fit-content' }} >
+            <div className="input-container">
+                <input
+                    type="text"
+                    placeholder={`Кількість пасажирів: ${selectedPassengersCount}`}
+                    onClick={() => setShowForm(!showForm)}
+                    readOnly
+                    className="location-input"
+                />
+                <span className="iconS P"></span>
+            </div>
             {showForm && (
                 <div
                     ref={formRef}
@@ -92,34 +95,34 @@ const DropdownForm: React.FC = () => {
                     }}
                 >
                     {passengers.map((passenger) => (
-                        <div key={passenger.id} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+                        <div key={passenger.id} style={{display: 'flex', alignItems: 'center', marginBottom: '10px'}}>
                             <input
                                 type="checkbox"
                                 id={`passenger-${passenger.id}`}
                                 checked={passenger.isChecked}
                                 onChange={() => handleCheckboxChange(passenger.id)}
                             />
-                            <label htmlFor={`passenger-${passenger.id}`} style={{ marginLeft: '10px' }}>
+                            <label htmlFor={`passenger-${passenger.id}`} style={{marginLeft: '10px'}}>
                                 {passenger.type}
                             </label>
                             <button className="btn btn-link ms-auto">Редагувати</button>
                         </div>
                     ))}
 
-                    <div style={{ marginBottom: '10px' }}>
-                        <a href="#" style={{ color: '#00f', textDecoration: 'underline' }}>+ Додати пільгову знижку</a>
+                    <div style={{marginBottom: '10px'}}>
+                        <a href="#" style={{color: '#00f', textDecoration: 'underline'}}>+ Додати пільгову знижку</a>
                     </div>
 
-                    <hr />
+                    <hr/>
 
-                    <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                    <div style={{textAlign: 'center', marginTop: '20px'}}>
                         <button
                             type="button"
                             className="btn btn-outline-primary"
-                            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                            style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}
                             onClick={handleAddPassenger}
                         >
-                            <span style={{ fontSize: '20px', marginRight: '10px' }}>+</span> Додати пасажира
+                            <span style={{fontSize: '20px', marginRight: '10px'}}>+</span> Додати пасажира
                         </button>
                     </div>
 
@@ -130,7 +133,7 @@ const DropdownForm: React.FC = () => {
                                 type="button"
                                 className="btn btn-secondary"
                                 onClick={() => handleSelectPassengerType('Дитина')}
-                                style={{ marginRight: '10px' }}
+                                style={{marginRight: '10px'}}
                             >
                                 Дитина
                             </button>
@@ -138,11 +141,12 @@ const DropdownForm: React.FC = () => {
                                 type="button"
                                 className="btn btn-secondary"
                                 onClick={() => handleSelectPassengerType('Підліток')}
-                                style={{ marginRight: '10px' }}
+                                style={{marginRight: '10px'}}
                             >
                                 Підліток
                             </button>
-                            <button type="button" className="btn btn-secondary" onClick={() => handleSelectPassengerType('Дорослий')}>
+                            <button type="button" className="btn btn-secondary"
+                                    onClick={() => handleSelectPassengerType('Дорослий')}>
                                 Дорослий
                             </button>
                         </div>

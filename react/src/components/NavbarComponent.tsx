@@ -22,30 +22,36 @@ const NavbarComponent: React.FC = () => {
 
 
     return (
-        <Navbar bg="dark" variant="dark" expand="lg">
-            <Container>
-                <Navbar.Brand href="/">BlablaCarCopY</Navbar.Brand>
+        <Navbar className="myNavBar" expand="lg">
+            <Container className="d-flex justify-content-between align-items-center">
                 <Navbar.Toggle aria-controls="navbar-nav" />
                 <Navbar.Collapse id="navbar-nav">
-
                     <Nav className="me-auto">
-                        <Nav.Link href="/createTravel">Post trip</Nav.Link>
-                        <Nav.Link href="#">Something</Nav.Link>
-                        <Nav.Link href="#">Something</Nav.Link>
+                        <Nav.Link className="custom-link" href="/createTravel">Post trip</Nav.Link>
+                        <Nav.Link className="custom-link" href="#">Something</Nav.Link>
+                        <Nav.Link className="custom-link" href="#">Something</Nav.Link>
                     </Nav>
 
+
+                    <div className="d-flex justify-content-center " style={{ flex: '1' }}>
+                        <div  className="myIconImage" />
+                    </div>
+
                     <Nav className="ml-auto">
-                        {token ? ( <> <Nav.Link href="/personSettings"><i className="bi bi-list" /></Nav.Link>
-                                <Nav.Link href="/profile"><i className="bi bi-person" /> </Nav.Link>
+                        {token ? (
+                            <>
+                                <Nav.Link href="/personSettings">
+                                    <div className="burgerMenu"/>
+                                </Nav.Link>
+                                <Nav.Link href="/profile">
+                                    <div className="person"/>
+                                </Nav.Link>
 
-
-                                <span className="navbar-text me-3">Привіт! {username}</span>
-                                <Button variant="outline-light" onClick={handleLogout}>
-                                    Вийти
-                                </Button>
                             </>
                         ) : (
-                            <Nav.Link href="/login"><i className="bi bi-person" />Увійти</Nav.Link>
+                            <Nav.Link href="/login">
+                                <i className="bi bi-person" /> Увійти
+                            </Nav.Link>
                         )}
                     </Nav>
                 </Navbar.Collapse>
