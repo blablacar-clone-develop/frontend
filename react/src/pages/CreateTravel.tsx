@@ -33,7 +33,7 @@ const CreationTravel: React.FC = () => {
                         const handleInputChange = () => {
                             const input = searchInputRefFrom.current?.value || '';
                             if (input.length > 2) {
-                                autocompleteService.getPlacePredictions({input}, (predictions, status) => {
+                                autocompleteService.getPlacePredictions({ input, language: 'uk' }, (predictions, status) => {
                                     if (status === window.google.maps.places.PlacesServiceStatus.OK && predictions) {
                                         setSuggestions(predictions);
                                     } else {

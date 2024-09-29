@@ -1,21 +1,43 @@
-// src/components/SearchPanel.tsx
 import React, { useRef, useEffect, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Loader } from '@googlemaps/js-api-loader';
 import CalendarInput from './Calendar';
 import DropDownForm from './CountPassenger';
 import '../styles/homePage.css';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const SearchPanel: React.FC = () => {
+interface SearchPanelProps {
+    info: {
+        ob: {
+            from?: {
+                city: string;
+                country: string;
+                address: string;
+            };
+            to?: {
+                city: string;
+                country: string;
+                address: string;
+            };
+            date?: Date | null;
+            passengers?: any[];
+        };
+    };
+}
+
+const SearchPanel: React.FC<SearchPanelProps> = ({ info }) => {
     const searchInputRefFrom = useRef<HTMLInputElement>(null);
     const searchInputRefTo = useRef<HTMLInputElement>(null);
     const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "KeyNOTfound";
     const [myLatitude, setMyLatitude] = useState<number | null>(null);
     const [myLongitude, setMyLongitude] = useState<number | null>(null);
-    const [selectedDay, setSelectedDay] = useState<Date | null>(null);
-    const [passengers, setPassengers] = useState<any[]>([]); // Стан для пасажирів
+    const [selectedDay, setSelectedDay] = useState<Date | null>(info?.ob.date || null);
+    const [passengers, setPassengers] = useState<any[]>(info?.ob.passengers || []);
     const navigate = useNavigate();
+
+    const [fromPlace, setFromPlace] = useState<{ city: string; country: string; address: string } | null>(null);
+    const [toPlace, setToPlace] = useState<{ city: string; country: string; address: string } | null>(null);
+
     useEffect(() => {
         const loader = new Loader({
             apiKey: API_KEY,
@@ -25,33 +47,53 @@ const SearchPanel: React.FC = () => {
 
         loader.load().then(() => {
             if (searchInputRefFrom.current && window.google) {
-                const autocomplete = new window.google.maps.places.Autocomplete(searchInputRefFrom.current, {
+                const autocompleteFrom = new window.google.maps.places.Autocomplete(searchInputRefFrom.current, {
                     types: ['geocode'],
+                    language: 'uk' // Вказуємо мову
                 });
 
-                autocomplete.addListener('place_changed', () => {
-                    const place = autocomplete.getPlace();
+                autocompleteFrom.addListener('place_changed', () => {
+                    const place = autocompleteFrom.getPlace();
                     if (place.geometry) {
-                        const location = place.geometry.location!;
-                        console.log('Latitude:', location.lat());
-                        setMyLatitude(location.lat());
-                        console.log('Longitude:', location.lng());
-                        setMyLongitude(location.lng());
+                        const city = place.address_components?.find(component =>
+                            component.types.includes('locality')
+                        )?.long_name || '';
+
+                        const country = place.address_components?.find(component =>
+                            component.types.includes('country')
+                        )?.long_name || '';
+
+                        setFromPlace({
+                            city,
+                            country,
+                            address: place.formatted_address || searchInputRefFrom.current?.value || ''
+                        });
                     }
                 });
             }
 
             if (searchInputRefTo.current && window.google) {
-                const autocomplete = new window.google.maps.places.Autocomplete(searchInputRefTo.current, {
+                const autocompleteTo = new window.google.maps.places.Autocomplete(searchInputRefTo.current, {
                     types: ['geocode'],
+                    language: 'uk' // Вказуємо мову
                 });
 
-                autocomplete.addListener('place_changed', () => {
-                    const place = autocomplete.getPlace();
+                autocompleteTo.addListener('place_changed', () => {
+                    const place = autocompleteTo.getPlace();
                     if (place.geometry) {
-                        const location = place.geometry.location!;
-                        console.log('Latitude:', location.lat());
-                        console.log('Longitude:', location.lng());
+                        const city = place.address_components?.find(component =>
+                            component.types.includes('locality')
+                        )?.long_name || '';
+
+                        const country = place.address_components?.find(component =>
+                            component.types.includes('country')
+                        )?.long_name || '';
+
+                        setToPlace({
+                            city,
+                            country,
+                            address: place.formatted_address || searchInputRefTo.current?.value || ''
+                        });
                     }
                 });
             }
@@ -59,52 +101,25 @@ const SearchPanel: React.FC = () => {
             console.error('Failed to load Google Maps API:', e);
         });
     }, []);
-    const getCoordinates = (address: string) => {
-        const geocoder = new (window.google as any).maps.Geocoder();
-        return new Promise((resolve, reject) => {
-            geocoder.geocode({ address }, (results: any, status: any) => {
-                if (status === "OK" && results[0]) {
-                    const location = results[0].geometry.location;
-                    resolve({ lat: location.lat(), lng: location.lng() });
-                } else {
-                    reject('Geocode was not successful for the following reason: ' + status);
-                }
-            });
-        });
-    };
-
 
     const handleSearch = async () => {
-        const from = searchInputRefFrom.current?.value;
-        const to = searchInputRefTo.current?.value;
-
-        try {
-            const fromCoordinates = await getCoordinates(from);
-            const toCoordinates = await getCoordinates(to);
-
-            const ob = {
-                from: from,
-                to: to,
-                date: selectedDay,
-                passengers: passengers,
-                fromCoordinates, // Додайте координати звідки
-                toCoordinates // Додайте координати куди
-            };
-            console.log('From Coordinates:', fromCoordinates);
-            console.log('To Coordinates:', toCoordinates);
-            console.log('From:', from);
-            console.log('To:', to);
-            console.log('Selected Day:', selectedDay);
-            console.log('Selected Passengers:', passengers.filter(p => p.isChecked));
-            navigate("/searchResult", { state: { ob } });
-
-        } catch (error) {
-            console.error('Error fetching coordinates:', error);
-            // Можливо, ви хочете показати повідомлення про помилку тут
+        if (!fromPlace || !toPlace) {
+            console.error('Please select valid From and To locations.');
+            return;
         }
+
+        const ob = {
+            from: fromPlace,
+            to: toPlace,
+            date: selectedDay,
+            passengers
+        };
+
+        navigate("/searchResult", { state: { ob } });
     };
+
     return (
-        <div className="searchPanel">
+        <div className="searchPanel con">
             <Form className="d-flex justify-content-center flex-wrap w-100 searchForm">
                 <div className="input-container">
                     <input
@@ -112,19 +127,23 @@ const SearchPanel: React.FC = () => {
                         type="text"
                         placeholder="From"
                         className="location-input"
+                        defaultValue={info?.ob.from?.address || ''}
                     />
                     <span className="iconS M"></span>
                 </div>
                 <div className="input-container">
-                    <input ref={searchInputRefTo} type="text" placeholder="To"
-                           className="location-input"/>
+                    <input
+                        ref={searchInputRefTo}
+                        type="text"
+                        placeholder="To"
+                        className="location-input"
+                        defaultValue={info?.ob.to?.address || ''}
+                    />
                     <span className="iconS M"></span>
                 </div>
 
-                {/* Додайте пропси для CalendarInput */}
                 <CalendarInput selectedDay={selectedDay} setSelectedDay={setSelectedDay} />
-                {/* Додайте пропси для DropDownForm */}
-                <DropDownForm setPassengers={setPassengers} />
+                <DropDownForm setPassengers={setPassengers} initialPassengers={info?.ob.passengers || []} />
                 <Button className="mb-2 butSearch" onClick={handleSearch}>Search</Button>
             </Form>
         </div>

@@ -8,14 +8,14 @@ interface Passenger {
 }
 
 interface DropdownFormProps {
-    setPassengers: (passengers: Passenger[]) => void; // Пропс для оновлення пасажирів
+    setPassengers: (passengers: Passenger[]) => void;
 }
 
 const DropdownForm: React.FC<DropdownFormProps> = ({ setPassengers }) => {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
 
-    // Ініціалізація пасажирів з перевіркою на наявність токена та імені користувача
+    // Initialize passengers with default passenger
     const [passengers, setLocalPassengers] = useState<Passenger[]>([
         {
             id: 1,
@@ -51,7 +51,7 @@ const DropdownForm: React.FC<DropdownFormProps> = ({ setPassengers }) => {
         const newPassenger: Passenger = { id: passengers.length + 1, type, isChecked: true };
         setLocalPassengers((prev) => {
             const updatedPassengers = [...prev, newPassenger];
-            setPassengers(updatedPassengers); // Оновлення пасажирів в SearchPanel
+            setPassengers(updatedPassengers);
             return updatedPassengers;
         });
         setShowMiniForm(false);
@@ -72,11 +72,10 @@ const DropdownForm: React.FC<DropdownFormProps> = ({ setPassengers }) => {
             })
         );
 
-        // Оновити загальний список пасажирів
         setPassengers(passengers);
     };
 
-    const selectedPassengersCount = Math.max(1, passengers.filter((passenger) => passenger.isChecked).length);
+    const selectedPassengersCount = passengers.filter((passenger) => passenger.isChecked).length;
 
     return (
         <div style={{ position: 'relative', width: 'fit-content' }} >

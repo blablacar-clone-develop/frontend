@@ -1,0 +1,8 @@
+.rideList {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    gap: 16px;
+    font-family: Inter;
+    color:#3F3F3F;
+}
