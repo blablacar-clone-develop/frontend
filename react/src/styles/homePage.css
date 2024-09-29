@@ -1,5 +1,6 @@
 .main
 {
+    background-color: #F9FBFF;
     padding: 0px !important;
 }
 .searchPanel
@@ -8,6 +9,7 @@
     width: 90%;
     margin-left: 3%;
     display:flex;
+    background-color: #F9FBFF;
     justify-content: center;
 
 }
@@ -18,7 +20,18 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 
 }
-
+.myContLine
+{
+    background-color: #F9FBFF;
+    background-image:url('../assets/line.png') ;
+    width:1800px;
+    height: 250px;
+    background-size:1920px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 8%;
+    margin-top: 5%;
+}
 .butSearch
 {
     margin-top: 5px;
@@ -31,6 +44,22 @@
     position: relative;
     margin: 5px;
     border-radius: 10px;
+}
+.card1
+{
+    top: -100px;
+    left: -40px;
+
+}
+.card2
+{
+    top: 60px;
+    right: 50px
+}
+.card3
+{
+    top:-70px;
+    left: 20px;
 }
 
 .location-input {
@@ -78,11 +107,29 @@
     border-radius: 4px;
 
 }
+.headerOfCards
+{
+    color:#4389E4;
+}
 .cards
 {
-    font-family: "Bookman Old Style";
+    position: relative;
+    font-family: "Inter";
     text-align: left;
     padding: 3%;
+}
+
+.card-item {
+    background-color: white;
+
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 280px;
+}
+.card-item p{
+    font-size: 16px;
 }
 
 .icon3 {
@@ -113,11 +160,12 @@
 }
 .cards div
 {
-    width: 300px;
+    width: 400px;
+
 }
 .middlePanel
 {
-    background-color:#F9FBFF;
+    background-color: #F9FBFF;
     background-image:url('../assets/backLogo.png') ;
     width: 351px;
     height: 351px;

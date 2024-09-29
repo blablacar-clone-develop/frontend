@@ -7,12 +7,16 @@ interface Passenger {
     isChecked: boolean;
 }
 
-const DropdownForm: React.FC = () => {
+interface DropdownFormProps {
+    setPassengers: (passengers: Passenger[]) => void; // Пропс для оновлення пасажирів
+}
+
+const DropdownForm: React.FC<DropdownFormProps> = ({ setPassengers }) => {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
 
     // Ініціалізація пасажирів з перевіркою на наявність токена та імені користувача
-    const [passengers, setPassengers] = useState<Passenger[]>([
+    const [passengers, setLocalPassengers] = useState<Passenger[]>([
         {
             id: 1,
             type: token && username ? username : 'Дорослий',
@@ -45,14 +49,18 @@ const DropdownForm: React.FC = () => {
 
     const handleSelectPassengerType = (type: string) => {
         const newPassenger: Passenger = { id: passengers.length + 1, type, isChecked: true };
-        setPassengers((prev) => [...prev, newPassenger]);
+        setLocalPassengers((prev) => {
+            const updatedPassengers = [...prev, newPassenger];
+            setPassengers(updatedPassengers); // Оновлення пасажирів в SearchPanel
+            return updatedPassengers;
+        });
         setShowMiniForm(false);
     };
 
     const handleCheckboxChange = (id: number) => {
         const checkedPassengersCount = passengers.filter((passenger) => passenger.isChecked).length;
 
-        setPassengers((prev) =>
+        setLocalPassengers((prev) =>
             prev.map((passenger) => {
                 if (passenger.id === id) {
                     if (checkedPassengersCount === 1 && passenger.isChecked) {
@@ -63,6 +71,9 @@ const DropdownForm: React.FC = () => {
                 return passenger;
             })
         );
+
+        // Оновити загальний список пасажирів
+        setPassengers(passengers);
     };
 
     const selectedPassengersCount = Math.max(1, passengers.filter((passenger) => passenger.isChecked).length);
@@ -72,7 +83,7 @@ const DropdownForm: React.FC = () => {
             <div className="input-container">
                 <input
                     type="text"
-                    placeholder={`Кількість пасажирів: ${selectedPassengersCount}`}
+                    placeholder={`Count: ${selectedPassengersCount}`}
                     onClick={() => setShowForm(!showForm)}
                     readOnly
                     className="location-input"
@@ -95,34 +106,34 @@ const DropdownForm: React.FC = () => {
                     }}
                 >
                     {passengers.map((passenger) => (
-                        <div key={passenger.id} style={{display: 'flex', alignItems: 'center', marginBottom: '10px'}}>
+                        <div key={passenger.id} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
                             <input
                                 type="checkbox"
                                 id={`passenger-${passenger.id}`}
                                 checked={passenger.isChecked}
                                 onChange={() => handleCheckboxChange(passenger.id)}
                             />
-                            <label htmlFor={`passenger-${passenger.id}`} style={{marginLeft: '10px'}}>
+                            <label htmlFor={`passenger-${passenger.id}`} style={{ marginLeft: '10px' }}>
                                 {passenger.type}
                             </label>
                             <button className="btn btn-link ms-auto">Редагувати</button>
                         </div>
                     ))}
 
-                    <div style={{marginBottom: '10px'}}>
-                        <a href="#" style={{color: '#00f', textDecoration: 'underline'}}>+ Додати пільгову знижку</a>
+                    <div style={{ marginBottom: '10px' }}>
+                        <a href="#" style={{ color: '#00f', textDecoration: 'underline' }}>+ Додати пільгову знижку</a>
                     </div>
 
-                    <hr/>
+                    <hr />
 
-                    <div style={{textAlign: 'center', marginTop: '20px'}}>
+                    <div style={{ textAlign: 'center', marginTop: '20px' }}>
                         <button
                             type="button"
                             className="btn btn-outline-primary"
-                            style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}
+                            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                             onClick={handleAddPassenger}
                         >
-                            <span style={{fontSize: '20px', marginRight: '10px'}}>+</span> Додати пасажира
+                            <span style={{ fontSize: '20px', marginRight: '10px' }}>+</span> Додати пасажира
                         </button>
                     </div>
 
@@ -133,7 +144,7 @@ const DropdownForm: React.FC = () => {
                                 type="button"
                                 className="btn btn-secondary"
                                 onClick={() => handleSelectPassengerType('Дитина')}
-                                style={{marginRight: '10px'}}
+                                style={{ marginRight: '10px' }}
                             >
                                 Дитина
                             </button>
@@ -141,7 +152,7 @@ const DropdownForm: React.FC = () => {
                                 type="button"
                                 className="btn btn-secondary"
                                 onClick={() => handleSelectPassengerType('Підліток')}
-                                style={{marginRight: '10px'}}
+                                style={{ marginRight: '10px' }}
                             >
                                 Підліток
                             </button>
