@@ -4,6 +4,7 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import { Modal, Button } from 'react-bootstrap'; // Import react-bootstrap modal and button
 import NavBar from "../components/NavbarComponent";
 import Footer from "../components/main/Footer/Footer";
+import {fetchUserData} from "../utils/tokenUtils.ts";
 
 interface Brand {
     id: number;
@@ -42,6 +43,14 @@ const EditCarPage: React.FC = () => {
     const handleCloseModal = () => setShowModal(false);
 
     useEffect(() => {
+        const fetchData = async () => {
+            await fetchUserData(navigate);
+
+        };
+        fetchData();
+    }, [navigate]);
+
+    useEffect(() => {
         const fetchCarData = async () => {
             try {
                 const token = localStorage.getItem("token");
@@ -51,12 +60,6 @@ const EditCarPage: React.FC = () => {
                         Authorization: `Bearer ${token}`
                     }
                 });
-                if (response.data === "token") {
-                    localStorage.removeItem('token');
-                    localStorage.removeItem('username');
-                    localStorage.removeItem('userId');
-                    navigate("/login");
-                }
 
                 setCar(response.data);
                 setLoading(false);
