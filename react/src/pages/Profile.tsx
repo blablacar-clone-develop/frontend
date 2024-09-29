@@ -30,6 +30,11 @@ const PersonalInfo: React.FC = () => {
     const navigate = useNavigate();
     const userId = localStorage.getItem("userId");
 
+    ///Зміна заголовку сторінки
+    useEffect(() => {
+        document.title = 'Profile';
+    }, []);
+
     useEffect(() => {
         const fetchData = async () => {
 

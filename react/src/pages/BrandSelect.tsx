@@ -15,6 +15,12 @@ const CarBrandSelection: React.FC = () => {
     const [filteredBrands, setFilteredBrands] = useState<string[]>([]);
     const navigate = useNavigate();
 
+    ///Зміна заголовку сторінки
+    useEffect(() => {
+        document.title = 'Add your vehicle';
+    }, []);
+
+
     useEffect(() => {
         const fetchData = async () => {
             const userData = await fetchUserData(navigate);

@@ -13,6 +13,10 @@ const CarModelSelection: React.FC = () => {
     const [displayModels, setDisplayModels] = useState<string[]>([]); // Моделі для відображення
     const { brand, carId} = location.state || { brand: '' };
 
+    ///Зміна заголовку сторінки
+    useEffect(() => {
+        document.title = 'Model of your vehicle?';
+    }, []);
 
     useEffect(() => {
         const fetchData = async () => {

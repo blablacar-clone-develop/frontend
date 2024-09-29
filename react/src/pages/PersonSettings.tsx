@@ -32,6 +32,11 @@ const ProfilePage: React.FC = () => {
     const [cars, setCars] = useState<Autos[]>([]);
     const navigate = useNavigate();
 
+    ///Зміна заголовку сторінки
+    useEffect(() => {
+        document.title = 'Person Settings';
+    }, []);
+
     useEffect(() => {
         const fetchData = async () => {
             const userData = await fetchUserData(navigate); // Використовуємо утиліту для перевірки токену

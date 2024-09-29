@@ -24,6 +24,11 @@ const CarColorSelection: React.FC = () => {
     );
     const navigate = useNavigate();
 
+    ///Зміна заголовку сторінки
+    useEffect(() => {
+        document.title = 'What color is your vehicle?';
+    }, []);
+
     useEffect(() => {
         const fetchData = async () => {
             const userData = await fetchUserData(navigate); // Використовуємо утиліту для перевірки токену
