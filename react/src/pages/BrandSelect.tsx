@@ -71,7 +71,7 @@ const CarBrandSelection: React.FC = () => {
         <main className='main'>
             <Navbar />
             <div className="car-brand-selection">
-                <h1 className="title">Яка марка вашого авто?</h1>
+                <h1 className="title-createTransport">Add your vehicle</h1>
                 <input
                     type="text"
                     value={searchTerm}
@@ -83,7 +83,7 @@ const CarBrandSelection: React.FC = () => {
                     {filteredBrands.map((brand, index) => (
                         <li key={index} className="modelItem" onClick={() => handleBrandSelect(brand)}>
                             {brand}
-                            <i className="bi bi-chevron-right"></i>
+                            <i className="bi "></i>
                         </li>
                     ))}
                 </ul>
