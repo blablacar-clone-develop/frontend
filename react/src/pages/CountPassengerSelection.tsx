@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import "../styles/CountPassengerSelection.css";
 import {useLocation, useNavigate} from "react-router-dom";
+import {fetchUserData} from "../utils/tokenUtils.ts";
 
 const PassengerSelection: React.FC = () => {
     const [passengers, setPassengers] = useState(3);
@@ -22,6 +23,14 @@ const PassengerSelection: React.FC = () => {
             [option]: !prev[option],
         }));
     };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await fetchUserData(navigate);
+
+        };
+        fetchData();
+    }, []);
 
     const handleSubmit = () => {
         console.log({ passengers, options });

@@ -5,6 +5,7 @@ import NavBar from '../components/NavbarComponent';
 import { useNavigate } from "react-router-dom";
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import {fetchUserData} from "../utils/tokenUtils.ts";
 
 
 const PersonalInfo: React.FC = () => {
@@ -30,7 +31,10 @@ const PersonalInfo: React.FC = () => {
     const userId = localStorage.getItem("userId");
 
     useEffect(() => {
-        const fetchUserData = async () => {
+        const fetchData = async () => {
+
+            await fetchUserData(navigate);
+
             const token = localStorage.getItem("token");
             if (token) {
                 try {
@@ -78,7 +82,7 @@ const PersonalInfo: React.FC = () => {
                 }
             }
         }
-        fetchUserData();
+        fetchData();
     }, [userId]);
 
     useEffect(() => {

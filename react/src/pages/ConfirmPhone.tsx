@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import 'react-phone-input-2/lib/style.css';
 import '../styles/ConfirmPhone.css';
 import PhoneInput from 'react-phone-input-2';
 import { useNavigate } from 'react-router-dom';
+import {fetchUserData} from "../utils/tokenUtils.ts";
 
 const ConfirmPhone: React.FC = () => {
     const [phone, setPhone] = useState('');
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await fetchUserData(navigate);
+
+        };
+        fetchData();
+    }, []);
 
     const handleContinue = () => {
         console.log("Phone number submitted:", phone);

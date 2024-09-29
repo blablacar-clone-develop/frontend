@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import "../styles/TimeSelection.css";
-import Navbar from "../components/NavbarComponent.tsx";
-import Footer from "../components/main/Footer/Footer.tsx";
 import { useLocation, useNavigate } from "react-router-dom";
+import {fetchUserData} from "../utils/tokenUtils.ts";
 
 const TimeSelection: React.FC = () => {
     const [selectedTime, setSelectedTime] = useState("08:00");
@@ -11,6 +10,14 @@ const TimeSelection: React.FC = () => {
 
     // Отримання значень з location.state
     const { fromAddress, toAddress, selectedRoute, date } = location.state || {};
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await fetchUserData(navigate);
+
+        };
+        fetchData();
+    }, []);
 
     const generateTimeList = () => {
         const times = [];

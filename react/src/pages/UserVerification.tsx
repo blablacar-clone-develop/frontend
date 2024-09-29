@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useNavigate, useLocation} from 'react-router-dom';
 import '../styles/UserVerification.css';
+import {fetchUserData} from "../utils/tokenUtils.ts";
 
 
 
@@ -8,6 +9,15 @@ const UserVerification: React.FC = () => {
    const navigate = useNavigate();
     const location = useLocation();
     const {emailVerified, phoneVerified, documentVerified} = location.state || {};
+
+    useEffect(() => {
+        const fetchData = async () => {
+            await fetchUserData(navigate);
+
+        };
+        fetchData();
+    }, []);
+
     const handleVerifyIdentity = () => {
        navigate("/confirmIdentity");
     };
