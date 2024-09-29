@@ -86,7 +86,7 @@
     margin: 0;
 }
 
-.modelItem, .colorItem {
+.modelItem {
     padding: 15px;
     border-bottom: 1px solid #82858F;
     /*border-radius: 5px;*/
@@ -95,6 +95,17 @@
     justify-content: space-between;
     align-items: center;
     /*background-color: #f9f9f9;*/
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 20px;
+    font-family: Inter, sans-serif;
+}
+
+.colorItem {
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-size: 20px;
@@ -117,3 +128,10 @@
     margin-right: 10px;
 }
 
+.colorIndicator {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #4389E4; /* Колір та товщина обведення */
+    border-radius: 50%; /* Створює круг */
+    margin-left: auto; /* Вирівнювання праворуч */
+}

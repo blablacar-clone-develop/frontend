@@ -91,7 +91,7 @@ const CarColorSelection: React.FC = () => {
         <main className='main'>
             <Navbar/>
             <div className="carColorSelection">
-                <h1 className="title">Якого кольору ваше авто?</h1>
+                <h1 className="title-createTransport">What color is your vehicle?</h1>
                 <ul className="colorList">
                     {filteredColors.map((color, index) => (
                         <li key={index} className="colorItem" onClick={() => handleColorSelect(color.id)}>
@@ -100,6 +100,7 @@ const CarColorSelection: React.FC = () => {
                                 style={{ backgroundColor: color.hex }}
                             ></span>
                             {color.name}
+                            <span className="colorIndicator"></span>
                         </li>
                     ))}
                 </ul>
