@@ -1,5 +1,4 @@
 
-
 .trips-list {
     padding: 20px;
     background-color: #f8f9fa;
@@ -46,3 +45,19 @@ button {
     background-color: #007bff;
     color: #fff;
 }
+.app-container8 {
+    display: flex;
+    flex-direction: row;
+    padding: 16px;
+}
+
+.sidebar {
+
+    width: 600px;
+    margin-right: 16px;
+}
+
+.ride-list {
+    flex-grow: 3;
+}
+

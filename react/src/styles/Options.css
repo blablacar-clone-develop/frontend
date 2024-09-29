@@ -1,0 +1,25 @@
+.container10 {
+    padding: 16px;
+    background-color:#F9FBFF;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    max-width: 600px;
+    margin-left: 15%;
+    font-family: Inter;
+    color:#3F3F3F;
+}
+
+.optionGroup {
+    margin-bottom: 16px;
+}
+
+.optionGroup label {
+    display: block;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+.sidebar
+{
+    flex:1.2 !important;
+
+}

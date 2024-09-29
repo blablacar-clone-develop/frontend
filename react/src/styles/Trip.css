@@ -1,0 +1,31 @@
+.card6 {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 16px;
+    max-width: 88%;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+}
+
+.location {
+    display: flex;
+    justify-content: space-between;
+}
+
+.driver {
+    display: flex;
+    justify-content: space-between;
+}
+
+.price {
+    font-size: 24px;
+    color: #007bff;
+    font-weight: bold;
+}
