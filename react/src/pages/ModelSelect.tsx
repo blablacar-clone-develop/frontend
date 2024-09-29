@@ -27,7 +27,7 @@ const CarModelSelection: React.FC = () => {
                         try {
                             const carModelsResponse = await axios.get(`${API_URL}/api/autos/models/all/${brand}`);
                             setCarModels(carModelsResponse.data);
-                            setDisplayModels(carModelsResponse.data.slice(0, 10));
+                            setDisplayModels(carModelsResponse.data.slice(0, 5));
                         } catch (error) {
                             console.error('Error fetching car models:', error);
                         }
@@ -47,10 +47,10 @@ const CarModelSelection: React.FC = () => {
         if (searchTerm) {
             const filtered = carModels.filter(model =>
                 model.toLowerCase().includes(searchTerm.toLowerCase())
-            ).slice(0, 10);
+            ).slice(0, 5);
             setDisplayModels(filtered);
         } else {
-            setDisplayModels(carModels.slice(0, 10));
+            setDisplayModels(carModels.slice(0, 5));
         }
     }, [searchTerm, carModels]);
 
@@ -66,19 +66,19 @@ const CarModelSelection: React.FC = () => {
         <main className='main'>
             <Navbar />
             <div className="carModelSelection">
-                <h1 className="title">Яка модель вашого авто {brand}?</h1>
+                <h1 className="title-createTransport">What’s model of your vehicle {brand}?</h1>
                 <input
                     type="text"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="searchInput"
-                    placeholder="Введіть модель авто"
+                    className="search-input"
+                    placeholder="Enter the car model"
                 />
                 <ul className="modelList">
                     {displayModels.map((model, index) => (
                         <li key={index} className="modelItem" onClick={() => handleModelSelect(model)}>
                             {model}
-                            <i className="bi bi-chevron-right"></i>
+                            <i className="bi"></i>
                         </li>
                     ))}
                 </ul>

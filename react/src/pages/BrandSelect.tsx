@@ -77,7 +77,7 @@ const CarBrandSelection: React.FC = () => {
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="search-input"
-                    placeholder="Введіть марку авто"
+                    placeholder="Enter the car brand"
                 />
                 <ul className="brand-list">
                     {filteredBrands.map((brand, index) => (
