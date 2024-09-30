@@ -1,31 +1,72 @@
 .card6 {
-    display: flex;
-    justify-content: space-between;
-    padding: 16px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    margin-bottom: 16px;
-    max-width: 88%;
+    background-color: #fff; /* Background color for the card */
+    border-radius: 8px; /* Rounded corners */
+    padding: 15px; /* Padding inside the card */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    display: flex; /* Flex layout for content */
+    justify-content: space-between; /* Space between elements */
+    align-items: center; /* Center alignment for items */
+    margin: 10px 0; /* Margin between cards */
+
 }
 
 .info {
-    display: flex;
+    flex-grow: 1; /* Allow info to take up remaining space */
+}
+
+.location, .driver {
+    display: flex; /* Flex layout for locations and driver */
+     /* Stack items vertically */
+
+
+}
+.location
+{
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    max-width: 400px;
+
+}
+.lineT {
+    height: 1px; /* Висота лінії */
+    background-color: #007BFF; /* Колір лінії */
+    margin: 12px 0; /* Відступи з верхньої та нижньої сторони */
+    flex:0.3;
+    justify-content: left;
+}
+.driver
+{
     flex-direction: column;
+
+}
+.location span {
+    font-size: 16px; /* Font size for location */
+    font-weight: bold; /* Bold text */
+    flex:0.3;
+    text-align: left;
 }
 
-.location {
-    display: flex;
-    justify-content: space-between;
+.duration {
+    margin: 5px 0; /* Margin for duration text */
+    font-size: 14px; /* Font size for duration */
+    color: #666; /* Color for duration text */
+    flex:2;
+
 }
 
-.driver {
-    display: flex;
-    justify-content: space-between;
+.driver span {
+    font-size: 14px; /* Font size for driver */
+    color: #666; /* Color for driver text */
 }
 
 .price {
-    font-size: 24px;
-    color: #007bff;
-    font-weight: bold;
+    font-size: 20px; /* Font size for price */
+    color: #007BFF; /* Blue color for price */
+    font-weight: bold; /* Bold text */
+}
+
+.departureTime {
+    font-size: 14px; /* Font size for departure time */
+    color: #666; /* Color for departure time */
 }

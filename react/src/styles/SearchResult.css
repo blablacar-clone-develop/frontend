@@ -50,7 +50,10 @@ button {
     flex-direction: row;
     padding: 16px;
 }
-
+.con{
+    margin-top: 5%;
+    margin-bottom: -5%;
+}
 .sidebar {
 
     width: 600px;
@@ -58,6 +61,6 @@ button {
 }
 
 .ride-list {
-    flex-grow: 3;
+    flex-grow: 2;
 }
 

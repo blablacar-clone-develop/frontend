@@ -27,8 +27,9 @@ const NavbarComponent: React.FC = () => {
                 <Navbar.Toggle aria-controls="navbar-nav" />
                 <Navbar.Collapse id="navbar-nav">
                     <Nav className="me-auto">
+
+                        <Nav.Link className="custom-link" href="/">Home</Nav.Link>
                         <Nav.Link className="custom-link" href="/createTravel">Post trip</Nav.Link>
-                        <Nav.Link className="custom-link" href="#">Something</Nav.Link>
                         <Nav.Link className="custom-link" href="#">Something</Nav.Link>
                     </Nav>
 

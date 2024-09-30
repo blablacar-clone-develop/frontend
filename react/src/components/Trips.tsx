@@ -1,28 +1,28 @@
 import React from "react";
-import Trip from "../components/Trip.tsx";
+import Tripp from "../components/Trip.tsx";
 import '../styles/Trips.css';
 
-interface TripsProps {
-    rides: {
-        time: string;
-        price: number;
-        seatsAvailable: number;
-        vehicleType: string;
-    }[];
-}
+import { Trip } from "../models/Trip"; // Import the correct type for rides
 
+// Define the props interface for the Trips component
+interface TripsProps {
+    rides: Trip[]; // Define rides as an array of Ride
+}
 const Trips: React.FC<TripsProps> = ({ rides }) => {
     return (
         <div className="rideList">
             {rides.length > 0 ? ( // Check if rides exist
                 rides.map((ride, index) => (
-                    <Trip
+                    <Tripp
                         key={index}
-                        time={ride.time}
-                        driver={ride.driver}
+                        departureTime={ride.departureTime}
+                        cityFrom = {ride.startTravelPoint.city}
+                        cityTo = {ride.finishTravelPoint.city}
+                        driverName={ride.user.name}
                         price={ride.price}
-                        seatsAvailable={ride.seatsAvailable}
-                        vehicleType={ride.vehicleType}
+                        seatsAvailable={ride.availableSeats}
+                        date={ride.departureDate}
+                        travelDuration={ride.tripDurationAndDistance.duration}
                     />
                 ))
             ) : (

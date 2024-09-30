@@ -1,29 +1,37 @@
 import React from "react";
 import '../styles/Options.css';
 
-const Options: React.FC = () => {
+interface OptionsProps {
+    onSortChange: (sortOption: string) => void; // Додано пропс для передачі функції
+}
+
+const Options: React.FC<OptionsProps> = ({ onSortChange }) => {
+    const handleSortChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        onSortChange(event.target.value); // Викликаємо функцію при виборі сортування
+    };
+
     return (
         <div className="container10">
             <h4>Sort by</h4>
             <div className="optionGroup">
                 <label>
-                    <input type="radio" name="sort" />
+                    <input type="radio" name="sort" value="earliest" onChange={handleSortChange} />
                     Earliest departure time
                 </label>
                 <label>
-                    <input type="radio" name="sort" />
+                    <input type="radio" name="sort" value="lowestPrice" onChange={handleSortChange} />
                     Lowest price
                 </label>
                 <label>
-                    <input type="radio" name="sort" />
+                    <input type="radio" name="sort" value="closeToDestination" onChange={handleSortChange} />
                     Close to destination
                 </label>
                 <label>
-                    <input type="radio" name="sort" />
+                    <input type="radio" name="sort" value="closeToDeparture" onChange={handleSortChange} />
                     Close to departure point
                 </label>
                 <label>
-                    <input type="radio" name="sort" />
+                    <input type="radio" name="sort" value="shortestTrip" onChange={handleSortChange} />
                     Shortest trip
                 </label>
             </div>

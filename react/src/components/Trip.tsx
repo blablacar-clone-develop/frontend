@@ -1,31 +1,51 @@
 import React from "react";
 import '../styles/Trip.css';
 
-interface RideCardProps {
-    time: string;
-    driver: string;
+interface TripProps {
+    departureTime: string;
+    driverName: string;
     price: number;
     seatsAvailable: number;
-    vehicleType: string;
+    date: string;
+    cityFrom: string;
+    cityTo: string;
+    travelDuration: string; // New prop for duration
 }
 
-const Trip: React.FC<RideCardProps> = ({ time, driver, price, seatsAvailable, vehicleType }) => {
+const Trip: React.FC<TripProps> = ({
+                                       departureTime,
+                                       driverName,
+                                       price,
+                                       seatsAvailable,
+                                       date,
+                                       cityFrom,
+                                       cityTo,
+                                       travelDuration
+                                   }) => {
     return (
         <div className="card6">
             <div className="info">
                 <div className="location">
-                    <span>Миколаїв</span>
-                    <span>{time}</span>
-                    <span>Одеса</span>
+                    <span >{cityFrom}</span>
+                    <div className="lineT"></div>
+                    <span className="duration">{travelDuration}</span>
+                    <div className="lineT"></div>
+                    <span>{cityTo}</span>
+                </div>
+                <div className="time">
+                    <div className="departureTime">{departureTime}</div>
                 </div>
                 <div className="driver">
-                    <span>{driver}</span>
-                    <span>{vehicleType}</span>
+
+                <span>{driverName}</span>
+                    <span>{date}</span>
                     <span>Максимально {seatsAvailable} осіб</span>
                 </div>
             </div>
             <div className="price">{price}₴</div>
+
         </div>
     );
 };
+
 export default Trip;

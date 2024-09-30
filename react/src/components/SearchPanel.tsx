@@ -26,6 +26,10 @@ interface SearchPanelProps {
 }
 
 const SearchPanel: React.FC<SearchPanelProps> = ({ info }) => {
+    // Set initial values and check for undefined 'info' and 'info.ob'
+    const initialFromPlace = info?.ob.from || { city: '', country: '', address: '' };
+    const initialToPlace = info?.ob.to || { city: '', country: '', address: '' };
+
     const searchInputRefFrom = useRef<HTMLInputElement>(null);
     const searchInputRefTo = useRef<HTMLInputElement>(null);
     const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "KeyNOTfound";
@@ -35,8 +39,8 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ info }) => {
     const [passengers, setPassengers] = useState<any[]>(info?.ob.passengers || []);
     const navigate = useNavigate();
 
-    const [fromPlace, setFromPlace] = useState<{ city: string; country: string; address: string } | null>(null);
-    const [toPlace, setToPlace] = useState<{ city: string; country: string; address: string } | null>(null);
+    const [fromPlace, setFromPlace] = useState<{ city: string; country: string; address: string } | null>(initialFromPlace);
+    const [toPlace, setToPlace] = useState<{ city: string; country: string; address: string } | null>(initialToPlace);
 
     useEffect(() => {
         const loader = new Loader({
@@ -49,7 +53,7 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ info }) => {
             if (searchInputRefFrom.current && window.google) {
                 const autocompleteFrom = new window.google.maps.places.Autocomplete(searchInputRefFrom.current, {
                     types: ['geocode'],
-                    language: 'uk' // Вказуємо мову
+                    language: 'uk'
                 });
 
                 autocompleteFrom.addListener('place_changed', () => {
@@ -75,7 +79,7 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ info }) => {
             if (searchInputRefTo.current && window.google) {
                 const autocompleteTo = new window.google.maps.places.Autocomplete(searchInputRefTo.current, {
                     types: ['geocode'],
-                    language: 'uk' // Вказуємо мову
+                    language: 'uk'
                 });
 
                 autocompleteTo.addListener('place_changed', () => {
@@ -119,7 +123,7 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ info }) => {
     };
 
     return (
-        <div className="searchPanel con">
+        <div className="searchPanel">
             <Form className="d-flex justify-content-center flex-wrap w-100 searchForm">
                 <div className="input-container">
                     <input

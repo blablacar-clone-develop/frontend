@@ -9,14 +9,15 @@ interface Passenger {
 
 interface DropdownFormProps {
     setPassengers: (passengers: Passenger[]) => void;
+    initialPassengers: Passenger[]; // Додаємо пропс для початкових пасажирів
 }
 
-const DropdownForm: React.FC<DropdownFormProps> = ({ setPassengers }) => {
+const DropdownForm: React.FC<DropdownFormProps> = ({ setPassengers, initialPassengers }) => {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
 
-    // Initialize passengers with default passenger
-    const [passengers, setLocalPassengers] = useState<Passenger[]>([
+    // Initialize passengers with initial passengers if provided
+    const [passengers, setLocalPassengers] = useState<Passenger[]>(initialPassengers.length > 0 ? initialPassengers : [
         {
             id: 1,
             type: token && username ? username : 'Дорослий',
@@ -43,42 +44,38 @@ const DropdownForm: React.FC<DropdownFormProps> = ({ setPassengers }) => {
         };
     }, []);
 
+    // Update passengers and propagate the change to parent
+    const updatePassengers = (updatedPassengers: Passenger[]) => {
+        setLocalPassengers(updatedPassengers);
+        setPassengers(updatedPassengers);
+    };
+
     const handleAddPassenger = () => {
         setShowMiniForm(true);
     };
 
     const handleSelectPassengerType = (type: string) => {
         const newPassenger: Passenger = { id: passengers.length + 1, type, isChecked: true };
-        setLocalPassengers((prev) => {
-            const updatedPassengers = [...prev, newPassenger];
-            setPassengers(updatedPassengers);
-            return updatedPassengers;
-        });
+        const updatedPassengers = [...passengers, newPassenger];
+        updatePassengers(updatedPassengers);
         setShowMiniForm(false);
     };
 
     const handleCheckboxChange = (id: number) => {
-        const checkedPassengersCount = passengers.filter((passenger) => passenger.isChecked).length;
+        const updatedPassengers = passengers.map((passenger) => {
+            if (passenger.id === id) {
+                return { ...passenger, isChecked: !passenger.isChecked };
+            }
+            return passenger;
+        });
 
-        setLocalPassengers((prev) =>
-            prev.map((passenger) => {
-                if (passenger.id === id) {
-                    if (checkedPassengersCount === 1 && passenger.isChecked) {
-                        return passenger;
-                    }
-                    return { ...passenger, isChecked: !passenger.isChecked };
-                }
-                return passenger;
-            })
-        );
-
-        setPassengers(passengers);
+        updatePassengers(updatedPassengers);
     };
 
     const selectedPassengersCount = passengers.filter((passenger) => passenger.isChecked).length;
 
     return (
-        <div style={{ position: 'relative', width: 'fit-content' }} >
+        <div style={{ position: 'relative', width: 'fit-content' }}>
             <div className="input-container">
                 <input
                     type="text"
