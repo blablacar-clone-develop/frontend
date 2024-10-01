@@ -66,6 +66,9 @@ const ProfilePage: React.FC = () => {
     const handleConfirmEmail = () => {
         navigate("/confirmEmail");
     };
+    function handleConfirmPhone() {
+        navigate("/confirmPhone");
+    }
 
     return (
         <main className="main">
@@ -102,6 +105,7 @@ const ProfilePage: React.FC = () => {
                         </li>
 
                         <li
+                            onClick={handleConfirmPhone}
                             className={verificationData?.phoneVerified ? 'inactive' : ''}
                         >
                             Confirm phone number

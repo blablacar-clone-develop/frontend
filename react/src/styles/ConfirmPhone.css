@@ -51,11 +51,4 @@ p {
     color: #5B5B5B;
 }
 
-.continue-button {
-    background-color: #007BFF;
-    color: white;
-}
 
-.continue-button:hover {
-    background-color: #006ae1;
-}

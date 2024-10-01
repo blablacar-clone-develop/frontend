@@ -22,6 +22,7 @@ import AddInfoRoute from "./pages/AddInfoRoute.tsx";
 import EditCarPage from "./pages/EditCarPage";
 import UserVerification from "./pages/UserVerification";
 import SearchResult from "./pages/SearchResult.tsx";
+import VerifyPhonesCode from "./pages/VerifyPhonesCode.tsx";
 import ConfirmPhone from "./pages/ConfirmPhone";
 
 function App() {
@@ -56,6 +57,7 @@ function App() {
                     <Route path="/userVerification" element={<UserVerification/>}/>
                     <Route path="/confirmPhone" element={<ConfirmPhone/>}/>
                     <Route path="/searchResult" element={<SearchResult/>}/>
+                    <Route path="/verifyPhonesCode" element={<VerifyPhonesCode/>}/>
                 </Routes>
             </Router>
 

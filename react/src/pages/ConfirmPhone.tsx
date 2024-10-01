@@ -19,7 +19,7 @@ const ConfirmPhone: React.FC = () => {
 
     const handleContinue = () => {
         console.log("Phone number submitted:", phone);
-        navigate('/');
+        navigate('/verifyPhonesCode');
     };
 
     return (
@@ -59,7 +59,7 @@ const ConfirmPhone: React.FC = () => {
                     <button className="back-button" onClick={() => navigate(-1)}>
                         Go back
                     </button>
-                    <button className="continue-button" onClick={handleContinue}>
+                    <button className="resend-button" onClick={handleContinue}>
                         Continue
                     </button>
                 </div>
