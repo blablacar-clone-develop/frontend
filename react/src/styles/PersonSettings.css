@@ -6,7 +6,14 @@
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
 }
+.inactive {
+    pointer-events: none;
+    color: gray;
+}
 
+.inactive i {
+    color: green;
+}
 .profile-header {
     display: flex;
     align-items: center;

@@ -26,6 +26,7 @@ const HomePage: React.FC = () => {
                         localStorage.removeItem('token');
                         localStorage.removeItem('username');
                         localStorage.removeItem('userId');
+                        navigate("/login");
                     }
                 } catch (error) {
                     console.error('Error fetching user data:', error);

@@ -4,6 +4,7 @@ import NavBar from '../components/NavbarComponent';
 import { Nav } from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
 import {fetchUserData} from "../utils/tokenUtils.ts";
+import axios from "axios";
 
 interface Autos {
     id: number;
@@ -26,26 +27,34 @@ interface Color {
     hex: string;
 }
 
-
 const ProfilePage: React.FC = () => {
     const username = localStorage.getItem('username');
     const [cars, setCars] = useState<Autos[]>([]);
+    const [verificationData, setVerificationData] = useState<{ emailVerified: boolean; phoneVerified: boolean; documentVerified: boolean } | null>(null);
     const navigate = useNavigate();
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
 
-    ///Зміна заголовку сторінки
     useEffect(() => {
         document.title = 'Person Settings';
     }, []);
 
     useEffect(() => {
         const fetchData = async () => {
-            const userData = await fetchUserData(navigate); // Використовуємо утиліту для перевірки токену
+            const userData = await fetchUserData(navigate);
             if (userData.autos) {
                 setCars(userData.autos);
             }
-        }
+        };
+
+        const fetchVerification = async () => {
+            const response = await axios.get(`${API_URL}/api/user/verification/${localStorage.getItem("userId")}`);
+            console.log("User verification data:", response.data);
+            setVerificationData(response.data);
+        };
+
         fetchData();
-    }, [navigate]);
+        fetchVerification();
+    }, [navigate, API_URL]);
 
     const handleCarClick = (carId: number) => {
         navigate(`/cars/${carId}/edit`);
@@ -58,12 +67,10 @@ const ProfilePage: React.FC = () => {
         navigate("/confirmEmail");
     };
 
-
     return (
         <main className="main">
             <NavBar />
             <div className="profile-page">
-
                 <div className="profile-header">
                     <i className="bi bi-person-circle profile-icon"></i>
                     <div className="profile-info">
@@ -78,9 +85,28 @@ const ProfilePage: React.FC = () => {
                 <div className="profile-section">
                     <h3>Confirm your profile</h3>
                     <ul>
-                        <li onClick={handleConfirmIdentity}>Confirm your identity <i className="bi bi-box-arrow-up-right"></i></li>
-                        <li onClick={handleConfirmEmail}>Confirm your email address <i className="bi bi-box-arrow-up-right"></i></li>
-                        <li>Confirm phone number <i className="bi bi-box-arrow-up-right"></i></li>
+                        <li
+                            onClick={handleConfirmIdentity}
+                            className={verificationData?.documentVerified ? 'inactive' : ''}
+                        >
+                            Confirm your identity
+                            {verificationData?.documentVerified ? <i className="bi bi-check-circle"></i> : <i className="bi bi-box-arrow-up-right"></i>}
+                        </li>
+
+                        <li
+                            onClick={handleConfirmEmail}
+                            className={verificationData?.emailVerified ? 'inactive' : ''}
+                        >
+                            Confirm your email address
+                            {verificationData?.emailVerified ? <i className="bi bi-check-circle"></i> : <i className="bi bi-box-arrow-up-right"></i>}
+                        </li>
+
+                        <li
+                            className={verificationData?.phoneVerified ? 'inactive' : ''}
+                        >
+                            Confirm phone number
+                            {verificationData?.phoneVerified ? <i className="bi bi-check-circle"></i> : <i className="bi bi-box-arrow-up-right"></i>}
+                        </li>
                     </ul>
                 </div>
 
@@ -98,10 +124,9 @@ const ProfilePage: React.FC = () => {
                         <li>Add information <i className="bi bi-box-arrow-up-right"></i></li>
                         <li>Change settings <i className="bi bi-box-arrow-up-right"></i></li>
                     </ul>
-
                 </div>
-                <div className="profile-section">
 
+                <div className="profile-section">
                     <h3>Transport</h3>
                     {cars.length > 0 ? (
                         cars.map((car) => (
@@ -116,9 +141,7 @@ const ProfilePage: React.FC = () => {
                     ) : (
                         <p>No cars available</p>
                     )}
-
-                    <Nav.Link href='/brandSelect'><p className="add-transport">Add transport <i
-                        className="bi bi-box-arrow-up-right"></i></p></Nav.Link>
+                    <Nav.Link href='/brandSelect'><p className="add-transport">Add transport <i className="bi bi-box-arrow-up-right"></i></p></Nav.Link>
                 </div>
 
                 <div className="exit">
