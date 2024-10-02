@@ -7,19 +7,25 @@ import {fetchUserData} from "../utils/tokenUtils.ts";
 
 const ConfirmPhone: React.FC = () => {
     const [phone, setPhone] = useState('');
+    const [countryCode, setCountryCode] = useState<string | undefined>(''); // Додаємо змінну для збереження коду країни
     const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
             await fetchUserData(navigate);
-
         };
         fetchData();
-    }, []);
+    }, [navigate]);
+
+    const handlePhoneChange = (value: string, country: any) => {
+        setPhone(value);
+        setCountryCode(country.dialCode);
+    };
 
     const handleContinue = () => {
         console.log("Phone number submitted:", phone);
-        navigate('/verifyPhonesCode');
+        console.log("Country code:", countryCode);
+        navigate('/verifyPhonesCode', { state: { phone, countryCode } });
     };
 
     return (
@@ -32,7 +38,7 @@ const ConfirmPhone: React.FC = () => {
                     <PhoneInput
                         country={'ua'}
                         value={phone}
-                        onChange={setPhone}
+                        onChange={handlePhoneChange}  // Оновлений обробник змін телефону
                         inputStyle={{
                             width: '100%',
                             height: '50px',

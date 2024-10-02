@@ -1,32 +1,40 @@
 import React from "react";
 import Tripp from "../components/Trip.tsx";
 import '../styles/Trips.css';
+import { Trip } from "../models/Trip";
+import { useNavigate } from "react-router-dom"; // Додайте цей імпорт
 
-import { Trip } from "../models/Trip"; // Import the correct type for rides
-
-// Define the props interface for the Trips component
 interface TripsProps {
-    rides: Trip[]; // Define rides as an array of Ride
+    rides: Trip[];
 }
+
 const Trips: React.FC<TripsProps> = ({ rides }) => {
+    const navigate = useNavigate(); // Ініціалізуйте useNavigate
+
+    const handleTripClick = (trip: Trip) => {
+
+        navigate("/trip", {state: trip});
+    };
+
     return (
         <div className="rideList">
-            {rides.length > 0 ? ( // Check if rides exist
+            {rides.length > 0 ? (
                 rides.map((ride, index) => (
-                    <Tripp
-                        key={index}
-                        departureTime={ride.departureTime}
-                        cityFrom = {ride.startTravelPoint.city}
-                        cityTo = {ride.finishTravelPoint.city}
-                        driverName={ride.user.name}
-                        price={ride.price}
-                        seatsAvailable={ride.availableSeats}
-                        date={ride.departureDate}
-                        travelDuration={ride.tripDurationAndDistance.duration}
-                    />
+                    <div key={index} onClick={() => handleTripClick(ride)}> {/* Додайте обробник натискання */}
+                        <Tripp
+                            departureTime={ride.departureTime}
+                            cityFrom={ride.startTravelPoint.city}
+                            cityTo={ride.finishTravelPoint.city}
+                            driverName={ride.user.name}
+                            price={ride.price}
+                            seatsAvailable={ride.availableSeats}
+                            date={ride.departureDate}
+                            travelDuration={ride.tripDurationAndDistance.duration}
+                        />
+                    </div>
                 ))
             ) : (
-                <p>Немає доступних поїздок</p> // Message if no rides are available
+                <p>Немає доступних поїздок</p>
             )}
         </div>
     );

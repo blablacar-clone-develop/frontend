@@ -15,15 +15,17 @@ const SearchResult: React.FC = () => {
     const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
     const [trips, setTrips] = useState<Trip[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const [sortOption, setSortOption] = useState<string>('earliest'); // Додано стан для зберігання параметра сортування
+    const [sortOption, setSortOption] = useState<string>('earliest');
+    const [filters, setFilters] = useState<{ departureTimes: string[], conveniences: string[] }>({
+        departureTimes: [],
+        conveniences: []
+    });
 
     useEffect(() => {
-        console.log(info);
         const fetchTrips = async () => {
             try {
                 const response = await axios.post<Trip[]>(`${API_URL}/api/trips/getSearchTrip`, info.ob);
                 setTrips(response.data);
-                console.log(response.data);
             } catch (error) {
                 console.error("Error fetching trips:", error);
             } finally {
@@ -38,52 +40,75 @@ const SearchResult: React.FC = () => {
     const handleSortChange = (option: string) => {
         setSortOption(option);
     };
-    const parseDuration = (duration) => {
+
+    // Функція для обробки фільтрів
+    const handleFiltersChange = (filters: { departureTimes: string[], conveniences: string[] }) => {
+        setFilters(filters);
+    };
+
+    const parseDuration = (duration: string) => {
         const regex = /(\d+)\s*год|(\d+)\s*хв/g;
         let match;
         let totalMinutes = 0;
 
         while ((match = regex.exec(duration)) !== null) {
             if (match[1]) {
-                totalMinutes += parseInt(match[1], 10) * 60; // Додаємо години у хвилини
+                totalMinutes += parseInt(match[1], 10) * 60;
             }
             if (match[2]) {
-                totalMinutes += parseInt(match[2], 10); // Додаємо хвилини
+                totalMinutes += parseInt(match[2], 10);
             }
         }
 
-        return totalMinutes; // Повертаємо загальну тривалість у хвилинах
+        return totalMinutes;
     };
+
+    // Функція для фільтрації поїздок
+    const filterTrips = (trips: Trip[]) => {
+        return trips.filter(trip => {
+            const matchesTime = filters.departureTimes.length === 0 || filters.departureTimes.some(time => {
+                if (time === "06:00 - 12:00") return trip.departureTime >= "06:00" && trip.departureTime <= "12:00";
+                if (time === "12:01 - 18:00") return trip.departureTime > "12:00" && trip.departureTime <= "18:00";
+                if (time === "After 18:00") return trip.departureTime > "18:00";
+                return false;
+            });
+
+            //const matchesConvenience = filters.conveniences.length === 0 || filters.conveniences.every(conv => trip.conveniences.includes(conv));
+
+            //return matchesTime && matchesConvenience;
+            return matchesTime;
+        });
+    };
+
     // Функція для відсортування поїздок
     const sortTrips = (trips: Trip[], option: string) => {
+        const filteredTrips = filterTrips(trips);
+
         switch (option) {
             case 'earliest':
-
-                return trips.slice().sort((a, b) => {
+                return filteredTrips.slice().sort((a, b) => {
                     const timeA = new Date(`1970-01-01T${a.departureTime}Z`).getTime();
                     const timeB = new Date(`1970-01-01T${b.departureTime}Z`).getTime();
-                    return timeA - timeB; // Сортування за зростанням
+                    return timeA - timeB;
                 });
             case 'lowestPrice':
-                return trips.sort((a, b) => a.price - b.price);
+                return filteredTrips.sort((a, b) => a.price - b.price);
             case 'closeToDestination':
-                // Сортування за близькістю до пункту призначення (потрібно реалізувати логіку)
-                return trips; // Замініть на реальне сортування
+                return filteredTrips;
             case 'closeToDeparture':
-                // Сортування за близькістю до пункту відправлення (потрібно реалізувати логіку)
-                return trips; // Замініть на реальне сортування
+                return filteredTrips;
             case 'shortestTrip':
-                return trips.slice().sort((a, b) => {
+                return filteredTrips.slice().sort((a, b) => {
                     const durationA = parseDuration(a.tripDurationAndDistance.duration);
                     const durationB = parseDuration(b.tripDurationAndDistance.duration);
-                    return durationA - durationB; // Сортування за зростанням
+                    return durationA - durationB;
                 });
             default:
-                return trips;
+                return filteredTrips;
         }
     };
 
-    const sortedTrips = sortTrips(trips, sortOption); // Сортуємо поїздки в залежності від вибраного параметра
+    const sortedTrips = sortTrips(trips, sortOption);
 
     return (
         <main className="main">
@@ -93,10 +118,13 @@ const SearchResult: React.FC = () => {
             </div>
             <div className="app-container8">
                 <div className="sidebar">
-                    <Options onSortChange={handleSortChange} /> {/* Передаємо функцію для зміни сортування */}
+                    <Options
+                        onSortChange={handleSortChange}
+                        onFiltersChange={handleFiltersChange}
+                    />
                 </div>
                 <div className="ride-list">
-                    <Trips rides={sortedTrips} /> {/* Відображаємо відсортовані поїздки */}
+                    <Trips rides={sortedTrips} loading={loading} />
                 </div>
             </div>
             <Footer />

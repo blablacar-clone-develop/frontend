@@ -24,6 +24,7 @@ import UserVerification from "./pages/UserVerification";
 import SearchResult from "./pages/SearchResult.tsx";
 import VerifyPhonesCode from "./pages/VerifyPhonesCode.tsx";
 import ConfirmPhone from "./pages/ConfirmPhone";
+import ShowTrip from "./pages/ShowTrip.tsx";
 
 function App() {
 
@@ -58,7 +59,9 @@ function App() {
                     <Route path="/confirmPhone" element={<ConfirmPhone/>}/>
                     <Route path="/searchResult" element={<SearchResult/>}/>
                     <Route path="/verifyPhonesCode" element={<VerifyPhonesCode/>}/>
+                    <Route path="/trip" element={<ShowTrip/>}/>
                 </Routes>
+
             </Router>
 
         </div>
