@@ -124,7 +124,7 @@ const SearchResult: React.FC = () => {
                     />
                 </div>
                 <div className="ride-list">
-                    <Trips rides={sortedTrips} loading={loading} />
+                    <Trips rides={sortedTrips} info={info} loading={loading} />
                 </div>
             </div>
             <Footer />

@@ -21,6 +21,14 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 
 }
+.myIconImage5
+{
+
+    width: 50px; /* Adjust icon size as needed */
+    height: 50px; /* Maintain aspect ratio */
+    background-image: url('../assets/logo.png');
+
+}
 .myContLine
 {
     background-color: #F9FBFF;
@@ -86,6 +94,10 @@
 .M
 {
     background-image: url('../assets/marker.png');
+}
+.S
+{
+    background-image: url('../assets/search.png');
 }
 .C
 {

@@ -8,6 +8,7 @@ import Footer from '../components/main/Footer/Footer';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
+
 const HomePage: React.FC = () => {
     const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
     const token = localStorage.getItem('token');

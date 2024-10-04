@@ -39,9 +39,9 @@ const RouteSelection: React.FC = () => {
                 zoom: 7,
             });
             console.log(toAddress);
-            if (fromAddress?.fromAddress.fullAddress && toAddress?.fullAddress) {
+            if (fromAddress?.fullAddress && toAddress?.fullAddress) {
                 const request: google.maps.DirectionsRequest = {
-                    origin: fromAddress?.fromAddress.fullAddress,
+                    origin: fromAddress?.fullAddress,
                     destination: toAddress?.fullAddress,
                     travelMode: google.maps.TravelMode.DRIVING,
                     provideRouteAlternatives: true,
@@ -108,8 +108,8 @@ const RouteSelection: React.FC = () => {
 
     return (
         <div className="container5">
-            <div className="sidebar">
-                <h2>Який у вас маршрут?</h2>
+            <div className="left-container">
+                <h2 className="quest">What is your route?</h2>
                 <div>
                     {routes.map((route, index) => (
                         <div key={index}>
@@ -125,11 +125,14 @@ const RouteSelection: React.FC = () => {
                         </div>
                     ))}
                 </div>
-                <button className="submitButton" onClick={handleSubmit}>
+                <button className="continue-button4" onClick={handleSubmit}>
                     Продовжити
                 </button>
             </div>
-            <div className="map-container" ref={mapRef} style={{ height: "100%", width: "100%" }}></div>
+            <div className="map-container">
+                <div ref={mapRef} className="map"/>
+            </div>
+
         </div>
     );
 };

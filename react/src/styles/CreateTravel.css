@@ -1,35 +1,99 @@
-.suggestions-container2 {
-    border: 1px solid #ccc;
-    border-radius: 4px;
+/* CreateTravel.css */
+.globalDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+    height: 80vh;
+    background-color:#F9FBFF;
+    background-image: url("../assets/lineCreateTravel1.png"), url("../assets/line.png");
+    background-repeat: no-repeat, no-repeat; /* Вказуємо, чи повторювати зображення */
+    background-position: 50% 85%, 0% 95%;
+    background-size: 2028px, 1800px;
+}
+.titleFrom
+{
+    margin-bottom: 40px;
+    font-family: Inter;
+    color:#091528;
+}
+.divInput {
+    position: relative;
+    width: 700px;
+    margin-bottom: 20px;
+}
 
-    overflow-y: auto;
-    position: absolute;
-    background-color: white;
-    width: 95%;
+.inputs6 {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    border: 1px solid #777777;
+    border-radius: 20px;
+    background-color: #F9FBFF;
+
+    font-family: Inter;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+    outline: none;
+    padding-left: 40px;
+}
+
+.suggestions-container22 {
+    margin-top: 10px;
+    max-width: 700px;
+    width: 100%;
+
+
+    background-color: #F9FBFF;
     z-index: 1000;
 }
 
 .suggestion-item2 {
-    padding: 10px;
+    padding: 10px 15px;
     cursor: pointer;
     display: flex;
-    align-items: center;
-    border-bottom: 1px solid #eee;
-}
+    justify-content:left;
+    border-radius: 20px;
+    text-align: left;
 
-.suggestion-item2:last-child {
-    border-bottom: none;
+    font-size: 16px;
+    color: #3F3F3F;
+    font-family: Inter;
+    font-size: 17px;
 }
-.divInput
+.locSug
 {
-    text-align: center;
+    padding-left: 20px;
+    width:400px;
 }
-
 .suggestion-item2:hover {
     background-color: #f0f0f0;
 }
 
+
 .suggestion-icon2 {
-    margin-left: auto;
-    color: #888;
+    font-size: 18px;
+    color: #7c7c7c;
+
+   margin-left: 50%;
+
 }
+.iconS8 {
+
+    width:  30px;
+    height: 20px;
+
+    background-repeat: no-repeat;
+    background-size: 20px;
+
+}
+.ico8
+{
+    background-image: url('../assets/colorMarker.png');
+}
+.hlavDiv
+{
+    display: flex;
+    flex-direction: column;
+}
+
+/* Your custom styling for background and decorations */

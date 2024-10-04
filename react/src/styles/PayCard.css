@@ -1,0 +1,82 @@
+/* Стилі для компонента PayCard */
+.pay-card-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f6fa;
+}
+
+.pay-card-container {
+    background-color: #F3F3F3;
+    padding: 20px;
+    border-radius: 12px;
+    width: 752px;
+    font-family: Inter;
+
+}
+
+.pay-card-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.pay-card-logo {
+    margin-bottom: 15px;
+    width: 109px;
+    height:21px;
+
+    background-image:url('../assets/visa.png') ;
+}
+
+.pay-card-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.pay-card-input {
+    border: 1px solid #F3F3F3;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 15px;
+    color:#C9C9C9;
+    font-family: Inter;
+    margin-top: 15px;
+    font-size: 1rem;
+}
+
+.pay-card-input-row {
+    display: flex;
+    color:#C9C9C9;
+    font-family: Inter;
+    justify-content: space-between;
+}
+
+.pay-card-input-short {
+    width: 48%;
+    border: 1px solid #F3F3F3;
+    border-radius: 6px;
+    color:#C9C9C9;
+    font-family: Inter;
+    padding: 12px;
+    font-size: 1rem;
+}
+
+.pay-card-button {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 12px;
+    width: 752px;
+    display:flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.pay-card-button:hover {
+    background-color: #3b7bbd;
+}

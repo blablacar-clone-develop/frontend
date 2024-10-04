@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import { Trip } from "../models/Trip";
 import '../styles/ShowTrip.css'; // Додайте новий файл стилів
 import Navbar from "../components/NavbarComponent.tsx";
@@ -7,8 +7,10 @@ import Footer from "../components/main/Footer/Footer.tsx";
 import { Nav } from "react-bootstrap";
 
 const ShowTrip: React.FC = () => {
-    const { state } = useLocation();
-    const trip: Trip = state || {};
+
+    const location = useLocation();
+    const { trip, info } = location.state || {};
+    const navigate = useNavigate();
 
     // Function to analyze the options and return a list of features
     const getTripFeatures = (options: Trip['options']) => {
@@ -28,12 +30,23 @@ const ShowTrip: React.FC = () => {
         {
             features.push("Для всіх");
         }
+        if(trip.tripAgreement.isAgreed)
+        {
+            features.push("Миттєве бронювання");
+        }
+        else {
+            features.push("Повинні чекати підтвердження");
+        }
         // Add more conditions for other options here if needed
 
         return features;
     };
 
     const tripFeatures = getTripFeatures(trip.options);
+
+    function handleBooking() {
+        navigate("/reservation", {state: {trip, info}});
+    }
 
     return (
         <main className="main">
@@ -78,7 +91,7 @@ const ShowTrip: React.FC = () => {
                         {trip.price}₴
                     </div>
                 </div>
-                <button className="show-trip-book-button">Забронювати</button>
+                <button className="show-trip-book-button" onClick={handleBooking}>Забронювати</button>
             </div>
             <Footer />
         </main>

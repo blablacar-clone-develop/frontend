@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Loader } from '@googlemaps/js-api-loader';
 import '../styles/MapMode.css';
 import {fetchUserData} from "../utils/tokenUtils.ts";
+import PanelLogo from "../components/PanelLogo.tsx";
 
 declare global {
     interface Window {
@@ -17,7 +18,7 @@ const MapMode: React.FC = () => {
     const [myLatitude, setMyLatitude] = useState<number | null>(null);
     const [myLongitude, setMyLongitude] = useState<number | null>(null);
     const [currentAddress, setCurrentAddress] = useState<string>(loc || null);
-
+    const [row, setRow] = useState<string>("Where you would like to meet the passengers?");
     const [country, setCountry] = useState<string | null>(null);
     const [city, setCity] = useState<string | null>(null);
 
@@ -30,30 +31,12 @@ const MapMode: React.FC = () => {
     const mapInstance = useRef<google.maps.Map | null>(null);
     const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "KeyNOTfound";
 
-    const customMapStyles = [
-        {
-            featureType: "all",
-            elementType: "labels.text.fill",
-            stylers: [{ color: "#ffffff" }]
-        },
-        {
-            featureType: "all",
-            elementType: "labels.text.stroke",
-            stylers: [{ color: "#000000" }]
-        },
-        {
-            featureType: "road",
-            elementType: "geometry.fill",
-            stylers: [{ color: "#808080" }]
-        },
-        {
-            featureType: "landscape",
-            elementType: "geometry",
-            stylers: [{ color: "#2c5a71" }]
-        },
-    ];
+
 
     useEffect(() => {
+        console.log(fromLoc);
+        console.log(loc);
+
         const fetchData = async () => {
             await fetchUserData(navigate);
         };
@@ -65,7 +48,8 @@ const MapMode: React.FC = () => {
             version: 'weekly',
             libraries: ['places', 'marker'],
         });
-
+        if(step === "to")
+            setRow("Where you would like to drop off passengers?")
         loader.load().then(() => {
             if (loc && window.google) {
                 const geocoder = new window.google.maps.Geocoder();
@@ -82,8 +66,7 @@ const MapMode: React.FC = () => {
                             zoom: 16,
                             center: location,
                             gestureHandling: 'greedy',
-                            disableDefaultUI: true,
-                            styles: customMapStyles,
+                            disableDefaultUI: true
                         });
 
                         markerRef.current = new window.google.maps.Marker({
@@ -199,7 +182,8 @@ const MapMode: React.FC = () => {
             city: city,
             country: country
         };
-        if (step.step === "from") {
+        console.log(ob.fullAddress)
+        if (step === "from") {
             navigate('/createTravel', {
                 state: {
                     fromAddress: ob,
@@ -207,7 +191,7 @@ const MapMode: React.FC = () => {
                 }
             });
 
-        } else if (step.step === "to") {
+        } else if (step=== "to") {
             navigate('/routeSelection', {
                 state: {
                     fromAddress: fromLoc,
@@ -219,9 +203,11 @@ const MapMode: React.FC = () => {
     };
 
     return (
+        <main className="main">
+            <PanelLogo/>
         <main className="main2">
             <div className="left-container">
-                <h2>Локація: {loc}</h2>
+                <h2 className="quest">{row}</h2>
 
                 <input
                     ref={inputRef}
@@ -232,27 +218,31 @@ const MapMode: React.FC = () => {
                     className="input-field"
                 />
 
-                <div className="suggestions-container">
+
+                <div className="suggestions-container22">
                     {suggestions.map((suggestion) => (
+
                         <div
                             key={suggestion.place_id}
-                            className="suggestion-item"
+                            className="suggestion-item2"
                             onClick={() => handleSuggestionClick(suggestion.description)}
                         >
-                            {suggestion.description}
+                            <span className="iconS8 ico8"></span>
+                            <span className="locSug">{suggestion.description}</span>
                         </div>
                     ))}
                 </div>
 
                 {showContinue && (
-                    <button className="continue-button" onClick={handleContinue}>
+                    <button className="continue-button4" onClick={handleContinue}>
                         Продовжити
                     </button>
                 )}
             </div>
             <div className="map-container">
-                <div ref={mapRef} className="map" />
+                <div ref={mapRef} className="map"/>
             </div>
+        </main>
         </main>
     );
 };
