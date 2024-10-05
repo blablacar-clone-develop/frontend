@@ -40,9 +40,8 @@ body {
 .myCardTitleForgot::before {
     content: url('./img/email.svg');
     position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    left: 100px;
+    top: 5px;
     width: 30px; /* Ширина зображення */
     height: 30px; /* Висота зображення */
 }
@@ -182,4 +181,19 @@ input:checked + .custom-slider:before {
     color: #888; /* Колір іконки */
     font-size: 20px; /* Розмір іконки */
     cursor: pointer; /* Курсор при наведенні */
+}
+
+.code-input-container {
+    display: flex;
+    justify-content: space-between; /* Розподіл квадратів по ширині */
+}
+
+.code-input {
+    width: 65px; /* Ширина для кожного квадратика */
+    height: 96px; /* Висота для кожного квадратика */
+    font-size: 40px; /* Розмір шрифта */
+    text-align: center; /* Вирівнювання тексту по центру */
+    border: 1px solid #ccc; /* Рамка */
+    border-radius: 5px; /* Закруглені кути */
+    margin: 0 5px; /* Проміжок між квадратами */
 }

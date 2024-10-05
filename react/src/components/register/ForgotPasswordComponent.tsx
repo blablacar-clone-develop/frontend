@@ -9,6 +9,7 @@ const ForgotPassword: React.FC = () => {
 
     const navigate = useNavigate();
     const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
+    const [code, setCode] = useState(Array(6).fill('')); // Масив для шістьох символів коду
 
     /// ---- сутність яку передаємо
     const location = useLocation();
@@ -16,6 +17,21 @@ const ForgotPassword: React.FC = () => {
     const [password, setPassword] = useState('');
 
     /// ---- сутність яку передаємо (END)
+
+    const handleCodeChange = (value: string, index: number) => {
+        const newCode = [...code];
+        newCode[index] = value;
+        setCode(newCode);
+
+        // Перехід до наступного поля, якщо код введено
+        if (value && index < 5) {
+            const nextInput = document.querySelector(`input[data-index="${index + 1}"]`) as HTMLInputElement;
+            if (nextInput) {
+                nextInput.focus();
+            }
+        }
+
+    };
 
 
     const validatePassword = (password: string) => {
@@ -30,8 +46,13 @@ const ForgotPassword: React.FC = () => {
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
+    };
+
+    const handleGoBack = () => {
+        navigate('/login');
     };
 
     //// --- Логіка обробки переходу на наступний крок
@@ -39,7 +60,7 @@ const ForgotPassword: React.FC = () => {
         e.preventDefault();
         setError(null);
         //// логіка перевірки кода
-
+        console.log(code.join(''));
 
 
         setStep(2); // Якщо валідація успішна, перейти на наступний крок
@@ -94,15 +115,42 @@ const ForgotPassword: React.FC = () => {
                 {step === 1 ? (
                     <div className="align-self-center pt-4 pb-4" style={{maxWidth: '100%', width: '495px'}}>
 
-                        <Card.Title className="mb-4 myCardTitleForgot">Update password</Card.Title>
+                        <Card.Title className="mb-4 myCardTitleForgot mt-5">Update password</Card.Title>
                         <p className="myh2title">Enter the code we sent you to the address <br></br>
                             {email} </p>
                         {error && <Alert variant="danger">{error}</Alert>}
                         <Form onSubmit={handlelSubmit}>
+                            <Row>
+                                <Col className="mb-3">
+                                    <div className="code-input-container">
+                                        {code.map((value, index) => (
+                                            <input
+                                                key={index}
+                                                type="text"
+                                                maxLength={1}
+                                                value={value}
+                                                onChange={(e) => handleCodeChange(e.target.value, index)}
+                                                className="code-input"
+                                                data-index={index}
+                                            />
+                                        ))}
+                                    </div>
+                                </Col>
+                            </Row>
 
-                            <Button variant="primary" type="submit" disabled={loading} className="w-100 h55px">
-                                {loading ? 'Loading...' : 'Next'}
-                            </Button>
+                            <Row>
+                                <Col md={2} className="mb-3"></Col>
+                                <Col md={4} className="mb-3">
+                                    <Button variant="secondary" className="w-100 h55px" onClick={()=>handleGoBack()}>GO back
+                                    </Button>
+                                </Col>
+                                <Col md={6} className="mb-3">
+                                    <Button variant="primary" type="submit" disabled={loading} className="w-100 h55px">
+                                        {loading ? 'Loading...' : 'Next'}
+                                    </Button>
+                                </Col>
+                            </Row>
+
                         </Form>
 
                     </div>
