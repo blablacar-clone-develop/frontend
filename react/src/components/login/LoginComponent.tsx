@@ -36,7 +36,7 @@ const Login: React.FC = () => {
     };
 
     return (
-        <Container className="d-flex justify-content-center align-items-center mt-4 mb-4">
+        <Container className="d-flex justify-content-center align-items-center vh-100">
             <Card className="p-4 shadow-sm" style={{ maxWidth: '752px', width: '100%' }}>
                 {step === 1 ? (
                     <div className="align-self-center pt-4 pb-4" style={{maxWidth: '100%', width:'495px'}}>
@@ -92,11 +92,6 @@ const Login: React.FC = () => {
                                     required
                                 />
                             </Form.Group>
-
-                            {/*<div className="d-flex justify-content-between">*/}
-                            {/*    <Form.Check label="Stay signed in" />*/}
-                            {/*    <a href="/forgot-password">Forgot your password?</a>*/}
-                            {/*</div>*/}
                             <div className="d-flex justify-content-between align-items-center">
                                 <div className="form-check custom-toggle">
                                     <input type="checkbox" id="staySignedIn" className="form-check-input"/>

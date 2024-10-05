@@ -13,7 +13,7 @@ const LoginPage: React.FC = () => {
         document.title = 'Увійти';
         const token = localStorage.getItem("token");
         if(token != null) navigate("/");
-    }, []);
+    });
 
 
     return (
