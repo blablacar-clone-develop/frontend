@@ -197,3 +197,17 @@ input:checked + .custom-slider:before {
     border-radius: 5px; /* Закруглені кути */
     margin: 0 5px; /* Проміжок між квадратами */
 }
+
+@media (max-width: 600px) { /* Медіа-запит для екранів менше 600px */
+    .code-input-container {
+        flex-direction: column; /* Перемикаємо на стовпчиковий режим */
+        align-items: center; /* Вирівнюємо по центру */
+
+    }
+
+    .code-input {
+        margin-bottom: 10px; /* Додаємо відстань між полями */
+        width: 80%; /* Змінюємо ширину для кращого відображення на малих екранах */
+
+    }
+}
