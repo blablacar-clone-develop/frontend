@@ -46,7 +46,7 @@ const Login: React.FC = () => {
                         <Form onSubmit={handleEmailSubmit}>
                             <Form.Group controlId="formBasicEmail" className="mb-3">
                                 <Form.Label className="formLabelMyText">E-mail address</Form.Label>
-                                <Form.Control
+                                <Form.Control className="formControlMy"
                                     type="email"
                                     placeholder="Enter your email"
                                     value={email}
@@ -54,7 +54,7 @@ const Login: React.FC = () => {
                                     required
                                 />
                             </Form.Group>
-                            <Button variant="primary" type="submit" disabled={loading} className="w-100 m-2">
+                            <Button variant="primary" type="submit" disabled={loading} className="w-100 h55px">
                                 {loading ? 'Loading...' : 'Next'}
                             </Button>
                         </Form>
@@ -85,7 +85,7 @@ const Login: React.FC = () => {
                         <Form onSubmit={handlePasswordSubmit}>
                             <Form.Group controlId="formBasicPassword" className="mb-3">
                                 <Form.Label className="formLabelMyText">Password</Form.Label>
-                                <Form.Control
+                                <Form.Control className="formControlMy"
                                     type="password"
                                     placeholder="Enter your password"
                                     value={password}
@@ -103,7 +103,7 @@ const Login: React.FC = () => {
                             </div>
 
 
-                            <Button variant="primary" type="submit" disabled={loading} className="w-100 m-2">
+                            <Button variant="primary" type="submit" disabled={loading} className="w-100 h55px mt-2">
                                 {loading ? 'Logging in...' : 'Next'}
                             </Button>
 

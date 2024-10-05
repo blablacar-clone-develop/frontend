@@ -147,3 +147,13 @@ input:checked + .custom-slider:before {
     font-size: 16px; /* Розмір шрифту */
     color: #666; /* Колір тексту */
 }
+
+.formControlMy {
+    background-color: #D9D9D9;
+    height: 55px;
+    font-size: 20px;
+}
+
+.h55px {
+    height: 55px;
+}
