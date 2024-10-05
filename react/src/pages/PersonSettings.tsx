@@ -60,6 +60,11 @@ const ProfilePage: React.FC = () => {
         navigate(`/cars/${carId}/edit`);
     };
 
+    const handleAccountExit= () => {
+        localStorage.clear();
+        navigate("/");
+    };
+
     const handleConfirmIdentity = () => {
         navigate("/confirmIdentity");
     };
@@ -148,7 +153,7 @@ const ProfilePage: React.FC = () => {
                     <Nav.Link href='/brandSelect'><p className="add-transport">Add transport <i className="bi bi-box-arrow-up-right"></i></p></Nav.Link>
                 </div>
 
-                <div className="exit">
+                <div className="exit" onClick={() => handleAccountExit()}>
                     <span>Exit</span>
                 </div>
             </div>
