@@ -45,7 +45,7 @@ body {
     line-height: 25.2px;
     text-align: left;
     position: relative;
-    padding-left: 49px; /* Відступ для тексту, щоб він не накладався на картинку */
+    padding-left: 52px; /* Відступ для тексту, щоб він не накладався на картинку */
 }
 
 .myh2titleWithIcon::before {
