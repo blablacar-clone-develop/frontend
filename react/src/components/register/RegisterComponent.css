@@ -29,6 +29,26 @@ body {
     text-align: left;
 }
 
+.myCardTitleForgot {
+    font-family: Inter, sans-serif;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 25px;
+    text-align: left;
+}
+
+.myCardTitleForgot::before {
+    content: url('./img/email.svg');
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px; /* Ширина зображення */
+    height: 30px; /* Висота зображення */
+}
+
+
+
 .myh2title {
     font-family: Inter, sans-serif;
     font-size: 18px;

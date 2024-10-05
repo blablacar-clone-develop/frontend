@@ -28,6 +28,7 @@ import ShowTrip from "./pages/ShowTrip.tsx";
 import ViewTrip from "./pages/ViewTrip.tsx";
 import Reservation from "./pages/Reservation.tsx";
 import PayCard from "./pages/PayCard.tsx";
+import ForgotPassword from "./pages/ForgotPassword.tsx";
 function App() {
 
 
@@ -65,6 +66,7 @@ function App() {
                     <Route path="/reservation" element={<Reservation/>}/>
                     <Route path="/viewTrip" element={<ViewTrip/>}/>
                     <Route path="/payCard" element={<PayCard/>}/>
+                    <Route path="/forgot-password" element={<ForgotPassword/>}/>
                 </Routes>
 
             </Router>

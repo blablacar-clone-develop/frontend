@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button, Container, Alert, Card } from 'react-bootstrap';
 import './LoginComponent.css';
+import {useNavigate} from "react-router-dom";
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -9,12 +10,18 @@ const Login: React.FC = () => {
     const [step, setStep] = useState(1); // Step 1: email input, Step 2: password input
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+
 
     const handleEmailSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (email) {
             setStep(2); // Move to the next step if email is filled
         }
+    };
+
+    const handleForgotPassword = () => {
+        navigate('/forgot-password', { state: { email } });
     };
 
     const handlePasswordSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -99,7 +106,7 @@ const Login: React.FC = () => {
                                     <label className="custom-slider" htmlFor="staySignedIn"></label>
                                 </div>
                                 <label htmlFor="staySignedIn" className="ms-2">Stay signed in</label>
-                                <a href="/forgot-password" className="ms-auto">Forgot your password?</a>
+                                <a href="" className="ms-auto" onClick={() => handleForgotPassword()}>Forgot your password?</a>
                             </div>
 
 
