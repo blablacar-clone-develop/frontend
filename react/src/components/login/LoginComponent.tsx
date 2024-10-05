@@ -158,13 +158,14 @@ const Login: React.FC = () => {
                         </div>
                     </div>
                 ) : (
-                    <>
-                        <Card.Title className="text-center mb-4">Enter your password</Card.Title>
-                        <p className="text-center">{email}</p>
+                    <div className="align-self-center pt-4 pb-4" style={{maxWidth: '100%', width:'495px'}}>
+                        <Card.Title className="mb-4 myCardTitle">Enter your password</Card.Title>
+                        <p className="myh2titleWithIcon">{email} <br></br>
+                            Personal account</p>
                         {error && <Alert variant="danger">{error}</Alert>}
                         <Form onSubmit={handlePasswordSubmit}>
                             <Form.Group controlId="formBasicPassword" className="mb-3">
-                                <Form.Label>Password</Form.Label>
+                                <Form.Label className="formLabelMyText">Password</Form.Label>
                                 <Form.Control
                                     type="password"
                                     placeholder="Enter your password"
@@ -174,10 +175,19 @@ const Login: React.FC = () => {
                                 />
                             </Form.Group>
 
-                            <div className="d-flex justify-content-between">
-                                <Form.Check label="Stay signed in" />
-                                <a href="/forgot-password">Forgot your password?</a>
+                            {/*<div className="d-flex justify-content-between">*/}
+                            {/*    <Form.Check label="Stay signed in" />*/}
+                            {/*    <a href="/forgot-password">Forgot your password?</a>*/}
+                            {/*</div>*/}
+                            <div className="d-flex justify-content-between align-items-center">
+                                <div className="form-check custom-toggle">
+                                    <input type="checkbox" id="staySignedIn" className="form-check-input"/>
+                                    <label className="custom-slider" htmlFor="staySignedIn"></label>
+                                </div>
+                                <label htmlFor="staySignedIn" className="ms-2">Stay signed in</label>
+                                <a href="/forgot-password" className="ms-auto">Forgot your password?</a>
                             </div>
+
 
                             <Button variant="primary" type="submit" disabled={loading} className="w-100 m-2">
                                 {loading ? 'Logging in...' : 'Next'}
@@ -185,7 +195,7 @@ const Login: React.FC = () => {
 
                             <a href="/login" className="text-center d-block mt-2">Log in with another account</a>
                         </Form>
-                    </>
+                    </div>
                 )}
             </Card>
         </Container>
