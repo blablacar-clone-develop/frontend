@@ -134,17 +134,29 @@
 // export default Register;
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Form, Button, Container, Alert, Card } from 'react-bootstrap';
+import {Form, Button, Container, Alert, Card, Row, Col} from 'react-bootstrap';
 import { BiShow, BiHide } from 'react-icons/bi';
 import './RegisterComponent.css';
+import {useNavigate} from "react-router-dom";
 
 const Register: React.FC = () => {
+
+    const navigate = useNavigate();
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
+
+    /// ---- сутність яку передаємо
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [surname, setSurname] = useState('');
+    const [gender, setGender] = useState('');
+    const [dateOfBirth, setDateOfBirth] = useState('');
+    /// ---- сутність яку передаємо (END)
 
     const [step, setStep] = useState(1); //
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
+
 
 
 
@@ -161,23 +173,39 @@ const Register: React.FC = () => {
         }
     };
 
-    const handlePasswordSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handlerRegisterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setLoading(true);
         setError(null);
-        try {
-            console.log("ТУТ ЗМІНИТИ!!!");
-            // const response = await axios.post('/api/signIn', { email, password });
-            //console.log('Login successful', response.data);
-            // localStorage.setItem('token', response.data.token);
-            // localStorage.setItem('userId', response.data.id.toString());
-            // localStorage.setItem('username', response.data.username);
-            // window.location.href = '/';
-        } catch (err) {
-            setError('Неправильний емайл чи пароль');
-        } finally {
-            setLoading(false);
-        }
+
+         try {
+             const response = await axios.post(`${API_URL}/api/signUp`, {
+                 name,
+                 surname,
+                 email,
+                 gender,
+                 dateOfBirth,
+                 password,
+             });
+
+             console.log(response);
+
+             const { token, id, username } = response.data;
+             localStorage.setItem('token', token);
+             localStorage.setItem('userId', id.toString());
+             localStorage.setItem('username', username);
+             navigate("/");
+
+         } catch (err: unknown) {
+             if (axios.isAxiosError(err) && err.response && err.response.data) {
+                 setError(err.response.data || 'Failed to register. Please check your input.');
+             } else {
+                 setError('An unknown error occurred.');
+             }
+         } finally {
+             setLoading(false);
+         }
+
     };
 
     return (
@@ -202,8 +230,6 @@ const Register: React.FC = () => {
                                 <span>Or</span>
                             </div>
                         </div>
-
-
                         <p className="myh2title">Sign up with your email or phone number Already have an account? <a href="/login">Sign in</a></p>
                         {error && <Alert variant="danger">{error}</Alert>}
                         <Form onSubmit={handlelSubmit}>
@@ -251,10 +277,57 @@ const Register: React.FC = () => {
                     </div>
                 ) : (
                     <div className="align-self-center pt-4 pb-4" style={{maxWidth: '100%', width: '495px'}}>
-                        <Card.Title className="mb-4 myCardTitle">Enter your password</Card.Title>
-                        <p className="myh2titleWithIcon">{email} <br></br>
-                            Personal account</p>
+                        <Card.Title className="mb-4 myCardTitle">Create an account</Card.Title>
+                        <p className="myh2title">Do you already have an account? <a
+                            href="/login">Sign in</a></p>
                         {error && <Alert variant="danger">{error}</Alert>}
+                        <Form onSubmit={handlerRegisterSubmit}>
+                            <Row>
+                                <Col md={6} className="mb-3">
+                                    <Form.Group controlId="formBasicName" className="mb-3">
+                                        <Form.Label className="formLabelMyText">Name</Form.Label>
+                                        <Form.Control className="formControlMy"
+                                                      type="text"
+                                                      placeholder=""
+                                                      value={name}
+                                                      onChange={(e) => setName(e.target.value)}
+                                                      required
+                                        />
+                                    </Form.Group>
+                                </Col>
+                                <Col md={6} className="mb-3">
+                                    <Form.Group controlId="formBasicSurName" className="mb-3">
+                                        <Form.Label className="formLabelMyText">Surname</Form.Label>
+                                        <Form.Control className="formControlMy"
+                                                      type="text"
+                                                      placeholder=""
+                                                      value={surname}
+                                                      onChange={(e) => setSurname(e.target.value)}
+                                                      required
+                                        />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md={12} className="mb-3">
+                                    <Form.Group controlId="formBasicDateOfBirth" className="mb-3">
+                                        <Form.Label>Date of Birth</Form.Label>
+                                        <Form.Control
+                                            type="date"
+                                            value={dateOfBirth}
+                                            onChange={(e) => setDateOfBirth(e.target.value)}
+                                            required
+                                        />
+                                    </Form.Group>
+
+                                </Col>
+                            </Row>
+
+
+                            <Button variant="primary" type="submit" disabled={loading} className="w-100 h55px">
+                                {loading ? 'Loading...' : 'Create'}
+                            </Button>
+                        </Form>
 
                     </div>
                 )}
