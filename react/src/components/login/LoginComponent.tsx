@@ -60,8 +60,9 @@ const Login: React.FC = () => {
                         </Form>
 
                         <div className="social-login mt-3 text-center">
-                            <hr />
-                            <p>Or</p>
+                            <div className="or-divider">
+                                <span>Or</span>
+                            </div>
                             <div className="d-flex justify-content-center">
                                 <Button className="social-btn mx-2" variant="outline-primary">
                                     <i className="bi bi-facebook"></i>
