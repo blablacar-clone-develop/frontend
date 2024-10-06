@@ -118,8 +118,9 @@ const MapMode: React.FC = () => {
             if (inputRef.current && window.google) {
                 const autocompleteService = new window.google.maps.places.AutocompleteService();
                 const handleInputChange = () => {
+
                     const input = inputRef.current?.value || '';
-                    if (input.length > 2) {
+
                         setFirstMovementDetected(true);
                         setShowContinue(true);
                         autocompleteService.getPlacePredictions({ input }, (predictions, status) => {
@@ -129,9 +130,7 @@ const MapMode: React.FC = () => {
                                 setSuggestions([]);
                             }
                         });
-                    } else {
-                        setSuggestions([]);
-                    }
+
                 };
                 inputRef.current?.addEventListener('input', handleInputChange);
             }
@@ -182,7 +181,9 @@ const MapMode: React.FC = () => {
             city: city,
             country: country
         };
+
         console.log(ob.fullAddress)
+
         if (step === "from") {
             navigate('/createTravel', {
                 state: {
@@ -221,7 +222,6 @@ const MapMode: React.FC = () => {
 
                 <div className="suggestions-container22">
                     {suggestions.map((suggestion) => (
-
                         <div
                             key={suggestion.place_id}
                             className="suggestion-item2"
