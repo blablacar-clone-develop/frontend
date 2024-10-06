@@ -82,6 +82,7 @@ const ConfirmEmail: React.FC = () => {
 
             if (response.data === "time") {
                 console.log("Time is over!");
+                //resendCode();
             } else if (response.data === "incorrect") {
                 console.log("Code isn't correct!");
             } else {
