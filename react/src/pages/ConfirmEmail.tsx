@@ -27,18 +27,22 @@ const ConfirmEmail: React.FC = () => {
             setUser(response.data);
         };
 
-        /* sendCode = async () => {
-            setIsResendDisabled(true);
-            const response = await axios.get(`${API_URL}/api/user/getEmailCode/${localStorage.getItem("token")}`);
-            if (response.data === "mistake") {
-                console.log(":(");
-            }
-            setTimeout(() => {
-                setIsResendDisabled(false);
-            }, 60000);
-        };
-
-        sendCode();*/
+        // const sendCode = async () => {
+        //     setIsResendDisabled(true);
+        //     const response = await axios.get(`${API_URL}/api/user/getEmailCode`, {
+        //             headers: {
+        //             Authorization: `Bearer ${localStorage.getItem("token")}`
+        //         }
+        //     });
+        //     if (response.data === "mistake") {
+        //         console.log(":(");
+        //     }
+        //     setTimeout(() => {
+        //         setIsResendDisabled(false);
+        //     }, 60000);
+        // };
+        //
+        // sendCode();
         fetchUser();
         fetchData();
     }, [API_URL, navigate]);
@@ -106,7 +110,12 @@ const ConfirmEmail: React.FC = () => {
     const resendCode = async () => {
         setNameBut("Resend code");
         setIsResendDisabled(true); // Деактивуємо кнопку
-        await axios.get(`${API_URL}/api/user/getEmailCode/${localStorage.getItem("token")}`);
+        await axios.get(`${API_URL}/api/user/getEmailCode`, {
+                    headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            });
+
         setTimeout(() => {
             setIsResendDisabled(false); // Активуємо кнопку через 1 хвилину
         }, 360000); // 60000 мілісекунд = 1 хвилина
