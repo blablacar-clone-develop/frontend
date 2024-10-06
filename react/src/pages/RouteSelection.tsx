@@ -96,7 +96,7 @@ const RouteSelection: React.FC = () => {
 
             navigate("/dateSelection", {
                 state: {
-                    fromAddress: fromAddress?.fromAddress,
+                    fromAddress: fromAddress,
                     toAddress,
                     selectedRoute: routeInfo,
                 },
