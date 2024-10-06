@@ -74,7 +74,11 @@ const ConfirmEmail: React.FC = () => {
 
     const verifyCode = async (completeCode: string) => {
         try {
-            const response = await axios.post(`${API_URL}/api/verifyCode`, {  completeCode }, {
+            console.log("цей код відправив на бек " + completeCode);
+            const response = await axios.post(`${API_URL}/api/verifyCode`,
+                {  completeCode },
+
+                {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
@@ -82,7 +86,7 @@ const ConfirmEmail: React.FC = () => {
 
             if (response.data === "time") {
                 console.log("Time is over!");
-                //resendCode();
+                resendCode();
             } else if (response.data === "incorrect") {
                 console.log("Code isn't correct!");
             } else {
