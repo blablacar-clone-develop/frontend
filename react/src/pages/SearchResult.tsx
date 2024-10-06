@@ -11,7 +11,7 @@ import axios from "axios";
 
 const SearchResult: React.FC = () => {
     const location = useLocation();
-    const info = location.state || {};
+    const info = location.state;
     const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
     const [trips, setTrips] = useState<Trip[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -21,9 +21,26 @@ const SearchResult: React.FC = () => {
         conveniences: []
     });
 
+    const formatDate = (date: Date | null): string => {
+        if(date == null) return "";
+
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Місяці йдуть від 0 до 11
+        const day = String(date.getDate()).padStart(2, '0');
+
+        return `${year}-${month}-${day}`; // Формат YYYY-MM-DD
+    };
+
     useEffect(() => {
         const fetchTrips = async () => {
             try {
+                // Перевіряємо, чи дата є рядком, і перетворюємо її на об'єкт Date
+                if (typeof info.ob.date === "string") {
+                    info.ob.date = new Date(info.ob.date);
+                }
+
+                info.ob.date = formatDate(info.ob.date);
+
                 const response = await axios.post<Trip[]>(`${API_URL}/api/trips/getSearchTrip`, info.ob);
                 setTrips(response.data);
             } catch (error) {

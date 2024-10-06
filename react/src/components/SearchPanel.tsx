@@ -33,8 +33,6 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ info }) => {
     const searchInputRefFrom = useRef<HTMLInputElement>(null);
     const searchInputRefTo = useRef<HTMLInputElement>(null);
     const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "KeyNOTfound";
-    const [myLatitude, setMyLatitude] = useState<number | null>(null);
-    const [myLongitude, setMyLongitude] = useState<number | null>(null);
     const [selectedDay, setSelectedDay] = useState<Date | null>(info?.ob.date || null);
     const [passengers, setPassengers] = useState<any[]>(info?.ob.passengers || []);
     const navigate = useNavigate();
@@ -105,6 +103,7 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ info }) => {
             console.error('Failed to load Google Maps API:', e);
         });
     }, []);
+
 
     const handleSearch = async () => {
         if (!fromPlace || !toPlace) {

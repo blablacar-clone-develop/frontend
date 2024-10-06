@@ -12,6 +12,7 @@ const CompactCalendar: React.FC<CompactCalendarProps> = ({ selectedDay, setSelec
     const [showCalendar, setShowCalendar] = useState<boolean>(false);
     const calendarRef = useRef<HTMLDivElement>(null);
 
+
     const handleClickOutside = (event: MouseEvent) => {
         if (calendarRef.current && !calendarRef.current.contains(event.target as Node)) {
             setShowCalendar(false);
@@ -28,6 +29,7 @@ const CompactCalendar: React.FC<CompactCalendarProps> = ({ selectedDay, setSelec
     const handleDateChange = (date: Date | null) => {
         setSelectedDay(date);
         setShowCalendar(false);
+
     };
 
     return (

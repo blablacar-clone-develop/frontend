@@ -38,6 +38,7 @@ const AddInfoRoute: React.FC = () => {
             selectBooking,
             price
         };
+
         const bookingResponse = await axios.post(`${API_URL}/api/trips/create`, bookingData, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -51,7 +52,6 @@ const AddInfoRoute: React.FC = () => {
         saveTrip();
         try {
             const response = await axios.get(`${API_URL}/api/user/verification/${userId}`);
-            console.log("User verification data:", response.data);
             setVerificationData(response.data);
             const { emailVerified, phoneVerified, documentVerified } = response.data;
 

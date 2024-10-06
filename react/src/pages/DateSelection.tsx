@@ -12,14 +12,26 @@ const App: React.FC = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const { fromAddress, toAddress, selectedRoute } = location.state || {};
+
+    const formatDate = (date: Date): string => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Місяці йдуть від 0 до 11
+        const day = String(date.getDate()).padStart(2, '0');
+
+        return `${year}-${month}-${day}`; // Формат YYYY-MM-DD
+    };
+
+
     const handleDateChange = (date: Date) => {
         setValue(date);
+        const formattedDate = formatDate(date);
+
         navigate("/timeSelection", {
             state: {
                 fromAddress,
                 toAddress,
                 selectedRoute,
-                date
+                date: formattedDate,
             },
         });
 
