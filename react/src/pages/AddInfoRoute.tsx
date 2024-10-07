@@ -3,6 +3,7 @@ import '../styles/AddInfoRoute.css';
 import {useLocation, useNavigate} from "react-router-dom";
 import axios from "axios";
 import {fetchUserData} from "../utils/tokenUtils.ts";
+import PanelLogo from "../components/PanelLogo.tsx";
 
 const AddInfoRoute: React.FC = () => {
     const location = useLocation();
@@ -69,17 +70,20 @@ const AddInfoRoute: React.FC = () => {
     };
 
     return (
-        <div className="trip-details">
-            <h2>Do you want to add anything about the trip?</h2>
-            <textarea
-                placeholder="Tell passengers if you have space for additional luggage, fuel type, or other trip details"
-                value={details}
-                onChange={handleDetailsChange}
-            />
-            <button className="submit-button" onClick={handleSubmit}>
-                Publish the trip
-            </button>
-        </div>
+        <main className="main">
+            <PanelLogo/>
+            <div className="trip-details">
+                <h2>Do you want to add anything about the trip?</h2>
+                <textarea
+                    placeholder="Tell passengers if you have space for additional luggage, fuel type, or other trip details"
+                    value={details}
+                    onChange={handleDetailsChange}
+                />
+                <button className="submit-button" onClick={handleSubmit}>
+                    Publish the trip
+                </button>
+            </div>
+        </main>
     );
 };
 
