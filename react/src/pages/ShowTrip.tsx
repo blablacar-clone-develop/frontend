@@ -1,5 +1,5 @@
 import React from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Trip } from "../models/Trip";
 import '../styles/ShowTrip.css'; // Додайте новий файл стилів
 import Navbar from "../components/NavbarComponent.tsx";
@@ -7,7 +7,6 @@ import Footer from "../components/main/Footer/Footer.tsx";
 import { Nav } from "react-bootstrap";
 
 const ShowTrip: React.FC = () => {
-
     const location = useLocation();
     const { trip, info } = location.state || {};
     const navigate = useNavigate();
@@ -18,26 +17,19 @@ const ShowTrip: React.FC = () => {
 
         if (options.maxTwoPassengers) {
             features.push("Максимально двоє осіб на задньому сидінні");
-        }
-        else
-        {
+        } else {
             features.push("Можуть бути троє осіб на задньому сидінні");
         }
         if (options.womenOnly) {
             features.push("Тільки для жінок");
-        }
-        else
-        {
+        } else {
             features.push("Для всіх");
         }
-        if(trip.tripAgreement.isAgreed)
-        {
+        if (trip.tripAgreement.isAgreed) {
             features.push("Миттєве бронювання");
-        }
-        else {
+        } else {
             features.push("Повинні чекати підтвердження");
         }
-        // Add more conditions for other options here if needed
 
         return features;
     };
@@ -70,7 +62,15 @@ const ShowTrip: React.FC = () => {
 
                     <div className="lineUser f1"></div>
                     <div className="profile-header2">
-                        <i className="bi bi-person-circle profile-icon2"></i>
+                        {trip.user.avatar && trip.user.avatar.url ? (
+                            <img
+                                src={trip.user.avatar.url}
+                                alt="Driver's Avatar"
+                                className="profile-avatar"
+                            />
+                        ) : (
+                            <i className="bi bi-person-circle profile-icon2"></i>
+                        )}
                         <div className="profile-info2">
                             <span className="username2">{trip.user.name}</span>
                         </div>

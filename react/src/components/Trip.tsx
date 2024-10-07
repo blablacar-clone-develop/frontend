@@ -10,6 +10,7 @@ interface TripProps {
     cityFrom: string;
     cityTo: string;
     travelDuration: string; // New prop for duration
+    avatar: string;
 }
 
 const Trip: React.FC<TripProps> = ({
@@ -20,7 +21,8 @@ const Trip: React.FC<TripProps> = ({
                                        date,
                                        cityFrom,
                                        cityTo,
-                                       travelDuration
+                                       travelDuration,
+                                       avatar
                                    }) => {
     return (
         <div className="card6">
@@ -37,7 +39,7 @@ const Trip: React.FC<TripProps> = ({
                 </div>
                 <div className="driver">
 
-                <span>{driverName}</span>
+                    <span>{driverName}</span>
                     <span>{date}</span>
                     <span>Максимально {seatsAvailable} осіб</span>
                 </div>
