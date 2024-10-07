@@ -34,6 +34,7 @@ const Login: React.FC = () => {
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('userId', response.data.id.toString());
             localStorage.setItem('username', response.data.username);
+
             window.location.href = '/';
         } catch (err) {
             setError('Неправильний емайл чи пароль');
