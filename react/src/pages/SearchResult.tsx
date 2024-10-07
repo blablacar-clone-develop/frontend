@@ -43,6 +43,7 @@ const SearchResult: React.FC = () => {
 
                 const response = await axios.post<Trip[]>(`${API_URL}/api/trips/getSearchTrip`, info.ob);
                 setTrips(response.data);
+                console.log(response.data);
             } catch (error) {
                 console.error("Error fetching trips:", error);
             } finally {

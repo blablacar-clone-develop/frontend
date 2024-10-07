@@ -5,6 +5,7 @@ import { TravelPoints } from './TravelPoints';
 import { TripAgreement } from './TripAgreement';
 import { TripDurationAndDistance } from './TripDistanceAndDuration.tsx';
 import { Options } from './Options';
+import { Amenities } from './Amenities.tsx';
 
 export interface Trip {
     id: number;
@@ -23,4 +24,5 @@ export interface Trip {
     tripAgreement: TripAgreement;
     tripDurationAndDistance: TripDurationAndDistance;
     options: Options;
+    amenities: Amenities;
 }
