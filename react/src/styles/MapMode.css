@@ -14,7 +14,7 @@
     flex-direction: column;
     justify-content: flex-start;
     background-color: #F9FBFF;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    /*box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);*/
     background-image: url("../assets/line.png");
     background-repeat: no-repeat;
     background-position: 70% 80% ;
