@@ -11,7 +11,7 @@ const AddInfoRoute: React.FC = () => {
     const [details, setDetails] = useState('');
     const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
     const [verificationData, setVerificationData] = useState(null);
-    const { fromAddress, toAddress, selectedRoute, date, selectedTime, passengers, options, selectBooking, price} = location.state || {};
+    const { fromAddress, toAddress, selectedRoute, date, selectedTime, passengers, options, selectBooking, price, amentities} = location.state || {};
 
     useEffect(() => {
         const fetchData = async () => {
@@ -36,7 +36,8 @@ const AddInfoRoute: React.FC = () => {
             passengers,
             options,
             selectBooking,
-            price
+            price,
+            amentities
         };
 
         const bookingResponse = await axios.post(`${API_URL}/api/trips/create`, bookingData, {

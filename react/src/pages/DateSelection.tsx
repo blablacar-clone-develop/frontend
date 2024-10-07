@@ -1,26 +1,26 @@
-import React, {useEffect, useState} from "react";
-import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
-import '../styles/DateSelection.css';
-import Navbar from "../components/NavbarComponent.tsx";
-import Footer from "../components/main/Footer/Footer.tsx";
-import {useLocation, useNavigate} from "react-router-dom";
-import {fetchUserData} from "../utils/tokenUtils.ts";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { addMonths, format, subMonths, isBefore, startOfMonth, isSameMonth, isAfter, isToday } from "date-fns";
+import "../styles/DateSelection.css";
+import { fetchUserData } from "../utils/tokenUtils.ts";
+import PanelLogo from "../components/PanelLogo.tsx";
 
-const App: React.FC = () => {
+const DateSelection: React.FC = () => {
     const [value, setValue] = useState(new Date());
+    const [currentMonth, setCurrentMonth] = useState(new Date());
+    const today = new Date();
+
     const location = useLocation();
     const navigate = useNavigate();
     const { fromAddress, toAddress, selectedRoute } = location.state || {};
 
     const formatDate = (date: Date): string => {
         const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // Місяці йдуть від 0 до 11
-        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
 
-        return `${year}-${month}-${day}`; // Формат YYYY-MM-DD
+        return `${year}-${month}-${day}`;
     };
-
 
     const handleDateChange = (date: Date) => {
         setValue(date);
@@ -34,34 +34,97 @@ const App: React.FC = () => {
                 date: formattedDate,
             },
         });
+    };
 
+    const handlePrevMonth = () => {
+        const currentYear = currentMonth.getFullYear();
+        const currentMonthIndex = currentMonth.getMonth();
+
+        const todayYear = today.getFullYear();
+        const todayMonthIndex = today.getMonth();
+
+        if (currentYear > todayYear || (currentYear === todayYear && currentMonthIndex > todayMonthIndex)) {
+            setCurrentMonth((prev) => subMonths(prev, 1));
+        }
+    };
+
+    const handleNextMonth = () => {
+        setCurrentMonth((prev) => addMonths(prev, 1));
     };
 
     useEffect(() => {
         const fetchData = async () => {
             await fetchUserData(navigate);
-
         };
         fetchData();
     }, []);
 
+    const renderCalendar = (date: Date) => {
+        const startOfMonth = new Date(date.getFullYear(), date.getMonth(), 1);
+        const endOfMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0);
+        const daysInMonth = Array.from({ length: endOfMonth.getDate() }, (_, i) => i + 1);
+
+        return (
+            <div>
+                <h3 className="headerMonth">{format(date, "LLLL yyyy")}</h3>
+                <div className="calendar-grid">
+                    {["M", "T", "W", "T", "F", "S", "S"].map((day, index) => (
+                        <div
+                            key={`${day}-${index}`}
+                            className={`calendar-header ${index === 5 || index === 6 ? "weekend" : ""}`}
+                        >
+                            {day}
+                        </div>
+                    ))}
+                    {Array(startOfMonth.getDay())
+                        .fill(null)
+                        .map((_, i) => (
+                            <div key={`empty-${i}`} className="empty-cell"></div>
+                        ))}
+                    {daysInMonth.map((day) => {
+                        const currentDate = new Date(date.getFullYear(), date.getMonth(), day);
+
+                        // Забороняємо вибір днів до сьогоднішнього у поточному місяці, але залишаємо сьогоднішній активним
+                        const isDisabled = isBefore(currentDate, today) && !isToday(currentDate);
+
+                        return (
+                            <div
+                                key={day}
+                                className={`calendar-day ${isDisabled ? "disabled-day" : ""}`}
+                                onClick={() => !isDisabled && handleDateChange(currentDate)} // Забороняємо кліки для заблокованих днів
+                            >
+                                {day}
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+        );
+    };
+
     return (
         <main className="main">
-            <div className="calendar-container">
-                <h2>When?</h2>
-                <Calendar
-                    onChange={handleDateChange}
-                    value={value}
-                    locale="en-US"
-                    nextLabel="→"
-                    prevLabel="←"
-                    formatShortWeekday={(locale, date) =>
-                        date.toLocaleDateString(locale, { weekday: 'short' }).slice(0, 2)
-                    }
-                />
-            </div>
+            <PanelLogo />
+            <main className="main3">
+                <div className="calendar-container">
+                    <h3 className="when">When?</h3>
+                    <div className="calendar-controls">
+                        <button
+                            onClick={handlePrevMonth}
+                            disabled={isBefore(startOfMonth(currentMonth), startOfMonth(today))}
+                        >
+                            Previous
+                        </button>
+                        <button onClick={handleNextMonth}>Next</button>
+                    </div>
+                    <div className="calendars">
+                        {renderCalendar(currentMonth)}
+                        {renderCalendar(addMonths(currentMonth, 1))}
+                    </div>
+                </div>
+            </main>
         </main>
     );
 };
 
-export default App;
+export default DateSelection;

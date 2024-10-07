@@ -1,9 +1,8 @@
 
 .time-selection-container {
     text-align: center;
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    margin-top: 10%;
+    font-family: Inter, sans-serif;
+    margin-left: -15%;
 }
 
 h2 {
@@ -11,20 +10,28 @@ h2 {
     color: #033849;
     margin-bottom: 20px;
 }
-
+.headerTime
+{
+    font-family: Inter;
+    font-size: 30px;
+}
 .time-picker {
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
 }
-
+.time-dropdown option
+{
+    font-size: 18px;
+}
 .time-dropdown {
-    font-size: 20px;
+    font-size: 64px;
     padding: 10px;
-    width: 200px;
+    font-family: Inter;
+    width:393px;
     text-align: center;
     border-radius: 30px;
-    border: 1px solid #ddd;
+    border: 1px solid #4389E4;
     background-color: #fff;
     cursor: pointer;
     appearance: none;
@@ -35,21 +42,53 @@ h2 {
 
 .time-dropdown:focus {
     outline: none;
+
+}
+.time-dropdown::after {
+    content: '\25BC';  /* Символ стрілочки вниз */
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 12px;
+    color: #000;
 }
 
-.continue-button {
-    background-color: #00aaf2;
-    color: white;
+
+
+.continue-button8 {
     padding: 10px 20px;
-    font-size: 18px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #4389E4;
     border: none;
-    border-radius: 30px;
+    border-radius: 5px;
+    font-size: 18px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    margin-top: 5%;
-    margin-left: -9%;
-    position: relative;
+    position: absolute;
+    bottom: 40%;
+    font-family: Inter;
+    left: 50%;
+    transform: translateX(-50%);
 }
-.continue-button:hover {
-    background-color: #008bcc;
+
+.continue-button8:hover {
+    background-color: #0056b3;
+}
+.main1
+{
+    font-family: Inter !important;
+
+    font-family: Arial, sans-serif;
+    background-color: #F9FBFF;
+    background-image:url('../assets/line.png') ;
+    width:1800px;
+    height: 250px;
+    background-size:1920px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 8%;
+    margin-top: 5%;
 }

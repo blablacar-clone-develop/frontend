@@ -1,8 +1,12 @@
 .passenger-selection-container {
     text-align: center;
-    font-family: Arial, sans-serif;
+    font-family: Inter !important;
     padding: 20px;
-    margin-top: 5%;
+    margin-left:-16%;
+    margin-top:0%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 h2 {
@@ -40,7 +44,7 @@ h2 {
 }
 
 .divider {
-    width: 80%;
+    width: 20%;
     margin: 20px auto;
     border: none;
     height: 2px;
@@ -48,15 +52,39 @@ h2 {
 }
 
 .passenger-options {
-    text-align: center;
+    text-align: left;
     margin-bottom: 20px;
+    display: flex;
+    width: 20%;
 
+    margin-left: 40%;
+    flex-direction: column;
 }
-
+.G
+{
+    background-image: url('../assets/gender.png');
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
+    margin-left: 20px;
+}
+.W
+{
+    background-image: url('../assets/womenOnly.png');
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
+    margin-left: 20px;
+}
 .passenger-options div {
     margin-bottom: 20px;
 }
-
+.divOpt
+{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
 .passenger-options input {
     margin-right: 10px;
 }
@@ -64,6 +92,7 @@ h2 {
 .passenger-options label {
     font-size: 18px;
     color: #033849;
+
 }
 
 .passenger-options p {
@@ -72,17 +101,23 @@ h2 {
     margin-left: 28px;
 }
 
-.continue-button {
-    background-color: #00aaf2;
-    color: white;
+.continue-button9 {
     padding: 10px 20px;
-    font-size: 18px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #4389E4;
     border: none;
-    border-radius: 30px;
+    border-radius: 5px;
+    font-size: 18px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    position: absolute;
+    bottom: 20%;
+    font-family: Inter;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.continue-button:hover {
-    background-color: #008bcc;
+.continue-button9:hover {
+    background-color: #0056b3;
 }

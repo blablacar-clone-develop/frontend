@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import "../styles/CountPassengerSelection.css";
 import {useLocation, useNavigate} from "react-router-dom";
 import {fetchUserData} from "../utils/tokenUtils.ts";
+import PanelLogo from "../components/PanelLogo.tsx";
 
 const PassengerSelection: React.FC = () => {
     const [passengers, setPassengers] = useState(3);
@@ -33,7 +34,7 @@ const PassengerSelection: React.FC = () => {
     }, []);
 
     const handleSubmit = () => {
-        console.log({ passengers, options });
+        console.log({ passengers, options, date });
         navigate("/modeBookingSelection", {
             state: {
                 fromAddress,
@@ -48,6 +49,9 @@ const PassengerSelection: React.FC = () => {
     };
 
     return (
+        <main className="main">
+            <PanelLogo/>
+            <main className="main3">
         <div className="passenger-selection-container">
             <h2>How many passengers can you take?</h2>
             <div className="passenger-counter">
@@ -59,7 +63,8 @@ const PassengerSelection: React.FC = () => {
             <hr className="divider" />
 
             <div className="passenger-options">
-                <div>
+                <div className="divOpt">
+                    <div>
                     <input
                         type="checkbox"
                         id="maxTwoPassengers"
@@ -68,11 +73,16 @@ const PassengerSelection: React.FC = () => {
                     />
                     <label htmlFor="maxTwoPassengers">
                         Maximum of two people in the back seat
+
                     </label>
-                    <p>Ensure comfort, leave the middle seat empty</p>
+                    </div>
+                    <span className="G"></span>
+
+
                 </div>
 
-                <div>
+                <div className="divOpt">
+                    <div>
                     <input
                         type="checkbox"
                         id="womenOnly"
@@ -80,14 +90,17 @@ const PassengerSelection: React.FC = () => {
                         onChange={() => handleOptionChange("womenOnly")}
                     />
                     <label htmlFor="womenOnly">Women only</label>
-                    <p>Make your ride visible only to women</p>
+                    </div>
+                    <span className="W"></span>
                 </div>
             </div>
 
-            <button className="continue-button" onClick={handleSubmit}>
+            <button className="continue-button9" onClick={handleSubmit}>
                 Continue
             </button>
         </div>
+            </main>
+        </main>
     );
 };
 

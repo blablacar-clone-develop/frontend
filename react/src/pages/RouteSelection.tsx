@@ -1,15 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useLocation, useNavigate } from "react-router-dom"; // Додаємо useNavigate
+import { useLocation, useNavigate } from "react-router-dom";
 import { Loader } from "@googlemaps/js-api-loader";
 import "../styles/RouteSelection.css";
-import {fetchUserData} from "../utils/tokenUtils.ts";
+import { fetchUserData } from "../utils/tokenUtils.ts";
 
 const RouteSelection: React.FC = () => {
     const location = useLocation();
-
-    const { fromAddress, toAddress} = location.state || { };
-
-    const navigate = useNavigate(); // Використовуємо для переходу на іншу сторінку
+    const { fromAddress, toAddress } = location.state || {};
+    const navigate = useNavigate();
 
     const [routes, setRoutes] = useState<google.maps.DirectionsRoute[]>([]);
     const [selectedRoute, setSelectedRoute] = useState<number | null>(null);
@@ -20,7 +18,6 @@ const RouteSelection: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             await fetchUserData(navigate);
-
         };
         fetchData();
     }, []);
@@ -38,7 +35,7 @@ const RouteSelection: React.FC = () => {
                 center: { lat: 49.8397, lng: 24.0297 },
                 zoom: 7,
             });
-            console.log(toAddress);
+
             if (fromAddress?.fullAddress && toAddress?.fullAddress) {
                 const request: google.maps.DirectionsRequest = {
                     origin: fromAddress?.fullAddress,
@@ -84,16 +81,34 @@ const RouteSelection: React.FC = () => {
             });
         });
     };
+    const convertDurationToEnglish = (duration: string) => {
+        const hoursMatch = duration.match(/(\d+)\s*год/);
+        const minutesMatch = duration.match(/(\d+)\s*хв/);
 
+        const hours = hoursMatch ? hoursMatch[1] : '0';
+        const minutes = minutesMatch ? minutesMatch[1] : '0';
+
+        return `${hours} hour${hours !== '1' ? 's' : ''} ${minutes} minute${minutes !== '1' ? 's' : ''}`;
+    };
+
+    const convertDistanceToEnglish = (distance: string) => {
+        const kmMatch = distance.match(/(\d[\d\s]*)\s*км/); 
+        if (kmMatch) {
+
+            const distanceInNumbers = kmMatch[1].replace(/\s/g, '');
+            return `${distanceInNumbers} km`;
+        }
+        return distance;
+    };
     const handleSubmit = () => {
+        const roadTypes = extractRoadTypes(routes[selectedRoute].legs[0].steps);
         if (selectedRoute !== null) {
             const routeInfo = {
-                duration: routes[selectedRoute].legs[0].duration.text,
-                distance: routes[selectedRoute].legs[0].distance.text,
-            };
-            console.log(fromAddress);
-            console.log(toAddress);
+                duration: convertDurationToEnglish(routes[selectedRoute].legs[0].duration.text),
+                distance: convertDistanceToEnglish(routes[selectedRoute].legs[0].distance.text),
+                roadTypes: roadTypes
 
+            };
             navigate("/dateSelection", {
                 state: {
                     fromAddress: fromAddress,
@@ -106,33 +121,57 @@ const RouteSelection: React.FC = () => {
         }
     };
 
+    const extractRoadTypes = (steps: google.maps.DirectionsStep[]) => {
+        const roadTypes: string[] = [];
+        steps.forEach(step => {
+
+            const matches = step.instructions.match(/([A-Z]+\d+)+/g);
+            if (matches) {
+                matches.forEach(type => {
+                    if (!roadTypes.includes(type)) {
+                        roadTypes.push(type);
+                    }
+                });
+            }
+        });
+        return roadTypes;
+    };
+
     return (
         <div className="container5">
             <div className="left-container">
                 <h2 className="quest">What is your route?</h2>
-                <div>
-                    {routes.map((route, index) => (
-                        <div key={index}>
-                            <input
-                                type="radio"
-                                name="route"
-                                id={`route-${index}`}
-                                onChange={() => handleSelectRoute(index)}
-                            />
-                            <label htmlFor={`route-${index}`}>
-                                {route.legs[0].duration.text} - {route.legs[0].distance.text}
-                            </label>
-                        </div>
-                    ))}
+                <div className="divRoutes">
+                    {routes.map((route, index) => {
+                        const roadTypes = extractRoadTypes(route.legs[0].steps);
+                        const durationInEnglish = convertDurationToEnglish(route.legs[0].duration.text);
+                        const distanceInEnglish = convertDistanceToEnglish(route.legs[0].distance.text);
+                        return (
+                            <div key={index}
+                                 className={`route ${selectedRoute === index ? 'selected' : ''}`}
+                                 onClick={() => handleSelectRoute(index)}
+                                 style={{
+                                     backgroundColor: selectedRoute === index ? '#4389E4' : '#F9FBFF',
+                                     color: selectedRoute === index ? '#F9FBFF' : '#3F3F3F'
+                                 }}>
+
+                                <label htmlFor={`route-${index}`} className="LabelDur">
+                                    {durationInEnglish}
+                                </label>
+                                <label htmlFor={`route-${index}`}>
+                                    {distanceInEnglish} - {roadTypes.join(', ')}
+                                </label>
+                            </div>
+                        );
+                    })}
                 </div>
-                <button className="continue-button4" onClick={handleSubmit}>
-                    Продовжити
+                <button className="continue-button7" onClick={handleSubmit}>
+                    Continue
                 </button>
             </div>
             <div className="map-container">
                 <div ref={mapRef} className="map"/>
             </div>
-
         </div>
     );
 };

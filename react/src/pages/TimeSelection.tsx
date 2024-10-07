@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import "../styles/TimeSelection.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import {fetchUserData} from "../utils/tokenUtils.ts";
+import PanelLogo from "../components/PanelLogo.tsx";
 
 const TimeSelection: React.FC = () => {
     const [selectedTime, setSelectedTime] = useState("08:00");
@@ -12,6 +13,7 @@ const TimeSelection: React.FC = () => {
     const { fromAddress, toAddress, selectedRoute, date } = location.state || {};
 
     useEffect(() => {
+        console.log(date);
         const fetchData = async () => {
             await fetchUserData(navigate);
 
@@ -48,19 +50,25 @@ const TimeSelection: React.FC = () => {
     };
 
     return (
-        <div className="time-selection-container">
-            <h2>When can you meet the passengers?</h2>
-            <div className="time-picker">
-                <select value={selectedTime} onChange={handleTimeChange} className="time-dropdown">
-                    {generateTimeList().map((time) => (
-                        <option key={time} value={time}>
-                            {time}
-                        </option>
-                    ))}
-                </select>
+
+        <main className="main">
+            <PanelLogo/>
+            <main className="main3">
+            <div className="time-selection-container">
+                <h2 className="headerTime">When can you meet the passengers?</h2>
+                <div className="time-picker">
+                    <select value={selectedTime} onChange={handleTimeChange} className="time-dropdown">
+                        {generateTimeList().map((time) => (
+                            <option key={time} value={time}>
+                                {time}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <button className="continue-button8" onClick={handleSubmitTime}>Continue</button>
             </div>
-            <button className="continue-button" onClick={handleSubmitTime}>Continue</button>
-        </div>
+            </main>
+        </main>
     );
 };
 

@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import "../styles/ModeBookingSelection.css";
 import {useLocation, useNavigate} from "react-router-dom";
 import {fetchUserData} from "../utils/tokenUtils.ts";
+import PanelLogo from "../components/PanelLogo.tsx";
 
 const ModeBookingSelection: React.FC = () => {
     const location = useLocation();
@@ -43,24 +44,21 @@ const ModeBookingSelection: React.FC = () => {
     }
 
     return (
+        <main className="main">
+            <PanelLogo/>
+            <div className="globalDiv">
         <div className="instant-booking-container">
             <div className="content-container">
-                <div className="image-container">
-                    {/* Тут може бути ваша SVG або зображення */}
-                    <img src="" alt="Picture" />
-                </div>
                 <div className="text-container">
                     <h2>Enable Instant Booking for your passengers</h2>
                     <div className="info">
                         <div className="info-item">
-                            <span className="icon">🔔</span>
                             <div>
                                 <strong>It's more convenient</strong>
                                 <p>No need to review every request before it expires</p>
                             </div>
                         </div>
                         <div className="info-item">
-                            <span className="icon">⚡</span>
                             <div>
                                 <strong>More passengers</strong>
                                 <p>They like getting quick responses</p>
@@ -69,11 +67,14 @@ const ModeBookingSelection: React.FC = () => {
                     </div>
                     <div className="buttons">
                         <button className="primary-button" onClick={handleInstant}>Enable Instant Booking</button>
+                        <hr className="divider2"/>
                         <button className="secondary-button" onClick={handleEach}>Review each request</button>
                     </div>
                 </div>
             </div>
         </div>
+            </div>
+        </main>
     );
 };
 
