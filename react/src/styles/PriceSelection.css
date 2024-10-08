@@ -73,7 +73,7 @@ p {
     transition: background-color 0.3s ease;
     position: absolute;
     bottom: 40%;
-    font-family: Inter;
+    font-family: Inter, serif !important;
     left: 50%;
     transform: translateX(-50%);
 }

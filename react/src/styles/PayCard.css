@@ -13,7 +13,7 @@
     padding: 20px;
     border-radius: 12px;
     width: 752px;
-    font-family: Inter;
+    font-family: Inter, serif !important;
 
 }
 
@@ -41,7 +41,7 @@
     padding: 12px;
     margin-bottom: 15px;
     color:#C9C9C9;
-    font-family: Inter;
+    font-family: Inter, serif !important;
     margin-top: 15px;
     font-size: 1rem;
 }
@@ -49,7 +49,7 @@
 .pay-card-input-row {
     display: flex;
     color:#C9C9C9;
-    font-family: Inter;
+    font-family: Inter, serif !important;
     justify-content: space-between;
 }
 
@@ -58,7 +58,7 @@
     border: 1px solid #F3F3F3;
     border-radius: 6px;
     color:#C9C9C9;
-    font-family: Inter;
+    font-family: Inter, serif !important;
     padding: 12px;
     font-size: 1rem;
 }

@@ -48,7 +48,7 @@
     width: 400px;
     padding: 10px 20px;
     font-size: 1rem;
-    font-family: Inter serif;
+    font-family: Inter, serif !important;
     color: #fff;
     background-color: #4389E4;
     border: none;
