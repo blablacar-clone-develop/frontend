@@ -11,8 +11,7 @@
     display:flex;
     background-color: #F9FBFF;
     justify-content: center;
-    font-family: Inter;
-
+    font-family: Inter, sans-serif;
 }
 .myNavBar
 {
