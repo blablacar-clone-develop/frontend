@@ -51,7 +51,7 @@ const NavbarComponent: React.FC = () => {
                             </>
                         ) : (
                             <Nav.Link href="/login">
-                                <i className="bi bi-person" /> Увійти
+                                <i className="bi bi-person" /> Login
                             </Nav.Link>
                         )}
                     </Nav>
