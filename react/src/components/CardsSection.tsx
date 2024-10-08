@@ -9,19 +9,18 @@ const CardsSection: React.FC = () => {
         <Container fluid className="myContLine position-relative">
             <div className="d-flex justify-content-between align-items-center cards">
                 <div className="card-item position-relative card1">
-                    <h5 className="headerOfCards">Вибирайте поїздки за низькою ціною</h5>
-                    <p>Куди б ви не їхали, автобусом чи з попутниками, знайдіть ідеальну поїздку з безлічі напрямків
-                        і маршрутів – і подорожуйте за низькими цінами.</p>
+                    <h5 className="headerOfCards">Choose trips at a low price</h5>
+                    <p>Wherever you're going, whether by bus or with fellow travelers, find the perfect ride from a variety of destinations
+                        and routes - and travel at low prices.</p>
                 </div>
                 <div className="card-item position-relative card2">
-                    <h5 className="headerOfCards" >Довіряйте своїм попутникам</h5>
-                    <p>Ми добре знаємо всіх своїх пасажирів і автобусних партнерів. Ми перевіряємо відгуки та
-                        профілі, щоб ви подорожували із впевненістю.</p>
+                    <h5 className="headerOfCards" >Trust your fellow travelers</h5>
+                    <p>We know all our passengers and bus partners well. We check reviews and
+                        profiles so you can travel with confidence.</p>
                 </div>
                 <div className="card-item position-relative card3">
-                    <h5 className="headerOfCards">Прокрутіть, клацніть, натисніть і забронюйте!</h5>
-                    <p>Забронювати поїздку ще ніколи не було так легко! Завдяки потужному алгоритму наш застосунок знайде водія поруч із вами всього за кілька хвилин.</p>
-                </div>
+                    <h5 className="headerOfCards">ПScroll, click, click and book!</h5>
+                    <p>Booking a trip has never been so easy! Thanks to a powerful algorithm, our application will find a driver near you in just a few minutes.</p></div>
             </div>
 
         </Container>
