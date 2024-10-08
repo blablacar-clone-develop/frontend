@@ -71,7 +71,7 @@ const PersonalInfo: React.FC = () => {
                             email: data.email,
                             phoneNumber: data.phoneNumber,
                             description: data.description,
-                            avatar: data.avatar.url // Отримання аватарки
+                            avatar: data.avatar?.url || '' // Отримання аватарки
                         });
 
                         setName(data.name);
@@ -80,7 +80,7 @@ const PersonalInfo: React.FC = () => {
                         setEmail(data.email);
                         setPhoneNumber(data.phoneNumber);
                         setDescription(data.description);
-                        setAvatar(data.avatar.url);
+                        setAvatar(data.avatar?.url || '');
                     } catch (error) {
                         console.error('Error fetching personal info:', error);
                     }
