@@ -263,3 +263,13 @@
     padding: 5px;
 }
 
+.myLinkStyle {
+    color: #4389E4 !important;
+    font-size: 20px !important;
+    font-family: Inter, serif !important;
+    background-image: url('../assets/plus.png') !important;
+    background-repeat: no-repeat !important;
+    background-position: 104px !important;
+    padding-right: 40px !important;
+}
+

@@ -29,7 +29,7 @@ const NavbarComponent: React.FC = () => {
                         <Nav.Link href="/personSettings">
                             <div className="burgerMenu"/>
                         </Nav.Link>
-                        <Nav.Link className="custom-link" href="/createTravel">Publish trip</Nav.Link>
+                        <Nav.Link className="custom-link myLinkStyle" href="/createTravel">Publish trip</Nav.Link>
                     </Nav>
 
 
