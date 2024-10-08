@@ -41,7 +41,7 @@ const Trip: React.FC<TripProps> = ({
 
                     <span>{driverName}</span>
                     <span>{date}</span>
-                    <span>Максимально {seatsAvailable} осіб</span>
+                    <span>Maximum {seatsAvailable} persons</span>
                 </div>
             </div>
             <div className="price">{price}₴</div>

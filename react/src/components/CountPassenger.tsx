@@ -112,12 +112,12 @@ const DropdownForm: React.FC<DropdownFormProps> = ({ setPassengers, initialPasse
                             <label htmlFor={`passenger-${passenger.id}`} style={{ marginLeft: '10px' }}>
                                 {passenger.type}
                             </label>
-                            <button className="btn btn-link ms-auto">Редагувати</button>
+                            <button className="btn btn-link ms-auto">Edit</button>
                         </div>
                     ))}
 
                     <div style={{ marginBottom: '10px' }}>
-                        <a href="#" style={{ color: '#00f', textDecoration: 'underline' }}>+ Додати пільгову знижку</a>
+                        <a href="#" style={{ color: '#00f', textDecoration: 'underline' }}>+ Add preferential discount</a>
                     </div>
 
                     <hr />
@@ -129,7 +129,7 @@ const DropdownForm: React.FC<DropdownFormProps> = ({ setPassengers, initialPasse
                             style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                             onClick={handleAddPassenger}
                         >
-                            <span style={{ fontSize: '20px', marginRight: '10px' }}>+</span> Додати пасажира
+                            <span style={{ fontSize: '20px', marginRight: '10px' }}>+</span> Add a passenger
                         </button>
                     </div>
 

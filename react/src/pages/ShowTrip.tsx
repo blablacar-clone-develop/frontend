@@ -11,27 +11,41 @@ const ShowTrip: React.FC = () => {
     const { trip, info } = location.state || {};
     const navigate = useNavigate();
 
+    console.log(trip);
+
     // Function to analyze the options and return a list of features
     const getTripFeatures = (options: Trip['options']) => {
         const features: string[] = [];
 
         if (options.maxTwoPassengers) {
-            features.push("Максимально двоє осіб на задньому сидінні");
+            features.push("A maximum of two people in the back seat");
         } else {
-            features.push("Можуть бути троє осіб на задньому сидінні");
+            features.push("There can be three people in the back seat");
         }
         if (options.womenOnly) {
-            features.push("Тільки для жінок");
+            features.push("Only for women");
         } else {
-            features.push("Для всіх");
+            features.push("For everyone");
         }
         if (trip.tripAgreement.isAgreed) {
-            features.push("Миттєве бронювання");
+            features.push("Instant booking");
         } else {
-            features.push("Повинні чекати підтвердження");
+            features.push("You have to wait for confirmation");
         }
 
         return features;
+    };
+
+    // Функція для форматування дати
+    const formatDate = (dateString: string): string => {
+        const date = new Date(dateString);
+
+        return date.toLocaleDateString('en-US', {
+            weekday: 'long', // Повний день тижня (Tuesday)
+            year: 'numeric', // Повний рік (2024)
+            month: 'long',   // Повна назва місяця (November)
+            day: 'numeric'   // День місяця (30)
+        });
     };
 
     const tripFeatures = getTripFeatures(trip.options);
@@ -40,11 +54,40 @@ const ShowTrip: React.FC = () => {
         navigate("/reservation", {state: {trip, info}});
     }
 
+    // Функція для обчислення часу прибуття
+    const calculateArrivalTime = (departureTime: string, duration: string): string => {
+        // Розбиваємо час відправлення "HH:MM:SS"
+        const [departureHours, departureMinutes] = departureTime.split(':').map(Number);
+
+        // Створюємо об'єкт дати з часом відправлення
+        const departureDate = new Date();
+        departureDate.setHours(departureHours);
+        departureDate.setMinutes(departureMinutes);
+        departureDate.setSeconds(0); // Не беремо до уваги секунди
+
+        // Розбиваємо тривалість подорожі "X hours Y minutes"
+        const durationMatch = duration.match(/(\d+)\s*hours?\s*(\d+)?\s*minutes?/);
+        const durationHours = durationMatch ? parseInt(durationMatch[1], 10) : 0;
+        const durationMinutes = durationMatch && durationMatch[2] ? parseInt(durationMatch[2], 10) : 0;
+
+        // Додаємо тривалість до часу відправлення
+        departureDate.setHours(departureDate.getHours() + durationHours);
+        departureDate.setMinutes(departureDate.getMinutes() + durationMinutes);
+
+        // Повертаємо обчислений час прибуття у форматі "HH:MM"
+        const arrivalHours = departureDate.getHours().toString().padStart(2, '0');
+        const arrivalMinutes = departureDate.getMinutes().toString().padStart(2, '0');
+
+        return `${arrivalHours}:${arrivalMinutes}`;
+    };
+
+
+
     return (
         <main className="main">
             <Navbar />
             <div className="show-trip-container">
-                <h1 className="show-trip-title">Вівторок, 10 вересня</h1>
+                <h1 className="show-trip-title">{formatDate(trip.departureDate)}</h1>
                 <div className="show-trip-details">
                     <div className="show-trip-route">
                         <div className="location2">
@@ -55,9 +98,11 @@ const ShowTrip: React.FC = () => {
                             <span>{trip.finishTravelPoint.city}</span>
                         </div>
                         <div className="time2">
-                            <span>{trip.departureTime.slice(0, 5)}</span>
-                            <span className="sec">{trip.departureTime.slice(0, 5)}</span>
+                            <span>{trip.departureTime.slice(0, 5)}</span> {/* Час відправлення */}
+                            <span
+                                className="sec">{calculateArrivalTime(trip.departureTime, trip.tripDurationAndDistance.duration)}</span> {/* Час прибуття */}
                         </div>
+
                     </div>
 
                     <div className="lineUser f1"></div>
@@ -87,11 +132,11 @@ const ShowTrip: React.FC = () => {
                     </div>
                     <div className="lineUser f1"></div>
                     <div className="show-trip-price">
-                        <span>Усього за поїздку:</span>
+                        <span>Total for the trip:</span>
                         {trip.price}₴
                     </div>
                 </div>
-                <button className="show-trip-book-button" onClick={handleBooking}>Забронювати</button>
+                <button className="show-trip-book-button" onClick={handleBooking}>Reserve</button>
             </div>
             <Footer />
         </main>

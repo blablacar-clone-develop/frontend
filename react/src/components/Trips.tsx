@@ -36,7 +36,7 @@ const Trips: React.FC<TripsProps> = ({ rides, info }) => {
                     </div>
                 ))
             ) : (
-                <p>Немає доступних поїздок</p>
+                <p>No rides available</p>
             )}
         </div>
     );
