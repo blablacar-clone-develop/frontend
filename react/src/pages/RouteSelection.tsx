@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Loader } from "@googlemaps/js-api-loader";
 import "../styles/RouteSelection.css";
 import { fetchUserData } from "../utils/tokenUtils.ts";
+import NavbarComponent from "../components/NavbarComponent.tsx";
 
 const RouteSelection: React.FC = () => {
     const location = useLocation();
@@ -138,42 +139,45 @@ const RouteSelection: React.FC = () => {
     };
 
     return (
-        <div className="container5">
-            <div className="left-container">
-                <h2 className="quest">What is your route?</h2>
-                <div className="divRoutes">
-                    {routes.map((route, index) => {
-                        const roadTypes = extractRoadTypes(route.legs[0].steps);
-                        const durationInEnglish = convertDurationToEnglish(route.legs[0].duration.text);
-                        const distanceInEnglish = convertDistanceToEnglish(route.legs[0].distance.text);
-                        return (
-                            <div key={index}
-                                 className={`route ${selectedRoute === index ? 'selected' : ''}`}
-                                 onClick={() => handleSelectRoute(index)}
-                                 style={{
-                                     backgroundColor: selectedRoute === index ? '#4389E4' : '#F9FBFF',
-                                     color: selectedRoute === index ? '#F9FBFF' : '#3F3F3F'
-                                 }}>
+        <main className="main">
+            <NavbarComponent/>
+            <div className="container5">
+                <div className="left-container">
+                    <h2 className="quest">What is your route?</h2>
+                    <div className="divRoutes">
+                        {routes.map((route, index) => {
+                            const roadTypes = extractRoadTypes(route.legs[0].steps);
+                            const durationInEnglish = convertDurationToEnglish(route.legs[0].duration.text);
+                            const distanceInEnglish = convertDistanceToEnglish(route.legs[0].distance.text);
+                            return (
+                                <div key={index}
+                                     className={`route ${selectedRoute === index ? 'selected' : ''}`}
+                                     onClick={() => handleSelectRoute(index)}
+                                     style={{
+                                         backgroundColor: selectedRoute === index ? '#4389E4' : '#F9FBFF',
+                                         color: selectedRoute === index ? '#F9FBFF' : '#3F3F3F'
+                                     }}>
 
-                                <label htmlFor={`route-${index}`} className="LabelDur">
-                                    {durationInEnglish}
-                                </label>
-                                <label htmlFor={`route-${index}`}>
-                                    {distanceInEnglish} - {roadTypes.join(', ')}
-                                </label>
-                            </div>
-                        );
-                    })}
+                                    <label htmlFor={`route-${index}`} className="LabelDur">
+                                        {durationInEnglish}
+                                    </label>
+                                    <label htmlFor={`route-${index}`}>
+                                        {distanceInEnglish} - {roadTypes.join(', ')}
+                                    </label>
+                                </div>
+                            );
+                        })}
+                    </div>
+                    <button className="continue-button7" onClick={handleSubmit}>
+                        Continue
+                    </button>
                 </div>
-                <button className="continue-button7" onClick={handleSubmit}>
-                    Continue
-                </button>
+                <div className="map-container">
+                    <div ref={mapRef} className="map"/>
+                </div>
             </div>
-            <div className="map-container">
-                <div ref={mapRef} className="map"/>
-            </div>
-        </div>
-    );
-};
+            </main>
+            );
+            };
 
-export default RouteSelection;
+            export default RouteSelection;

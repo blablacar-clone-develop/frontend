@@ -4,6 +4,7 @@ import { Loader } from '@googlemaps/js-api-loader';
 import '../styles/MapMode.css';
 import {fetchUserData} from "../utils/tokenUtils.ts";
 import PanelLogo from "../components/PanelLogo.tsx";
+import NavbarComponent from "../components/NavbarComponent.tsx";
 
 declare global {
     interface Window {
@@ -205,7 +206,7 @@ const MapMode: React.FC = () => {
 
     return (
         <main className="main">
-            <PanelLogo/>
+            <NavbarComponent />
         <main className="main2">
             <div className="left-container">
                 <h2 className="quest">{row}</h2>

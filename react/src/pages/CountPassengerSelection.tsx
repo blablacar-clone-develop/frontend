@@ -3,6 +3,7 @@ import "../styles/CountPassengerSelection.css";
 import {useLocation, useNavigate} from "react-router-dom";
 import {fetchUserData} from "../utils/tokenUtils.ts";
 import PanelLogo from "../components/PanelLogo.tsx";
+import NavbarComponent from "../components/NavbarComponent.tsx";
 
 const PassengerSelection: React.FC = () => {
     const [passengers, setPassengers] = useState(3);
@@ -50,58 +51,58 @@ const PassengerSelection: React.FC = () => {
 
     return (
         <main className="main">
-            <PanelLogo/>
-            <main className="main3">
-        <div className="passenger-selection-container">
-            <h2>How many passengers can you take?</h2>
-            <div className="passenger-counter">
-                <button onClick={() => handlePassengerChange(-1)}>-</button>
-                <span>{passengers}</span>
-                <button onClick={() => handlePassengerChange(1)}>+</button>
-            </div>
+                <NavbarComponent/>
+                <main className="main3">
+                    <div className="passenger-selection-container">
+                        <h2>How many passengers can you take?</h2>
+                        <div className="passenger-counter">
+                            <button onClick={() => handlePassengerChange(-1)}>-</button>
+                            <span>{passengers}</span>
+                            <button onClick={() => handlePassengerChange(1)}>+</button>
+                        </div>
 
-            <hr className="divider" />
+                        <hr className="divider"/>
 
-            <div className="passenger-options">
-                <div className="divOpt">
-                    <div>
-                    <input
-                        type="checkbox"
-                        id="maxTwoPassengers"
-                        checked={options.maxTwoPassengers}
-                        onChange={() => handleOptionChange("maxTwoPassengers")}
-                    />
-                    <label htmlFor="maxTwoPassengers">
-                        Maximum of two people in the back seat
+                        <div className="passenger-options">
+                            <div className="divOpt">
+                                <div>
+                                    <input
+                                        type="checkbox"
+                                        id="maxTwoPassengers"
+                                        checked={options.maxTwoPassengers}
+                                        onChange={() => handleOptionChange("maxTwoPassengers")}
+                                    />
+                                    <label htmlFor="maxTwoPassengers">
+                                        Maximum of two people in the back seat
 
-                    </label>
+                                    </label>
+                                </div>
+                                <span className="G"></span>
+
+
+                            </div>
+
+                            <div className="divOpt">
+                                <div>
+                                    <input
+                                        type="checkbox"
+                                        id="womenOnly"
+                                        checked={options.womenOnly}
+                                        onChange={() => handleOptionChange("womenOnly")}
+                                    />
+                                    <label htmlFor="womenOnly">Women only</label>
+                                </div>
+                                <span className="W"></span>
+                            </div>
+                        </div>
+
+                        <button className="continue-button9" onClick={handleSubmit}>
+                            Continue
+                        </button>
                     </div>
-                    <span className="G"></span>
-
-
-                </div>
-
-                <div className="divOpt">
-                    <div>
-                    <input
-                        type="checkbox"
-                        id="womenOnly"
-                        checked={options.womenOnly}
-                        onChange={() => handleOptionChange("womenOnly")}
-                    />
-                    <label htmlFor="womenOnly">Women only</label>
-                    </div>
-                    <span className="W"></span>
-                </div>
-            </div>
-
-            <button className="continue-button9" onClick={handleSubmit}>
-                Continue
-            </button>
-        </div>
+                </main>
             </main>
-        </main>
-    );
-};
+            );
+            };
 
-export default PassengerSelection;
+            export default PassengerSelection;

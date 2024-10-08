@@ -3,6 +3,7 @@ import '../styles/PriceSelection.css';
 import { useLocation, useNavigate } from "react-router-dom";
 import {fetchUserData} from "../utils/tokenUtils.ts";
 import PanelLogo from "../components/PanelLogo.tsx";
+import NavbarComponent from "../components/NavbarComponent.tsx";
 
 const PriceSelection: React.FC = () => {
     const location = useLocation();
@@ -86,28 +87,28 @@ const PriceSelection: React.FC = () => {
 
     return (
         <main className="main">
-            <PanelLogo/>
-            <main className="main3">
-                <div className="price-selector">
-                    <h2>Select the price per seat</h2>
-                    <div className="price-control">
-                        <button className="decrease" onClick={decreasePrice}>-</button>
-                        {/* Додаємо стилізацію кольору для ціни */}
-                        <span className="price2" style={{ color: getPriceColor() }}>{price} UAH</span>
-                        <button className="increase" onClick={increasePrice}>+</button>
-                    </div>
-                    <div className="price-info">
-                        {/* Округляємо мінімальне та максимальне значення */}
-                        <span className="recommended-price" style={{ backgroundColor: getPriceColor() }}>
+                <NavbarComponent/>
+                <main className="main3">
+                    <div className="price-selector">
+                        <h2>Select the price per seat</h2>
+                        <div className="price-control">
+                            <button className="decrease" onClick={decreasePrice}>-</button>
+                            {/* Додаємо стилізацію кольору для ціни */}
+                            <span className="price2" style={{color: getPriceColor()}}>{price} UAH</span>
+                            <button className="increase" onClick={increasePrice}>+</button>
+                        </div>
+                        <div className="price-info">
+                            {/* Округляємо мінімальне та максимальне значення */}
+                            <span className="recommended-price" style={{backgroundColor: getPriceColor()}}>
                     Recommended price: {Math.round(minPrice)} UAH - {Math.round(maxPrice)} UAH
                 </span>
-                        <p>Optimal price for this trip! You will find passengers quickly.</p>
+                            <p>Optimal price for this trip! You will find passengers quickly.</p>
+                        </div>
+                        <button className="continue-button10" onClick={handleSubmit}>Next</button>
                     </div>
-                    <button className="continue-button10" onClick={handleSubmit}>Next</button>
-                </div>
+                </main>
             </main>
-        </main>
-    );
-};
+            );
+            };
 
-export default PriceSelection;
+            export default PriceSelection;

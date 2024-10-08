@@ -4,7 +4,7 @@ import { Loader } from '@googlemaps/js-api-loader';
 import "../styles/CreateTravel.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import { fetchUserData } from "../utils/tokenUtils.ts";
-import PanelLogo from "../components/PanelLogo.tsx";
+import NavbarComponent from "../components/NavbarComponent.tsx";
 
 const CreationTravel: React.FC = () => {
     const location = useLocation();
@@ -60,7 +60,7 @@ const CreationTravel: React.FC = () => {
 
     return (
         <main className="main">
-            <PanelLogo />
+            <NavbarComponent />
             <div className="globalDiv">
                 <h3 className="titleFrom"> Where are you leaving from?</h3>
                 <div className="divInput">

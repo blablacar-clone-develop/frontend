@@ -4,6 +4,7 @@ import { addMonths, format, subMonths, isBefore, startOfMonth, isSameMonth, isAf
 import "../styles/DateSelection.css";
 import { fetchUserData } from "../utils/tokenUtils.ts";
 import PanelLogo from "../components/PanelLogo.tsx";
+import NavbarComponent from "../components/NavbarComponent.tsx";
 
 const DateSelection: React.FC = () => {
     const [value, setValue] = useState(new Date());
@@ -104,27 +105,27 @@ const DateSelection: React.FC = () => {
 
     return (
         <main className="main">
-            <PanelLogo />
-            <main className="main3">
-                <div className="calendar-container">
-                    <h3 className="when">When?</h3>
-                    <div className="calendar-controls">
-                        <button
-                            onClick={handlePrevMonth}
-                            disabled={isBefore(startOfMonth(currentMonth), startOfMonth(today))}
-                        >
-                            Previous
-                        </button>
-                        <button onClick={handleNextMonth}>Next</button>
+                <NavbarComponent/>
+                <main className="main3">
+                    <div className="calendar-container">
+                        <h3 className="when">When?</h3>
+                        <div className="calendar-controls">
+                            <button
+                                onClick={handlePrevMonth}
+                                disabled={isBefore(startOfMonth(currentMonth), startOfMonth(today))}
+                            >
+                                Previous
+                            </button>
+                            <button onClick={handleNextMonth}>Next</button>
+                        </div>
+                        <div className="calendars">
+                            {renderCalendar(currentMonth)}
+                            {renderCalendar(addMonths(currentMonth, 1))}
+                        </div>
                     </div>
-                    <div className="calendars">
-                        {renderCalendar(currentMonth)}
-                        {renderCalendar(addMonths(currentMonth, 1))}
-                    </div>
-                </div>
+                </main>
             </main>
-        </main>
-    );
-};
+            );
+            };
 
-export default DateSelection;
+            export default DateSelection;
