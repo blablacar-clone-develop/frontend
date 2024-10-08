@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { Navbar, Nav, Container, Button } from 'react-bootstrap';
+import { Navbar, Nav, Container} from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../styles/homePage.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -27,23 +26,23 @@ const NavbarComponent: React.FC = () => {
                 <Navbar.Toggle aria-controls="navbar-nav" />
                 <Navbar.Collapse id="navbar-nav">
                     <Nav className="me-auto">
-
-                        <Nav.Link className="custom-link" href="/">Home</Nav.Link>
-                        <Nav.Link className="custom-link" href="/createTravel">Post trip</Nav.Link>
-                        <Nav.Link className="custom-link" href="#">Something</Nav.Link>
+                        <Nav.Link href="/personSettings">
+                            <div className="burgerMenu"/>
+                        </Nav.Link>
+                        <Nav.Link className="custom-link" href="/createTravel">Publish trip</Nav.Link>
                     </Nav>
 
 
                     <div className="d-flex justify-content-center " style={{ flex: '1' }}>
-                        <div  className="myIconImage" />
+                        <Nav.Link href="/">
+                            <div  className="myIconImage" />
+                        </Nav.Link>
                     </div>
 
                     <Nav className="ml-auto">
                         {token ? (
                             <>
-                                <Nav.Link href="/personSettings">
-                                    <div className="burgerMenu"/>
-                                </Nav.Link>
+
                                 <Nav.Link href="/profile">
                                     <div className="person"/>
                                 </Nav.Link>
