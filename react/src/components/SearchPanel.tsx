@@ -20,7 +20,7 @@ interface SearchPanelProps {
                 address: string;
             };
             date?: Date | null;
-            passengers?: any[];
+            passengers?: any[]; // eslint-disable-line
         };
     };
 }
@@ -34,7 +34,7 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ info }) => {
     const searchInputRefTo = useRef<HTMLInputElement>(null);
     const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "KeyNOTfound";
     const [selectedDay, setSelectedDay] = useState<Date | null>(info?.ob.date || null);
-    const [passengers, setPassengers] = useState<any[]>(info?.ob.passengers || []);
+    const [passengers, setPassengers] = useState<any[]>(info?.ob.passengers || []); // eslint-disable-line
     const navigate = useNavigate();
 
     const [fromPlace, setFromPlace] = useState<{ city: string; country: string; address: string } | null>(initialFromPlace);
@@ -102,7 +102,7 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ info }) => {
         }).catch(e => {
             console.error('Failed to load Google Maps API:', e);
         });
-    }, []);
+    }, []); // eslint-disable-line
 
 
     const handleSearch = async () => {

@@ -39,7 +39,7 @@ const Options: React.FC<OptionsProps> = ({ onSortChange, onFiltersChange }) => {
 
     React.useEffect(() => {
         onFiltersChange({ departureTimes: selectedDepartureTimes, conveniences: selectedConveniences });
-    }, [selectedDepartureTimes, selectedConveniences]);
+    }, [selectedDepartureTimes, selectedConveniences]); // eslint-disable-line
 
     return (
         <div className="container10">

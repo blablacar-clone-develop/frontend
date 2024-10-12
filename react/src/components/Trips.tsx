@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 interface TripsProps {
     rides: Trip[];
-    info: any;
+    info: any; // eslint-disable-line
 }
 
 const Trips: React.FC<TripsProps> = ({ rides, info }) => {

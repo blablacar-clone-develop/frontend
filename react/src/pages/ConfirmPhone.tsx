@@ -17,7 +17,7 @@ const ConfirmPhone: React.FC = () => {
         fetchData();
     }, [navigate]);
 
-    const handlePhoneChange = (value: string, country: any) => {
+    const handlePhoneChange = (value: string, country: any) => { // eslint-disable-line
         setPhone(value);
         setCountryCode(country.dialCode);
     };

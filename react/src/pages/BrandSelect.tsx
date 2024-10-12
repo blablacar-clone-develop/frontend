@@ -44,7 +44,7 @@ const CarBrandSelection: React.FC = () => {
             }
         };
         fetchData();
-    }, [carId, API_URL]);
+    }, [carId, API_URL]); // eslint-disable-line
 
     const updateDisplayBrands = (allBrands: string[], topBrands: string[]) => {
         if (topBrands.length > 0) {

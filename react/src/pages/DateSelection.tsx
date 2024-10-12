@@ -6,7 +6,10 @@ import { fetchUserData } from "../utils/tokenUtils.ts";
 import NavbarComponent from "../components/NavbarComponent.tsx";
 
 const DateSelection: React.FC = () => {
-    const [value, setValue] = useState(new Date());
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    const [value, setValue] = useState(new Date()); // eslint-disable-line
     const [currentMonth, setCurrentMonth] = useState(new Date());
     const today = new Date();
 

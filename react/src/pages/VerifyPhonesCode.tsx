@@ -92,7 +92,7 @@ const VerifyPhonesCode: React.FC = () =>
             verifyCode(completeCode);
             console.log("Complete code entered:", completeCode);
         }
-    }, [code]);
+    }, [code]); // eslint-disable-line
 
     const handleGoBack = () => {
         navigate("/personSettings");

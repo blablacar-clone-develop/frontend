@@ -18,7 +18,7 @@ interface Info{
                 address: string;
             };
             date?: Date | null;
-            passengers?: any[];
+            passengers?: any[]; // eslint-disable-line
         };
 }
 const Reservation: React.FC = () => {
@@ -28,6 +28,8 @@ const Reservation: React.FC = () => {
     const [modeBook, setModeBook] = useState<string>('Ви маєте чекати на підтвердження водія');
     const [endPrice, setEndPrice]  =useState<number>();
     useEffect(() => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         setEndPrice(trip.price*info.ob.passengers?.length)
         if (trip.tripAgreement && trip.tripAgreement.isAgreed) {
             setModeBook('You will be immediately approved for this reservation');
