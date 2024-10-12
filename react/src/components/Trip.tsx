@@ -21,8 +21,7 @@ const Trip: React.FC<TripProps> = ({
                                        date,
                                        cityFrom,
                                        cityTo,
-                                       travelDuration,
-                                       avatar
+                                       travelDuration
                                    }) => {
     return (
         <div className="card6">
