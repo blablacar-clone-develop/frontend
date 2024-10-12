@@ -46,7 +46,14 @@ const HomePage: React.FC = () => {
         <main className="main">
             <NavbarComponent />
             <MainContent />
-            <SearchPanel />
+            <SearchPanel info={{
+                ob: {
+                    from: undefined,
+                    to: undefined,
+                    date: undefined,
+                    passengers: undefined
+                }
+            }} />
             <BusImage/>
             <CardsSection />
             <Footer/>

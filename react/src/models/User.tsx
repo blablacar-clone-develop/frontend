@@ -1,5 +1,6 @@
 import { Autos } from './Autos';
-import { Trips } from './Trips';
+import { Trip } from './Trip';
+import {Avatar} from "./Avatar.tsx";
 
 export interface User {
     id: number;
@@ -9,5 +10,6 @@ export interface User {
     dateOfBirthday: string; // ISO date string or Date
     gender: string;
     autos: Autos[];
-    trips: Trips[];
+    trips: Trip[];
+    avatar: Avatar;
 }
