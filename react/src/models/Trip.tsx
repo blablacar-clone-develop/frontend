@@ -25,4 +25,5 @@ export interface Trip {
     tripDurationAndDistance: TripDurationAndDistance;
     options: Options;
     amenities: Amenities;
+    avatar: string;
 }

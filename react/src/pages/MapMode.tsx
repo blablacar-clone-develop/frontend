@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Loader } from '@googlemaps/js-api-loader';
 import '../styles/MapMode.css';
 import {fetchUserData} from "../utils/tokenUtils.ts";
-import PanelLogo from "../components/PanelLogo.tsx";
 import NavbarComponent from "../components/NavbarComponent.tsx";
 
 declare global {

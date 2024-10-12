@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import "../styles/CountPassengerSelection.css";
 import {useLocation, useNavigate} from "react-router-dom";
 import {fetchUserData} from "../utils/tokenUtils.ts";
-import PanelLogo from "../components/PanelLogo.tsx";
 import NavbarComponent from "../components/NavbarComponent.tsx";
 
 const PassengerSelection: React.FC = () => {

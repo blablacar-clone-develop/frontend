@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { addMonths, format, subMonths, isBefore, startOfMonth, isSameMonth, isAfter, isToday } from "date-fns";
+import { addMonths, format, subMonths, isBefore, startOfMonth, isToday } from "date-fns";
 import "../styles/DateSelection.css";
 import { fetchUserData } from "../utils/tokenUtils.ts";
-import PanelLogo from "../components/PanelLogo.tsx";
 import NavbarComponent from "../components/NavbarComponent.tsx";
 
 const DateSelection: React.FC = () => {

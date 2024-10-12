@@ -3,7 +3,6 @@ import '../styles/AddInfoRoute.css';
 import {useLocation, useNavigate} from "react-router-dom";
 import axios from "axios";
 import {fetchUserData} from "../utils/tokenUtils.ts";
-import PanelLogo from "../components/PanelLogo.tsx";
 import NavbarComponent from "../components/NavbarComponent.tsx";
 
 const AddInfoRoute: React.FC = () => {
@@ -12,7 +11,7 @@ const AddInfoRoute: React.FC = () => {
     const navigate = useNavigate();
     const [details, setDetails] = useState('');
     const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
-    const [verificationData, setVerificationData] = useState(null);
+    const [setVerificationData] = useState(null);
     const { fromAddress, toAddress, selectedRoute, date, selectedTime, passengers, options, selectBooking, price, amenities} = location.state || {};
 
     useEffect(() => {
