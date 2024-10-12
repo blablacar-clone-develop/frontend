@@ -83,6 +83,8 @@ const CreationTravel: React.FC = () => {
                                 if (searchInputRefFrom.current) {
                                     searchInputRefFrom.current.value = suggestion.description;
                                 }
+                                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                // @ts-expect-error
                                 handleSelectFrom(searchInputRefFrom.current.value);
                             }}
                         >

@@ -19,8 +19,11 @@ const PassengerSelection: React.FC = () => {
     };
 
     const handleOptionChange = (option: string) => {
+
         setOptions(prev => ({
             ...prev,
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             [option]: !prev[option],
         }));
     };

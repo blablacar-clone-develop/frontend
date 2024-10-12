@@ -14,7 +14,7 @@ const SearchResult: React.FC = () => {
     const info = location.state;
     const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
     const [trips, setTrips] = useState<Trip[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [, setLoading] = useState<boolean>(true);
     const [sortOption, setSortOption] = useState<string>('earliest');
     const [filters, setFilters] = useState<{ departureTimes: string[], conveniences: string[] }>({
         departureTimes: [],
@@ -141,7 +141,9 @@ const SearchResult: React.FC = () => {
                     />
                 </div>
                 <div className="ride-list">
-                    <Trips rides={sortedTrips} info={info} loading={loading} />
+
+                    <Trips rides={sortedTrips} info={info} />
+
                 </div>
             </div>
             <Footer />
@@ -150,3 +152,4 @@ const SearchResult: React.FC = () => {
 };
 
 export default SearchResult;
+

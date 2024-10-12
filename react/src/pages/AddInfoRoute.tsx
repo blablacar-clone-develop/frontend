@@ -11,7 +11,7 @@ const AddInfoRoute: React.FC = () => {
     const navigate = useNavigate();
     const [details, setDetails] = useState('');
     const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
-    const [setVerificationData] = useState(null);
+    const [, setVerificationData] = useState(null);
     const { fromAddress, toAddress, selectedRoute, date, selectedTime, passengers, options, selectBooking, price, amenities} = location.state || {};
 
     useEffect(() => {
@@ -54,8 +54,6 @@ const AddInfoRoute: React.FC = () => {
         saveTrip();
         try {
             const response = await axios.get(`${API_URL}/api/user/verification/${userId}`);
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-expect-error
             setVerificationData(response.data);
             const { emailVerified, phoneVerified, documentVerified } = response.data;
 
