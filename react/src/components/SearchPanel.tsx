@@ -51,7 +51,7 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ info }) => {
             if (searchInputRefFrom.current && window.google) {
                 const autocompleteFrom = new window.google.maps.places.Autocomplete(searchInputRefFrom.current, {
                     types: ['geocode'],
-                    language: 'uk'
+
                 });
 
                 autocompleteFrom.addListener('place_changed', () => {
@@ -77,7 +77,7 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ info }) => {
             if (searchInputRefTo.current && window.google) {
                 const autocompleteTo = new window.google.maps.places.Autocomplete(searchInputRefTo.current, {
                     types: ['geocode'],
-                    language: 'uk'
+
                 });
 
                 autocompleteTo.addListener('place_changed', () => {

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
-import PanelLogo from "../components/PanelLogo.tsx";
 import '../styles/AdditionalAmentities.css';
 import NavbarComponent from "../components/NavbarComponent.tsx";  // CSS for styling the page
 

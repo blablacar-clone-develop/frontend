@@ -1,24 +1,11 @@
 import React from 'react';
 import { Navbar, Nav, Container} from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 import '../styles/homePage.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const NavbarComponent: React.FC = () => {
-    const navigate = useNavigate();
     const token = localStorage.getItem('token');
-    const username = localStorage.getItem('username');
-
-    const handleLogout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('username');
-        localStorage.removeItem('userId');
-        // Redirect to login page after logout
-        navigate('/login');
-    };
-
-
 
     return (
         <Navbar className="myNavBar" expand="lg">

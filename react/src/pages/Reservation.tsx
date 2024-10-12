@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import { Trip } from "../models/Trip.tsx";
 import '../styles/ShowTrip.css'; // Додайте новий файл стилів
 import Navbar from "../components/NavbarComponent.tsx";
@@ -24,13 +24,11 @@ interface Info{
 const Reservation: React.FC = () => {
 
     const location = useLocation();
-    const navigate = useNavigate();
     const { trip, info }: { trip: Trip; info: Info } = location.state || {};
     const [modeBook, setModeBook] = useState<string>('Ви маєте чекати на підтвердження водія');
     const [endPrice, setEndPrice]  =useState<number>();
     useEffect(() => {
         setEndPrice(trip.price*info.ob.passengers?.length)
-
         if (trip.tripAgreement && trip.tripAgreement.isAgreed) {
             setModeBook('You will be immediately approved for this reservation');
         }
