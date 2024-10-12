@@ -10,7 +10,7 @@ const AddInfoRoute: React.FC = () => {
     const userId = localStorage.getItem("userId");
     const navigate = useNavigate();
     const [details, setDetails] = useState('');
-    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "";
     const [, setVerificationData] = useState(null);
     const { fromAddress, toAddress, selectedRoute, date, selectedTime, passengers, options, selectBooking, price, amenities} = location.state || {};
 

@@ -9,7 +9,7 @@ const ConfirmEmail: React.FC = () => {
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [isResendDisabled, setIsResendDisabled] = useState<boolean>(false);
     const navigate = useNavigate();
-    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "";
     const [user, setUser] = useState<{ email: string } | null>(null);
     const [nameBut, setNameBut] = useState<string | null>("Send code");
     useEffect(() => {

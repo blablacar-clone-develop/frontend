@@ -6,7 +6,7 @@ import axios from "axios";
 import { fetchUserData } from '../utils/tokenUtils';
 
 const CarBrandSelection: React.FC = () => {
-    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "";
     const { carId } = useParams<{ carId: string }>();
     const [searchTerm, setSearchTerm] = useState('');
     const [carBrands, setCarBrands] = useState<string[]>([]);

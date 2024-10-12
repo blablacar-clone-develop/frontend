@@ -13,7 +13,7 @@ interface CarColor {
 }
 
 const CarColorSelection: React.FC = () => {
-    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "";
     const [searchTerm] = useState('');
     const [carColors, setCarColors] = useState<CarColor[]>([]);
     const location = useLocation();

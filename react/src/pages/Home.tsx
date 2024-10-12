@@ -10,7 +10,7 @@ import {useNavigate} from "react-router-dom";
 
 
 const HomePage: React.FC = () => {
-    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "";
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
 

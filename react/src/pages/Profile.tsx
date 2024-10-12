@@ -9,7 +9,7 @@ import {fetchUserData} from "../utils/tokenUtils.ts";
 
 
 const PersonalInfo: React.FC = () => {
-    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "";
     const [originalData, setOriginalData] = useState({
         name: '',
         surname: '',

@@ -5,7 +5,7 @@ import axios from 'axios';
 import {fetchUserData} from "../utils/tokenUtils.ts";
 
 const CarModelSelection: React.FC = () => {
-    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "";
     const location = useLocation();
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState('');

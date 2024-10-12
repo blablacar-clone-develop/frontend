@@ -32,7 +32,7 @@ const ProfilePage: React.FC = () => {
     const [cars, setCars] = useState<Autos[]>([]);
     const [verificationData, setVerificationData] = useState<{ emailVerified: boolean; phoneVerified: boolean; documentVerified: boolean } | null>(null);
     const navigate = useNavigate();
-    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "";
 
     useEffect(() => {
         document.title = 'Person Settings';

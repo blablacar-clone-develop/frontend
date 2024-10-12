@@ -3,7 +3,7 @@ import { NavigateFunction } from 'react-router-dom';
 
 export const fetchUserData = async (navigate: NavigateFunction) => {
     const token = localStorage.getItem("token");
-    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "";
 
     if (token) {
         try {

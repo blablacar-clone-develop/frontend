@@ -36,7 +36,7 @@ const EditCarPage: React.FC = () => {
     const [car, setCar] = useState<Car | null>(null);
     const [loading, setLoading] = useState(true);
     const [showModal, setShowModal] = useState(false); // State for showing the modal
-    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "";
 
     // Function to handle modal visibility
     const handleShowModal = () => setShowModal(true);

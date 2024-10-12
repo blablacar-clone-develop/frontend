@@ -8,7 +8,7 @@ import {fetchUserData} from "../utils/tokenUtils.ts";
 
 const ConfirmIdentity: React.FC = () => {
     const navigate = useNavigate();
-    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "";
 
     useEffect(() => {
         const fetchData = async () => {

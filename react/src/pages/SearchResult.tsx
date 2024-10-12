@@ -12,7 +12,7 @@ import axios from "axios";
 const SearchResult: React.FC = () => {
     const location = useLocation();
     const info = location.state;
-    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "";
     const [trips, setTrips] = useState<Trip[]>([]);
     const [, setLoading] = useState<boolean>(true);
     const [sortOption, setSortOption] = useState<string>('earliest');

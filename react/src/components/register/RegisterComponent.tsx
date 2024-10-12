@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 const Register: React.FC = () => {
 
     const navigate = useNavigate();
-    const API_URL = import.meta.env.VITE_BASE_URL_API || "KeyNOTfound";
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "";
 
     /// ---- сутність яку передаємо
     const [email, setEmail] = useState('');
