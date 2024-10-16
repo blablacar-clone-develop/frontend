@@ -1,7 +1,6 @@
-.main
-{
+.main {
     background-color: #F9FBFF;
-    padding: 0px !important;
+    font-family: Inter, sans-serif;
 }
 .searchPanel
 {
@@ -26,6 +25,7 @@
     width: 50px; /* Adjust icon size as needed */
     height: 50px; /* Maintain aspect ratio */
     background-image: url('../assets/logo.png');
+    margin-right: 20% !important;
 
 }
 .myContLine
@@ -33,7 +33,7 @@
     background-color: #F9FBFF;
     background-image:url('../assets/line.png') ;
     width:1800px;
-    height: 250px;
+
     background-size:1920px;
     background-repeat: no-repeat;
     background-position: center;

@@ -1,4 +1,4 @@
-.main {
+.main5 {
     background-color: #F9FBFF;
     background-repeat: repeat;
 
@@ -43,7 +43,7 @@
     color: #8c8c8c;
 }
 
-.submit-button {
+.submit-button6 {
     height: 56px;
     width: 400px;
     padding: 10px 20px;
@@ -56,11 +56,11 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     position: absolute;
-    bottom: 40%;
+    bottom: 20%;
     left: 50%;
     transform: translateX(-50%);
 }
 
-.submit-button:hover {
+.submit-button6:hover {
     background-color: #008ecc;
 }

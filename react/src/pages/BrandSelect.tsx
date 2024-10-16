@@ -74,7 +74,7 @@ const CarBrandSelection: React.FC = () => {
     };
 
     return (
-        <main className='main'>
+        <main className='main7'>
             <Navbar />
             <div className="car-brand-selection">
                 <h1 className="title-createTransport">Add your vehicle</h1>

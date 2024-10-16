@@ -70,7 +70,7 @@ const AddInfoRoute: React.FC = () => {
     };
 
     return (
-        <main className="main">
+        <main className="main5">
                 <NavbarComponent/>
                 <div className="trip-details">
                     <h2>Do you want to add anything about the trip?</h2>
@@ -79,7 +79,7 @@ const AddInfoRoute: React.FC = () => {
                         value={details}
                         onChange={handleDetailsChange}
                     />
-                    <button className="submit-button" onClick={handleSubmit}>
+                    <button className="submit-button6" onClick={handleSubmit}>
                         Publish the trip
                     </button>
                 </div>

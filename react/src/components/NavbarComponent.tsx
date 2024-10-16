@@ -22,7 +22,7 @@ const NavbarComponent: React.FC = () => {
 
                     <div className="d-flex justify-content-center " style={{ flex: '1' }}>
                         <Nav.Link href="/">
-                            <div  className="myIconImage" />
+                            <div  className="myIconImage5" />
                         </Nav.Link>
                     </div>
 

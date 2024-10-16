@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useNavigate, useLocation} from 'react-router-dom';
 import '../styles/UserVerification.css';
 import {fetchUserData} from "../utils/tokenUtils.ts";
-
+import Navbar from "../components/NavbarComponent.tsx";
 
 
 const UserVerification: React.FC = () => {
@@ -37,6 +37,7 @@ const UserVerification: React.FC = () => {
 
     return (
         <main className="main">
+            <Navbar/>
         <div className="container6">
             <div className="heade6">
                 <h1>Trip Published</h1>
