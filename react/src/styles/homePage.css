@@ -128,31 +128,6 @@
     padding: 3%;
 }
 
-/* Вимкнення позиціонування при ширині екрану менше ніж 768px */
-@media (max-width: 600px) {
-    .cards {
-        position: static; /* Відміняє позиціонування */
-        flex-direction: column;
-    }
-
-    .cards div
-    {
-        width: 100% !important;
-    }
-
-    .headerOfCards {
-        text-align: center;
-    }
-
-    .card1, .card2, .card3 {
-        top: auto;
-        left: auto;
-        right: auto;
-    }
-
-}
-
-
 .card-item {
     background-color: white;
 
@@ -295,3 +270,35 @@
     padding-right: 40px !important;
 }
 
+/* Медіа запити для корекції відображення порталу */
+
+/* Вимкнення позиціонування при ширині екрану менше ніж 768px */
+@media (max-width: 600px) {
+    .cards {
+        position: static; /* Відміняє позиціонування */
+        flex-direction: column;
+    }
+
+    .cards div
+    {
+        width: 100% !important;
+    }
+
+    .headerOfCards {
+        text-align: center;
+    }
+
+    .card1, .card2, .card3 {
+        top: auto;
+        left: auto;
+        right: auto;
+    }
+
+}
+
+/* корекція серч панелі при зменшені екрану */
+@media (max-width: 586px) {
+    .butSearch {
+    max-width: 259px !important;
+    }
+}
