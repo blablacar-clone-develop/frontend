@@ -17,16 +17,23 @@
     background-color: #F3F3F3;
     height:70px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    /*background-image: url('../assets/logo.png');*/
+    /*background-size: 50px 50px;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
 
 }
+
 .myIconImage5
 {
     width: 50px; /* Adjust icon size as needed */
     height: 50px; /* Maintain aspect ratio */
     background-image: url('../assets/logo.png');
-    margin-right: 20% !important;
-
+    /*margin-right: 20% !important;*/
+    position: absolute;
+    left: 50%;
 }
+
 .myContLine
 {
     background-color: #F9FBFF;
