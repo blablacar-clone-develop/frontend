@@ -21,7 +21,6 @@
 }
 .myIconImage5
 {
-
     width: 50px; /* Adjust icon size as needed */
     height: 50px; /* Maintain aspect ratio */
     background-image: url('../assets/logo.png');
@@ -33,7 +32,6 @@
     background-color: #F9FBFF;
     background-image:url('../assets/line.png') ;
     width:1800px;
-
     background-size:1920px;
     background-repeat: no-repeat;
     background-position: center;
@@ -57,7 +55,6 @@
 {
     top: -100px;
     left: -40px;
-
 }
 .card2
 {
@@ -130,6 +127,31 @@
     text-align: left;
     padding: 3%;
 }
+
+/* Вимкнення позиціонування при ширині екрану менше ніж 768px */
+@media (max-width: 600px) {
+    .cards {
+        position: static; /* Відміняє позиціонування */
+        flex-direction: column;
+    }
+
+    .cards div
+    {
+        width: 100% !important;
+    }
+
+    .headerOfCards {
+        text-align: center;
+    }
+
+    .card1, .card2, .card3 {
+        top: auto;
+        left: auto;
+        right: auto;
+    }
+
+}
+
 
 .card-item {
     background-color: white;
