@@ -202,7 +202,7 @@
     background-color: #F9FBFF;
     background-image:url('../assets/backLogo.png') ;
     width: 351px;
-    height: 351px;
+    min-height: 351px;
     background-size: 351px;
     background-repeat: no-repeat;
     background-position: center;
