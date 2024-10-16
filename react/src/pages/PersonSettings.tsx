@@ -33,6 +33,7 @@ const ProfilePage: React.FC = () => {
     const [verificationData, setVerificationData] = useState<{ emailVerified: boolean; phoneVerified: boolean; documentVerified: boolean } | null>(null);
     const navigate = useNavigate();
     const API_URL = import.meta.env.VITE_BASE_URL_API || "";
+    const [avatarUrl, setAvatarUrl] = useState<string>('');
 
     useEffect(() => {
         document.title = 'Person Settings';
@@ -44,11 +45,16 @@ const ProfilePage: React.FC = () => {
             if (userData.autos) {
                 setCars(userData.autos);
             }
+
+            if(userData.avatar?.url) {
+                setAvatarUrl(userData.avatar.url);
+            }
+
         };
 
         const fetchVerification = async () => {
             const response = await axios.get(`${API_URL}/api/user/verification/${localStorage.getItem("userId")}`);
-            console.log("User verification data:", response.data);
+            //console.log("User verification data:", response.data);
             setVerificationData(response.data);
         };
 
@@ -80,7 +86,11 @@ const ProfilePage: React.FC = () => {
             <NavBar />
             <div className="profile-page">
                 <div className="profile-header">
-                    <i className="bi bi-person-circle profile-icon"></i>
+                    {avatarUrl ? (
+                        <img src={avatarUrl} alt="Profile Avatar" className="profileAvatar" />
+                    ) : (
+                        <i className="bi bi-person-circle photoIcon"></i>
+                    )}
                     <div className="profile-info">
                         <span className="username">{username}</span>
                         <i className="bi bi-car"></i>
