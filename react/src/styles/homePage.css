@@ -31,7 +31,10 @@
     background-image: url('../assets/logo.png');
     /*margin-right: 20% !important;*/
     position: absolute;
+    margin-left: 25px;
+    top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .myContLine
@@ -278,6 +281,12 @@
 }
 
 /* Медіа запити для корекції відображення порталу */
+
+/*@media (max-width: 991px) {*/
+
+/*    */
+/*}*/
+
 
 /* Вимкнення позиціонування при ширині екрану менше ніж 768px */
 @media (max-width: 600px) {
