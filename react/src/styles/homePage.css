@@ -31,7 +31,6 @@
     background-image: url('../assets/logo.png');
     /*margin-right: 20% !important;*/
     position: absolute;
-    margin-left: 25px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
