@@ -12,8 +12,6 @@ const ShowTrip: React.FC = () => {
     const { trip, info } = location.state || {};
     const navigate = useNavigate();
 
-    console.log(trip);
-
     // Function to analyze the options and return a list of features
     const getTripFeatures = (options: Trip['options']) => {
         const features: string[] = [];

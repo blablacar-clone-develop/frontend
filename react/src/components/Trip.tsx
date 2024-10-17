@@ -1,5 +1,6 @@
 import React from "react";
 import '../styles/Trip.css';
+import {calculateArrivalTime} from "../utils/calculateArrivalTime.ts";
 
 interface TripProps {
     departureTime: string;
@@ -34,7 +35,9 @@ const Trip: React.FC<TripProps> = ({
                     <span>{cityTo}</span>
                 </div>
                 <div className="time">
-                    <div className="departureTime">{departureTime}</div>
+                    <div className="departureTime">{departureTime.slice(0, 5)}</div>
+                    <div className="departureTime">{calculateArrivalTime(departureTime, travelDuration)}</div>
+
                 </div>
                 <div className="driver">
 
