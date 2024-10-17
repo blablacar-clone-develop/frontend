@@ -13,7 +13,6 @@ const TimeSelection: React.FC = () => {
     const { fromAddress, toAddress, selectedRoute, date } = location.state || {};
 
     useEffect(() => {
-        console.log(date);
         const fetchData = async () => {
             await fetchUserData(navigate);
 

@@ -30,6 +30,7 @@ import Reservation from "./pages/Reservation.tsx";
 import PayCard from "./pages/PayCard.tsx";
 import ForgotPassword from "./pages/ForgotPassword.tsx";
 import AdditionalAmenties from "./pages/AdditionalAmentities.tsx";
+import SelectAutoForTrip from "./pages/SelectAutoForTrip.tsx";
 function App() {
 
 
@@ -69,6 +70,7 @@ function App() {
                     <Route path="/payCard" element={<PayCard/>}/>
                     <Route path="/forgot-password" element={<ForgotPassword/>}/>
                     <Route path="/additional" element={<AdditionalAmenties/>}/>
+                    <Route path="/selectAutoforTrip" element={<SelectAutoForTrip/>}/>
                 </Routes>
 
             </Router>

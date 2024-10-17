@@ -12,7 +12,7 @@ const AddInfoRoute: React.FC = () => {
     const [details, setDetails] = useState('');
     const API_URL = import.meta.env.VITE_BASE_URL_API || "";
     const [, setVerificationData] = useState(null);
-    const { fromAddress, toAddress, selectedRoute, date, selectedTime, passengers, options, selectBooking, price, amenities} = location.state || {};
+    const { fromAddress, toAddress, selectedRoute, date, selectedTime, passengers, options, selectBooking, price, amenities, carId} = location.state || {};
 
     useEffect(() => {
         const fetchData = async () => {
@@ -38,8 +38,11 @@ const AddInfoRoute: React.FC = () => {
             options,
             selectBooking,
             price,
-            amenities
+            amenities,
+            carId
         };
+
+        console.log(bookingData);
 
         const bookingResponse = await axios.post(`${API_URL}/api/trips/create`, bookingData, {
             headers: {
@@ -50,7 +53,6 @@ const AddInfoRoute: React.FC = () => {
     }
 
     const handleSubmit =  async () => {
-        console.log(location.state);
         saveTrip();
         try {
             const response = await axios.get(`${API_URL}/api/user/verification/${userId}`);
@@ -87,4 +89,4 @@ const AddInfoRoute: React.FC = () => {
             );
             };
 
-            export default AddInfoRoute;
+export default AddInfoRoute;

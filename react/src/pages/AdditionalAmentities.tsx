@@ -28,7 +28,21 @@ const AdditionalAmentities: React.FC = () => {
 
 
     const handleSubmit = () => {
-        navigate("/addInfoRoute", {
+        // navigate("/addInfoRoute", {
+        //     state: {
+        //         fromAddress,
+        //         toAddress,
+        //         selectedRoute,
+        //         date,
+        //         selectedTime,
+        //         passengers,
+        //         options,
+        //         selectBooking,
+        //         price,
+        //         amenities: selectedAmenities  // Pass the selected amenities
+        //     },
+        // });
+        navigate("/selectautofortrip", {
             state: {
                 fromAddress,
                 toAddress,
