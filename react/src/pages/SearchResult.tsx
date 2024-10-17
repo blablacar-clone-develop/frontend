@@ -42,6 +42,7 @@ const SearchResult: React.FC = () => {
                 info.ob.date = formatDate(info.ob.date);
 
                 const response = await axios.post<Trip[]>(`${API_URL}/api/trips/getSearchTrip`, info.ob);
+                console.log(response.data);
                 setTrips(response.data);
             } catch (error) {
                 console.error("Error fetching trips:", error);
