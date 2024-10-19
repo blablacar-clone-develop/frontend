@@ -25,3 +25,14 @@ export const calculateArrivalTime = (departureTime: string, duration: string): s
 
     return `${arrivalHours}:${arrivalMinutes}`;
 };
+
+// Парсинг travelDuration з підтримкою днів
+export const formatTravelDuration = (duration: string): string => {
+    const daysMatch = duration.match(/(\d+)\s*days?/); // Знаходимо кількість днів
+    const hoursMatch = duration.match(/(\d+)\s*hours?/); // Знаходимо кількість годин
+    const minutesMatch = duration.match(/(\d+)\s*minutes?/); // Знаходимо кількість хвилин
+    const days = daysMatch ? `${daysMatch[1]}d` : ""; // Якщо є дні, додаємо 'd'
+    const hours = hoursMatch ? `${hoursMatch[1]}h` : ""; // Якщо є години, додаємо 'h'
+    const minutes = minutesMatch ? `${minutesMatch[1]}` : ""; // Якщо є хвилини, просто залишаємо число
+    return `${days} ${hours} ${minutes}`.trim(); // Повертаємо строку у форматі "Xd Yh Z"
+};
