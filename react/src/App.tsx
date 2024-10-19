@@ -31,6 +31,7 @@ import PayCard from "./pages/PayCard.tsx";
 import ForgotPassword from "./pages/ForgotPassword.tsx";
 import AdditionalAmenties from "./pages/AdditionalAmentities.tsx";
 import SelectAutoForTrip from "./pages/SelectAutoForTrip.tsx";
+import ShowUsersTrips from "./pages/ShowUsersTrips.tsx";
 function App() {
 
 
@@ -71,6 +72,7 @@ function App() {
                     <Route path="/forgot-password" element={<ForgotPassword/>}/>
                     <Route path="/additional" element={<AdditionalAmenties/>}/>
                     <Route path="/selectAutoforTrip" element={<SelectAutoForTrip/>}/>
+                    <Route path="/showUsersTrips" element={<ShowUsersTrips />} />
                 </Routes>
 
             </Router>

@@ -6,14 +6,16 @@ import { useNavigate } from "react-router-dom";
 
 interface TripsProps {
     rides: Trip[];
-    info: any; // eslint-disable-line
+    info: any;
 }
 
 const Trips: React.FC<TripsProps> = ({ rides, info }) => {
     const navigate = useNavigate();
 
     const handleTripClick = (trip: Trip) => {
-        // Передаємо обидва об'єкти: trip та info
+        if (!info || Object.keys(info).length === 0) {
+            navigate("/pageTrip");
+        }
         navigate("/trip", { state: { trip, info } });
     };
 

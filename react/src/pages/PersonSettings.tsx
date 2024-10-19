@@ -5,6 +5,8 @@ import { Nav } from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
 import {fetchUserData} from "../utils/tokenUtils.ts";
 import axios from "axios";
+import {Trip} from "../models/Trip.tsx";
+import Trips from "../components/Trips.tsx";
 
 interface Autos {
     id: number;
@@ -45,7 +47,6 @@ const ProfilePage: React.FC = () => {
             if (userData.autos) {
                 setCars(userData.autos);
             }
-
             if(userData.avatar?.url) {
                 setAvatarUrl(userData.avatar.url);
             }
@@ -87,7 +88,7 @@ const ProfilePage: React.FC = () => {
             <div className="profile-page">
                 <div className="profile-header">
                     {avatarUrl ? (
-                        <img src={avatarUrl} alt="Profile Avatar" className="profileAvatar" />
+                        <img src={avatarUrl} alt="Profile Avatar" className="profileAvatar"/>
                     ) : (
                         <i className="bi bi-person-circle photoIcon"></i>
                     )}
@@ -108,7 +109,8 @@ const ProfilePage: React.FC = () => {
                             className={verificationData?.documentVerified ? 'inactive' : ''}
                         >
                             Confirm your identity
-                            {verificationData?.documentVerified ? <i className="bi bi-check-circle"></i> : <i className="bi bi-box-arrow-up-right"></i>}
+                            {verificationData?.documentVerified ? <i className="bi bi-check-circle"></i> :
+                                <i className="bi bi-box-arrow-up-right"></i>}
                         </li>
 
                         <li
@@ -116,7 +118,8 @@ const ProfilePage: React.FC = () => {
                             className={verificationData?.emailVerified ? 'inactive' : ''}
                         >
                             Confirm your email address
-                            {verificationData?.emailVerified ? <i className="bi bi-check-circle"></i> : <i className="bi bi-box-arrow-up-right"></i>}
+                            {verificationData?.emailVerified ? <i className="bi bi-check-circle"></i> :
+                                <i className="bi bi-box-arrow-up-right"></i>}
                         </li>
 
                         <li
@@ -124,7 +127,8 @@ const ProfilePage: React.FC = () => {
                             className={verificationData?.phoneVerified ? 'inactive' : ''}
                         >
                             Confirm phone number
-                            {verificationData?.phoneVerified ? <i className="bi bi-check-circle"></i> : <i className="bi bi-box-arrow-up-right"></i>}
+                            {verificationData?.phoneVerified ? <i className="bi bi-check-circle"></i> :
+                                <i className="bi bi-box-arrow-up-right"></i>}
                         </li>
                     </ul>
                 </div>
@@ -144,7 +148,16 @@ const ProfilePage: React.FC = () => {
                         <li>Change settings <i className="bi bi-box-arrow-up-right"></i></li>
                     </ul>
                 </div>
+                <div className="profile-section">
+                    <h3>Trips</h3>
 
+                    <Nav.Link href='/showUsersTrips?type=created'>
+                        <p className="add-transport">Created trips <i className="bi bi-box-arrow-up-right"></i></p>
+                    </Nav.Link>
+                    <Nav.Link href='/showUsersTrips?type=reserved'>
+                        <p className="add-transport">Reserved trips <i className="bi bi-box-arrow-up-right"></i></p>
+                    </Nav.Link>
+                </div>
                 <div className="profile-section">
                     <h3>Transport</h3>
                     {cars.length > 0 ? (
@@ -160,7 +173,8 @@ const ProfilePage: React.FC = () => {
                     ) : (
                         <p>No cars available</p>
                     )}
-                    <Nav.Link href='/brandSelect'><p className="add-transport">Add transport <i className="bi bi-box-arrow-up-right"></i></p></Nav.Link>
+                    <Nav.Link href='/brandSelect'><p className="add-transport">Add transport <i
+                        className="bi bi-box-arrow-up-right"></i></p></Nav.Link>
                 </div>
 
                 <div className="exit" onClick={() => handleAccountExit()}>
