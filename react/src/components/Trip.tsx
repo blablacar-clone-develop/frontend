@@ -26,13 +26,13 @@ const Trip: React.FC<TripProps> = ({
                                    }) => {
     return (
         <div className="card6">
-            <div className="info">
+            <div className="info6">
                 <div className="location">
-                    <span >{cityFrom}</span>
+                    <span className="town">{cityFrom}</span>
                     <div className="lineT"></div>
                     <span className="duration">{travelDuration}</span>
                     <div className="lineT"></div>
-                    <span>{cityTo}</span>
+                    <span className="town">{cityTo}</span>
                 </div>
                 <div className="time">
                     <div className="departureTime">{departureTime.slice(0, 5)}</div>

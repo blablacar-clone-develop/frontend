@@ -10,7 +10,7 @@
 
 }
 
-.info {
+.info6 {
     flex-grow: 1; /* Allow info to take up remaining space */
 }
 
@@ -25,8 +25,7 @@
     flex-direction: row;
     text-align: center;
     justify-content: center;
-    max-width: 400px;
-
+    /*max-width: 400px;*/
 }
 
 .time {
@@ -52,8 +51,8 @@
 
 }
 .location span {
-    font-size: 16px; /* Font size for location */
-    font-weight: bold; /* Bold text */
+    /*font-size: 16px; !* Font size for location *!*/
+    /*font-weight: bold; !* Bold text *!*/
     flex:0.3;
     text-align: left;
 }
@@ -63,6 +62,14 @@
     font-size: 14px; /* Font size for duration */
     color: #666; /* Color for duration text */
     flex:2;
+}
+
+.town {
+    font-size: 20px;
+    padding-left: 20px;
+    background-image: url('../assets/mapPoint.png');
+    background-repeat: no-repeat;
+    background-position: 0 4px;
 
 }
 
@@ -78,6 +85,6 @@
 }
 
 .departureTime {
-    font-size: 14px; /* Font size for departure time */
+    font-size: 16px; /* Font size for departure time */
     color: #666; /* Color for departure time */
 }
