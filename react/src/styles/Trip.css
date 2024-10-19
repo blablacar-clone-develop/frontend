@@ -47,11 +47,7 @@
     flex:0.3;
     justify-content: left;
 }
-.driver
-{
-    flex-direction: column;
 
-}
 .location span {
     /*font-size: 16px; !* Font size for location *!*/
     /*font-weight: bold; !* Bold text *!*/
@@ -76,9 +72,22 @@
 
 }
 
+.driver {
+    flex-direction: row;
+    text-align: center;
+    justify-content: left;
+    max-width: 674px;;
+}
+
 .driver span {
-    font-size: 14px; /* Font size for driver */
+    font-size: 20px; /* Font size for driver */
     color: #666; /* Color for driver text */
+    padding-top: 5px;
+}
+
+.padingLR5px {
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 .price {
@@ -90,4 +99,13 @@
 .departureTime {
     font-size: 16px; /* Font size for departure time */
     color: #666; /* Color for departure time */
+}
+
+.profileAvatarInSearch {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    margin-right: 5px;
 }

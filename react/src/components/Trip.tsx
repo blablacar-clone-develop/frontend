@@ -22,7 +22,8 @@ const Trip: React.FC<TripProps> = ({
                                        date,
                                        cityFrom,
                                        cityTo,
-                                       travelDuration
+                                       travelDuration,
+                                        avatar
                                    }) => {
     return (
         <div className="card6">
@@ -41,9 +42,14 @@ const Trip: React.FC<TripProps> = ({
                 </div>
                 <div className="driver">
 
+                    {avatar ? (
+                        <img src={avatar} alt="Profile Avatar" className="profileAvatarInSearch" />
+                    ) : (
+                        <img src={avatar} alt="Profile Avatar" className="d-none profileAvatarInSearch"/>)}
                     <span>{driverName}</span>
-                    <span>{date}</span>
-                    <span>Maximum {seatsAvailable} persons</span>
+                    <span className="padingLR5px">Maximum {seatsAvailable} persons</span>
+
+                    <span className="d-none">{date}</span>
                 </div>
             </div>
             <div className="price">{price}₴</div>
