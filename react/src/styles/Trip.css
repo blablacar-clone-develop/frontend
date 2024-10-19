@@ -109,3 +109,16 @@
     margin-bottom: 10px;
     margin-right: 5px;
 }
+
+.transportIcon {
+    width: 25px;
+    height: 33px;
+    background-image: url('../assets/carVector.svg');
+    background-repeat: no-repeat;
+    background-position: 0 9px;
+}
+
+.fzBig {
+    font-size: 30px !important;
+    padding-top: 0 !important;
+}
