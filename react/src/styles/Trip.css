@@ -25,7 +25,7 @@
     flex-direction: row;
     text-align: center;
     justify-content: center;
-    /*max-width: 400px;*/
+    max-width: 674px;
 }
 
 .time {
@@ -35,8 +35,10 @@
     text-align: center;
     align-content: space-between;
     justify-content: space-between;
-    max-width: 400px;
+    max-width: 585px;
 }
+
+
 
 .lineT {
     height: 2px; /* Висота лінії */
