@@ -122,3 +122,40 @@
     font-size: 30px !important;
     padding-top: 0 !important;
 }
+
+.amenities {
+    display: flex;
+}
+
+.amenity {
+
+}
+
+.iconAmentity {
+    width: 25px;
+    height: 33px;
+    background-repeat: no-repeat;
+    background-position: 0 9px;
+}
+
+.wifi-icon-class {
+    background-image: url('../assets/wifi.png');
+}
+
+.smoking-icon-class {
+    background-image: url('../assets/smoking.png');
+}
+
+.ticket-icon-class {
+    background-image: url('../assets/mobile.png');
+}
+
+.aircon-icon-class {
+    background-image: url('../assets/sun.png');
+}
+.pets-icon-class {
+    background-image: url('../assets/paw.png');
+}
+.food-icon-class {
+    background-image: url('../assets/food.png');
+}

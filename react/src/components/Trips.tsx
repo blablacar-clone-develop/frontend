@@ -32,6 +32,7 @@ const Trips: React.FC<TripsProps> = ({ rides, info }) => {
                             date={ride.departureDate}
                             travelDuration={ride.tripDurationAndDistance.duration}
                             avatar={ride.user.avatar?.url}
+                            amenities={ride.amenities}
                         />
                     </div>
                 ))
