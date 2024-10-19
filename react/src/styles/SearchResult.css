@@ -64,3 +64,33 @@ button {
     flex-grow: 2;
 }
 
+@media (max-width: 600px) {
+    .app-container8 {
+        flex-direction: column !important;
+    }
+
+    .sidebar {
+        max-width: max-content !important;
+    }
+
+    .container10 {
+        margin-left: 0 !important;
+        max-width: max-content !important;
+    }
+}
+
+
+@media (max-width: 840px) {
+
+
+    .con{
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .rideList {
+        margin-top: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+}

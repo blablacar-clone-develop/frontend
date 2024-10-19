@@ -56,8 +56,8 @@
 }
 
 .duration {
-    margin: 5px 0; /* Margin for duration text */
-    font-size: 14px; /* Font size for duration */
+    /*margin: 5px 0; !* Margin for duration text *!*/
+    font-size: 16px; /* Font size for duration */
     color: #666; /* Color for duration text */
     text-align: center !important;
     flex:2;
@@ -158,4 +158,41 @@
 }
 .food-icon-class {
     background-image: url('../assets/food.png');
+}
+
+@media (max-width: 840px) {
+    .location {
+        flex-direction: column;
+        max-width: max-content !important;
+
+    }
+    .lineT {
+        display: none;
+    }
+    .duration {
+        text-align: left !important;
+    }
+    .time {
+        flex-direction: column;
+        max-width: max-content !important;
+    }
+    .linel {
+        display: none;
+    }
+
+    .profileAvatarInSearch {
+        margin: 0;
+        padding: 0;
+    }
+
+    .driver {
+        flex-direction: column;
+        text-align: left;
+        max-width: max-content !important;
+    }
+
+    .maxPersonSpan {
+        font-size: 16px !important;
+        padding: 0 !important;
+    }
 }

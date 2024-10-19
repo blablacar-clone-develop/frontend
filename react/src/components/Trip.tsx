@@ -73,11 +73,11 @@ const Trip: React.FC<TripProps> = ({
                     ) : (
                         <img src={avatar} alt="Profile Avatar" className="d-none profileAvatarInSearch"/>)}
                     <span>{driverName}</span>
-                    <span className="padingLR5px fzBig">|</span>
+                    <span className="padingLR5px fzBig linel">|</span>
                     <div className="transportIcon"/>
-                    <span className="padingLR5px fzBig">|</span>
-                    <span className="padingLR5px">Maximum {seatsAvailable} persons</span>
-                    <span className="padingLR5px fzBig">|</span>
+                    <span className="padingLR5px fzBig linel">|</span>
+                    <span className="padingLR5px maxPersonSpan">Maximum {seatsAvailable} persons</span>
+                    <span className="padingLR5px fzBig linel">|</span>
 
                     {/* Відображення зручностей */}
                     <div className="amenities">
