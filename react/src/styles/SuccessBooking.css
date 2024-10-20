@@ -1,0 +1,20 @@
+.mm
+{
+    background-color: #CEE3FF;
+    height: 100vh;
+    background-image: url("../assets/backLogo.png");
+    background-repeat: no-repeat;
+    background-position: 60% center;
+}
+.mH
+{
+    display: flex;         /* Вмикаємо Flexbox */
+    justify-content: center; /* Горизонтальне вирівнювання по центру */
+    align-items: center;    /* Вертикальне вирівнювання по центру */
+    height: 100vh;
+}
+.mD
+{
+    display:flex;
+    justify-content: space-between;
+}

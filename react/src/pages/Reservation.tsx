@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import { Trip } from "../models/Trip.tsx";
 import '../styles/ShowTrip.css'; // Додайте новий файл стилів
 import Navbar from "../components/NavbarComponent.tsx";
 import Footer from "../components/main/Footer/Footer.tsx";
 import { Nav } from "react-bootstrap";
+import axios from "axios";
 interface Info{
         ob: {
             from?: {
@@ -22,14 +23,14 @@ interface Info{
         };
 }
 const Reservation: React.FC = () => {
-
+    const navigate = useNavigate();
     const location = useLocation();
+    const API_URL = import.meta.env.VITE_BASE_URL_API || "";
     const { trip, info }: { trip: Trip; info: Info } = location.state || {};
     const [modeBook, setModeBook] = useState<string>('Ви маєте чекати на підтвердження водія');
     const [endPrice, setEndPrice]  =useState<number>();
     useEffect(() => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
+
         setEndPrice(trip.price*info.ob.passengers?.length)
         if (trip.tripAgreement && trip.tripAgreement.isAgreed) {
             setModeBook('You will be immediately approved for this reservation');
@@ -44,9 +45,24 @@ const Reservation: React.FC = () => {
             localStorage.setItem("endPrice", endPrice.toString());
         }
     }, [endPrice]);
-    function handleBooking() {
+    const handleBooking = async () => {
 
-        console.log("Booking confirmed");
+        try {
+            const userId = localStorage.getItem("userId");
+            const passengers = info.ob.passengers; // Extract the list of passengers
+
+            const response = await axios.post(`${API_URL}/api/passengers/save`, {
+                userId,
+                tripId: trip.id,
+                passengers// Include the passengers in the request
+            });
+
+            console.log("Booking confirmed", response.data);
+
+            navigate("/successBooking");
+        } catch (error) {
+            console.error("Error booking the trip:", error);
+        }
     }
 
 

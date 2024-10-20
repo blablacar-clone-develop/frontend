@@ -32,6 +32,7 @@ const SearchResult: React.FC = () => {
     };
 
     useEffect(() => {
+        console.log(info);
         const fetchTrips = async () => {
             try {
                 // Перевіряємо, чи дата є рядком, і перетворюємо її на об'єкт Date

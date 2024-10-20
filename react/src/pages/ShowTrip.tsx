@@ -14,6 +14,7 @@ const ShowTrip: React.FC = () => {
 
     // Function to analyze the options and return a list of features
     const getTripFeatures = (options: Trip['options']) => {
+        console.log(info?.ob.passengers);
         const features: string[] = [];
 
         if (options.maxTwoPassengers) {

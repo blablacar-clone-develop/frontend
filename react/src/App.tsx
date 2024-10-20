@@ -32,6 +32,7 @@ import ForgotPassword from "./pages/ForgotPassword.tsx";
 import AdditionalAmenties from "./pages/AdditionalAmentities.tsx";
 import SelectAutoForTrip from "./pages/SelectAutoForTrip.tsx";
 import ShowUsersTrips from "./pages/ShowUsersTrips.tsx";
+import SuccessBooking from "./pages/SuccessBooking.tsx";
 function App() {
 
 
@@ -73,6 +74,7 @@ function App() {
                     <Route path="/additional" element={<AdditionalAmenties/>}/>
                     <Route path="/selectAutoforTrip" element={<SelectAutoForTrip/>}/>
                     <Route path="/showUsersTrips" element={<ShowUsersTrips />} />
+                    <Route path="/successBooking" element={<SuccessBooking />} />
                 </Routes>
 
             </Router>
