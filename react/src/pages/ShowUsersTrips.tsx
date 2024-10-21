@@ -1,5 +1,5 @@
-import {useNavigate, useParams} from 'react-router-dom';
-import React, {useEffect, useState} from "react";
+import {useNavigate} from 'react-router-dom';
+import {useEffect, useState} from "react";
 import {Trip} from "../models/Trip.tsx";
 import axios from "axios";
 import {fetchUserData} from "../utils/tokenUtils.ts";

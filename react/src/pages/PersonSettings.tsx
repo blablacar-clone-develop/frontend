@@ -5,8 +5,6 @@ import { Nav } from 'react-bootstrap';
 import {useNavigate} from "react-router-dom";
 import {fetchUserData} from "../utils/tokenUtils.ts";
 import axios from "axios";
-import {Trip} from "../models/Trip.tsx";
-import Trips from "../components/Trips.tsx";
 
 interface Autos {
     id: number;

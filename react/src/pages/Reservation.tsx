@@ -31,6 +31,7 @@ const Reservation: React.FC = () => {
     const [endPrice, setEndPrice]  =useState<number>();
     useEffect(() => {
 
+        if(info.ob.passengers?.length == null) return;
         setEndPrice(trip.price*info.ob.passengers?.length)
         if (trip.tripAgreement && trip.tripAgreement.isAgreed) {
             setModeBook('You will be immediately approved for this reservation');
