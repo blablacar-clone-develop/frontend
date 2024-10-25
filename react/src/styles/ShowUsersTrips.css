@@ -2,13 +2,15 @@
 {
     margin-top: 30px;
     margin-left: 30px;
+    font-family: Inter, sans-serif;
+    color: #091528;
 }
 .main12
 {
 
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 200vh;
     font-family: Arial, sans-serif;
     background-color: #F9FBFF;
     justify-content: space-between;
