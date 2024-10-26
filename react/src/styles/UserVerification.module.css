@@ -1,0 +1,76 @@
+.container14 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-size: 20px;
+    color: #383838;
+    text-align: center;
+}
+.main14{
+    font-family: Inter, sans-serif !important;
+
+    background-color: #F9FBFF;
+    background-image:url('../assets/line.png'), url('../assets/shield.png')  ;
+
+
+    background-size:1920px, auto;
+    background-repeat: no-repeat, no-repeat;
+
+
+    background-position: center 80%, center 20%;
+}
+.title14 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #007bff;
+}
+
+.subtitle14 {
+    font-size: 18px;
+    font-weight: bold;
+
+}
+
+.description14 {
+    font-size: 17px;
+    color: #666;
+
+    margin: 10px 0 20px;
+    max-width: 500px;
+}
+
+.verificationOptions14 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.button14 {
+    font-size: 17px;
+    color: #383838;
+
+    padding: 10px 20px;
+border: 1px solid #F9FBFF;
+    font-family: Inter, sans-serif ;
+    border-radius: 4px;
+    background-color:  #F9FBFF;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.button14:hover {
+    background-color: #f0f0f0;
+}
+
+.link14 {
+    font-size: 14px;
+    color: #007bff;
+    margin-top: 20px;
+    text-decoration: none;
+}
+
+.link14:hover {
+    text-decoration: underline;
+}

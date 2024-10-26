@@ -55,7 +55,14 @@
     left: 20%;
     transform: translateX(-50%);
 }
-
+.quest2
+{
+    font-family: Inter, sans-serif !important;
+    color:#777777;
+    margin-top: 5%;
+    margin-bottom: -3%;
+    margin-left: 30%;
+}
 .continue-button7:hover {
     background-color: #0056b3;
 }

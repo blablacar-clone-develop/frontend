@@ -1,6 +1,6 @@
 .main5 {
     background-color: #F9FBFF;
-    height: 100vh;
+    min-height: 100vh;
     background-image: url("../assets/lineCreateTravel1.png"), url("../assets/line.png");
     background-repeat: no-repeat, no-repeat; /* Вказуємо, чи повторювати зображення */
     background-position: 50% 85%, 0% 95%;

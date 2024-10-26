@@ -13,8 +13,11 @@ const Trips: React.FC<TripsProps> = ({ rides, info }) => {
     const navigate = useNavigate();
 
     const handleTripClick = (trip: Trip) => {
-        if (!info || Object.keys(info).length === 0) {
+       /* if (!info || Object.keys(info).length === 0) {
             navigate("/pageTrip");
+        }*/
+        if (!info || Object.keys(info).length === 0) {
+            return;
         }
         navigate("/trip", { state: { trip, info } });
     };

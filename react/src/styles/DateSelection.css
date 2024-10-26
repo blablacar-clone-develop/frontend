@@ -9,12 +9,12 @@
 .main3
 {
     font-family: Inter !important;
-    height: 100vh;
+    min-height: 100vh;
     font-family: Arial, sans-serif;
     background-color: #F9FBFF;
     background-image:url('../assets/line.png') ;
     width:1800px;
-    height: 250px;
+
     background-size:1920px;
     background-repeat: no-repeat;
     background-position: center;

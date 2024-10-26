@@ -5,6 +5,7 @@ import CalendarInput from './Calendar';
 import DropDownForm from './CountPassenger';
 import '../styles/homePage.css';
 import { useNavigate } from "react-router-dom";
+import {Passenger} from "../models/Passenger.tsx";
 
 interface SearchPanelProps {
     info: {
@@ -24,9 +25,16 @@ interface SearchPanelProps {
         };
     };
 }
+interface PassengerType {
+    id: number;
+    type: string;
+    isChecked: boolean;
+}
 
 const SearchPanel: React.FC<SearchPanelProps> = ({ info }) => {
     // Set initial values and check for undefined 'info' and 'info.ob'
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
     const initialFromPlace = info?.ob.from || { city: '', country: '', address: '' };
     const initialToPlace = info?.ob.to || { city: '', country: '', address: '' };
 
@@ -34,7 +42,7 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ info }) => {
     const searchInputRefTo = useRef<HTMLInputElement>(null);
     const API_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "KeyNOTfound";
     const [selectedDay, setSelectedDay] = useState<Date | null>(info?.ob.date || null);
-    const [passengers, setPassengers] = useState<any[]>(info?.ob.passengers || []); // eslint-disable-line
+    const [passengers, setPassengers] = useState<PassengerType[]>(info?.ob.passengers || []);
     const navigate = useNavigate();
 
     const [fromPlace, setFromPlace] = useState<{ city: string; country: string; address: string } | null>(initialFromPlace);
@@ -106,8 +114,21 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ info }) => {
 
 
     const handleSearch = async () => {
-        if (!fromPlace || !toPlace) {
-            console.error('Please select valid From and To locations.');
+
+            const defaultPassenger: { id: number; type: string; isChecked: boolean } = {
+                id: 1,
+                type: token && username ? username : 'Дорослий',
+                isChecked: true
+            };
+        const isFromValid = fromPlace && fromPlace.city && fromPlace.country && fromPlace.address;
+        const isToValid = toPlace && toPlace.city && toPlace.country && toPlace.address;
+
+        if (!isFromValid) {
+            console.error('Please select a valid From location.');
+            return;
+        }
+        if (!isToValid) {
+            console.error('Please select a valid To location.');
             return;
         }
 
@@ -115,7 +136,7 @@ const SearchPanel: React.FC<SearchPanelProps> = ({ info }) => {
             from: fromPlace,
             to: toPlace,
             date: selectedDay,
-            passengers
+            passengers: passengers.length === 0 ? [defaultPassenger] : passengers
         };
 
         navigate("/searchResult", { state: { ob } });

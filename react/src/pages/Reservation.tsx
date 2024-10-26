@@ -29,6 +29,7 @@ const Reservation: React.FC = () => {
     const { trip, info }: { trip: Trip; info: Info } = location.state || {};
     const [modeBook, setModeBook] = useState<string>('Ви маєте чекати на підтвердження водія');
     const [endPrice, setEndPrice]  =useState<number>();
+    const [passengerIds, setPassengerIds] = useState<number[]>([]);
     useEffect(() => {
 
         if(info.ob.passengers?.length == null) return;
@@ -40,12 +41,29 @@ const Reservation: React.FC = () => {
         {
             setModeBook('You must wait for confirmation of your reservation');
         }
+
     }, [trip]);
+    useEffect(() => {
+        const fetchPassengerIds = async () => {
+            try {
+                const response = await axios.get<number[]>(`${API_URL}/api/passengers/${trip.id}`);
+                setPassengerIds(response.data);
+
+            } catch (error) {
+                console.error("Error fetching passenger IDs:", error);
+            }
+        };
+
+        fetchPassengerIds();
+    }, [trip.id, API_URL]);
     useEffect(() => {
         if (endPrice !== undefined) {
             localStorage.setItem("endPrice", endPrice.toString());
         }
     }, [endPrice]);
+    useEffect(() => {
+        console.log("Passenger IDs:", passengerIds);
+    }, [passengerIds]);
     const handleBooking = async () => {
 
         try {

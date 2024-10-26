@@ -1,29 +1,29 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../styles/homePage.css';
 
-interface Passenger {
+interface PassengerType {
     id: number;
     type: string;
     isChecked: boolean;
 }
 
 interface DropdownFormProps {
-    setPassengers: (passengers: Passenger[]) => void;
-    initialPassengers: Passenger[]; // Додаємо пропс для початкових пасажирів
+    setPassengers: (passengers: PassengerType[]) => void;
+    initialPassengers: PassengerType[];
 }
 
 const DropdownForm: React.FC<DropdownFormProps> = ({ setPassengers, initialPassengers }) => {
     const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
 
-    // Initialize passengers with initial passengers if provided
-    const [passengers, setLocalPassengers] = useState<Passenger[]>(initialPassengers.length > 0 ? initialPassengers : [
-        {
-            id: 1,
-            type: token && username ? username : 'Дорослий',
-            isChecked: true
-        }
-    ]);
+    const defaultPassenger: PassengerType = {
+        id: 1,
+        type: token && username ? username : 'Дорослий',
+        isChecked: true
+    };
+
+    // Initialize passengers with initial passengers if provided, or a default passenger
+    const [passengers, setLocalPassengers] = useState<PassengerType[]>(initialPassengers.length > 0 ? initialPassengers : [defaultPassenger]);
 
     const [showForm, setShowForm] = useState<boolean>(false);
     const [showMiniForm, setShowMiniForm] = useState<boolean>(false);
@@ -44,8 +44,7 @@ const DropdownForm: React.FC<DropdownFormProps> = ({ setPassengers, initialPasse
         };
     }, []);
 
-    // Update passengers and propagate the change to parent
-    const updatePassengers = (updatedPassengers: Passenger[]) => {
+    const updatePassengers = (updatedPassengers: PassengerType[]) => {
         setLocalPassengers(updatedPassengers);
         setPassengers(updatedPassengers);
     };
@@ -55,7 +54,7 @@ const DropdownForm: React.FC<DropdownFormProps> = ({ setPassengers, initialPasse
     };
 
     const handleSelectPassengerType = (type: string) => {
-        const newPassenger: Passenger = { id: passengers.length + 1, type, isChecked: true };
+        const newPassenger: PassengerType = { id: passengers.length + 1, type, isChecked: true };
         const updatedPassengers = [...passengers, newPassenger];
         updatePassengers(updatedPassengers);
         setShowMiniForm(false);
@@ -68,7 +67,6 @@ const DropdownForm: React.FC<DropdownFormProps> = ({ setPassengers, initialPasse
             }
             return passenger;
         });
-
         updatePassengers(updatedPassengers);
     };
 

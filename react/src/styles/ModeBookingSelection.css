@@ -2,9 +2,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin-top: -10%;
-    font-family: Inter !important;
+    font-family: Inter, sans-serif !important;
 
 }
 

@@ -30,7 +30,7 @@ const ConfirmIdentity: React.FC = () => {
     }
 
     return (
-        <main className="main3">
+        <main className="main">
             <Navbar />
             <div className="identity-confirm-container">
                 <h2>How do you want to confirm your identity?</h2>

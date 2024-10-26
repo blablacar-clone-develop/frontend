@@ -151,7 +151,7 @@ const RouteSelection: React.FC = () => {
             <NavbarComponent/>
             <div className="container5">
                 <div className="left-container">
-                    <h2 className="quest">What is your route?</h2>
+                    <h2 className="quest2">What is your route?</h2>
                     <div className="divRoutes">
                         {routes.map((route, index) => {
                             const roadTypes = extractRoadTypes(route.legs[0].steps);

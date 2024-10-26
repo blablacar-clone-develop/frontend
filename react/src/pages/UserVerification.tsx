@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react';
 import {useNavigate, useLocation} from 'react-router-dom';
-import '../styles/UserVerification.css';
+import '../styles/UserVerification.module.css';
 import {fetchUserData} from "../utils/tokenUtils.ts";
 import Navbar from "../components/NavbarComponent.tsx";
+import styles from '../styles/UserVerification.module.css';
 
 
 const UserVerification: React.FC = () => {
@@ -38,56 +39,31 @@ const UserVerification: React.FC = () => {
     return (
         <main className="main">
             <Navbar/>
-        <div className="container6">
-            <div className="heade6">
-                <h1>Trip Published</h1>
-            </div>
-            <div className="content6">
-                <h2>Your profile needs verification</h2>
-                <div className="verification-item">
-                    {!documentVerified ? (
-                        <button onClick={handleVerifyIdentity} className="verify-button">
-                            <span className="icon">+</span>
-                            <span>Verify your identity</span>
+            <main className={styles.main14}>
+                <div className={styles.container14}>
+                    <h1 className={styles.title14}>Your Trip Has Been Published!</h1>
+                    <h3 className={styles.subtitle14}>Verify Your Profile</h3>
+                    <p className={styles.description14}>
+                        For security and trust on our platform. This will help other users feel confident in your
+                        reliability.
+                    </p>
+
+                    <div className={styles.verificationOptions14}>
+                        <button className={styles.button14}
+                                onClick={handleVerifyIdentity}>
+                            Verify Your Identity
                         </button>
-                    ) : (
-                        <div className="verified">
-                            <span className="icon">✓</span>
-                            <span>Identity verified</span>
-                        </div>
-                    )}
-                </div>
-                <div className="verification-item">
-                    {!emailVerified ? (
-                        <button onClick={handleVerifyEmail} className="verify-button">
-                            <span className="icon">+</span>
-                            <span>Verify your email address</span>
+                        <button className={styles.button14} onClick={handleVerifyEmail}>
+                            Verify Your Email
                         </button>
-                    ) : (
-                        <div className="verified">
-                            <span className="icon">✓</span>
-                            <span>Email verified</span>
-                        </div>
-                    )}
-                </div>
-                <div className="verification-item">
-                    {phoneVerified ? (
-                        <div className="verified">
-                            <span className="icon">✓</span>
-                            <span>Phone number verified</span>
-                        </div>
-                    ) : (
-                        <button onClick={handleVerifyPhone} className="verify-button">
-                            <span className="icon">+</span>
-                            <span>Verify your phone number</span>
+                        <button className={styles.button14} onClick={handleVerifyPhone}>
+                            Verify Your Phone Number
                         </button>
-                    )}
+                    </div>
+
+                    <a href="#" className={styles.link14}>View This Trip</a>
                 </div>
-            </div>
-            <div className="footer">
-                <button onClick={handleShowTrip} className="button">View Trip</button>
-            </div>
-        </div>
+            </main>
         </main>
     );
 };

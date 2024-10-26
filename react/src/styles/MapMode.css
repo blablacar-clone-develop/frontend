@@ -1,6 +1,6 @@
 .main2 {
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
     font-family: Arial, sans-serif;
     background-color: #F9FBFF;
     justify-content: space-between;
@@ -64,7 +64,7 @@
 }
 .quest
 {
-    font-family: Inter, serif !important;
+    font-family: Inter, sans-serif !important;
     color:#777777;
     margin-top: 5%;
     margin-bottom: -3%;
