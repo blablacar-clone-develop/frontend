@@ -6,7 +6,7 @@ const SuccessBooking = () =>
         <main className="mm">
             <Navbar/>
             <div className="mH">
-                <div className="mD"><span></span><span>hi</span></div>
+                <div className="mD"><span className="iconSuccess"></span><span className="headBook">Your reservation has been approved</span></div>
             </div>
         </main>
     );

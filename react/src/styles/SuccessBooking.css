@@ -18,3 +18,17 @@
     display:flex;
     justify-content: space-between;
 }
+.iconSuccess
+{
+    width: 80px;
+    height: 80px;
+    background-image: url("../assets/calTime.png");
+    background-repeat: no-repeat;
+    background-size: 80px;
+}
+.headBook
+{
+    font-size: 25px;
+    margin-top: 2%;
+    font-family: Inter, sans-serif;
+}
