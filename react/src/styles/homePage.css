@@ -1,6 +1,7 @@
 .main {
     background-color: #F9FBFF;
     font-family: Inter, sans-serif;
+    min-height: 100vh;
 }
 .searchPanel
 {

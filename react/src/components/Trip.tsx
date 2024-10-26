@@ -81,10 +81,11 @@ const Trip: React.FC<TripProps> = ({
 
                     {/* Відображення зручностей */}
                     <div className="amenities">
-                        {renderedAmenities.length > 0 ? renderedAmenities : <span className="d-none">No amenities available</span>}
+                        {renderedAmenities.length > 0 ? renderedAmenities :
+                            <span className="d-none">No amenities available</span>}
                     </div>
-
-                    <span className="d-none">{date}</span>
+                    <span className="padingLR5px fzBig linel">|</span>
+                    <span className="amenities">{date}</span>
                 </div>
             </div>
             <div className="price">{price}₴</div>
