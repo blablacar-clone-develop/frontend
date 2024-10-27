@@ -1,0 +1,29 @@
+.myContLine {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #f8f9fa; /* світлий фон */
+    color: #333;
+    padding: 20px;
+}
+
+.myContLine h2 {
+    font-size: 2.5rem;
+    color: #007bff; /* блакитний колір заголовка */
+    margin-bottom: 20px;
+}
+
+.myContLine ol {
+    list-style-type: decimal;
+    padding-left: 20px; /* невеликий відступ зліва */
+    max-width: 400px;
+    text-align: left;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #555; /* трохи темніший колір тексту */
+}
+
+.myContLine ol li {
+    margin-bottom: 10px; /* відступ між елементами списку */
+}

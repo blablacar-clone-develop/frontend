@@ -2,8 +2,18 @@ import React from "react";
 import  "../styles/PayCard.css";
 import Navbar from "../components/NavbarComponent.tsx";
 import Footer from "../components/main/Footer/Footer.tsx";
+import {useNavigate} from "react-router-dom";
+
+
 const PayCard: React.FC = ()=>
 {
+    const navigate = useNavigate();
+
+    const handlePaymentClick = () => {
+        navigate("/comingson"); // Перенаправляє на адресу /comingson
+    };
+
+
     return(
         <main className="main">
         <Navbar/>
@@ -26,7 +36,7 @@ const PayCard: React.FC = ()=>
                     </form>
 
                 </div>
-                <button className="pay-card-button" type="submit">Pay <span>{localStorage.getItem("endPrice")} ₴</span></button>
+                <button className="pay-card-button" type="submit" onClick={handlePaymentClick}>Pay "Coming son" <span>{localStorage.getItem("endPrice")} ₴</span></button>
 
             </main>
             <Footer/>
