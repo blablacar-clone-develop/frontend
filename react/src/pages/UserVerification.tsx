@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useNavigate, useLocation} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import '../styles/UserVerification.module.css';
 import {fetchUserData} from "../utils/tokenUtils.ts";
 import Navbar from "../components/NavbarComponent.tsx";
@@ -8,8 +8,8 @@ import styles from '../styles/UserVerification.module.css';
 
 const UserVerification: React.FC = () => {
    const navigate = useNavigate();
-    const location = useLocation();
-    const {emailVerified, phoneVerified, documentVerified} = location.state || {};
+    // const location = useLocation();
+    // const {emailVerified, phoneVerified, documentVerified} = location.state || {};
 
     useEffect(() => {
         const fetchData = async () => {
@@ -30,11 +30,11 @@ const UserVerification: React.FC = () => {
         navigate("/confirmPhone");
     };
 
-    function handleShowTrip() {
-
-        console.log(location.state.fromAddress);
-        console.log(location.state.toAddress);
-    }
+    // function handleShowTrip() {
+    //
+    //     console.log(location.state.fromAddress);
+    //     console.log(location.state.toAddress);
+    // }
 
     return (
         <main className="main">

@@ -5,7 +5,6 @@ import CalendarInput from './Calendar';
 import DropDownForm from './CountPassenger';
 import '../styles/homePage.css';
 import { useNavigate } from "react-router-dom";
-import {Passenger} from "../models/Passenger.tsx";
 
 interface SearchPanelProps {
     info: {
