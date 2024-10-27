@@ -55,7 +55,22 @@
 
 .payment-logo {
     width: 40px;
+    height: 40px;
 }
+
+.logo-visa {
+    background-image: url('../assets/visa.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.logo-mcard {
+    background-image: url('../assets/mastercard.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
 
 @media (max-width: 599px) {
     .coming-soon-badge {

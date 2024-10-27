@@ -18,8 +18,8 @@ const ComingSonComponent: React.FC = () => {
                         penatibus et...
                     </p>
                     <div className="payment-logos">
-                        <img src="src/assets/visa.svg" alt="Visa" className="payment-logo"/>
-                        <img src="src/assets/mastercard.svg" alt="MasterCard" className="payment-logo"/>
+                        <div className="payment-logo logo-visa"/>
+                        <div className="payment-logo logo-mcard"/>
                     </div>
                 </div>
             </div>
