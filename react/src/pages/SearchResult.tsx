@@ -14,6 +14,7 @@ const SearchResult: React.FC = () => {
     const info = location.state;
     const API_URL = import.meta.env.VITE_BASE_URL_API || "";
     const [trips, setTrips] = useState<Trip[]>([]);
+
     const [, setLoading] = useState<boolean>(true);
     const [sortOption, setSortOption] = useState<string>('earliest');
     const [filters, setFilters] = useState<{ departureTimes: string[], conveniences: string[] }>({
@@ -93,14 +94,28 @@ const SearchResult: React.FC = () => {
                 return false;
             });
 
-            //const matchesConvenience = filters.conveniences.length === 0 || filters.conveniences.every(conv => trip.conveniences.includes(conv));
+            const matchesConvenience = filters.conveniences.length === 0 || filters.conveniences.every(conv => {
+                switch (conv) {
+                    case "Wi-fi":
+                        return trip.amenities.wifi;
+                    case "Electronic tickets":
+                        return trip.amenities.eTickets;
+                    case "Air conditioning":
+                        return trip.amenities.airConditioning;
+                    case "Pets allowed":
+                        return trip.amenities.petsAllowed;
+                    case "Smoking allowed":
+                        return trip.amenities.smoking;
+                    default:
+                        return true; // Якщо зручність не знайдена, не фільтруємо
+                }
+            });
 
-            //return matchesTime && matchesConvenience;
-            return matchesTime;
+            return matchesTime && matchesConvenience;
         });
     };
 
-    // Функція для відсортування поїздок
+
     const sortTrips = (trips: Trip[], option: string) => {
         const filteredTrips = filterTrips(trips);
 

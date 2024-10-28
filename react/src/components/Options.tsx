@@ -53,14 +53,7 @@ const Options: React.FC<OptionsProps> = ({ onSortChange, onFiltersChange }) => {
                     <input type="radio" name="sort" value="lowestPrice" onChange={handleSortChange} />
                     Lowest price
                 </label>
-                <label>
-                    <input type="radio" name="sort" value="closeToDestination" onChange={handleSortChange} />
-                    Close to destination
-                </label>
-                <label>
-                    <input type="radio" name="sort" value="closeToDeparture" onChange={handleSortChange} />
-                    Close to departure point
-                </label>
+
                 <label>
                     <input type="radio" name="sort" value="shortestTrip" onChange={handleSortChange} />
                     Shortest trip
@@ -84,16 +77,24 @@ const Options: React.FC<OptionsProps> = ({ onSortChange, onFiltersChange }) => {
             <h4>Conveniences</h4>
             <div className="optionGroup">
                 <label>
-                    <input type="checkbox" value="Wi-fi" onChange={handleConvenienceChange} />
+                    <input type="checkbox" value="Wi-fi" onChange={handleConvenienceChange}/>
                     Wi-fi
                 </label>
                 <label>
-                    <input type="checkbox" value="Electronic tickets" onChange={handleConvenienceChange} />
+                    <input type="checkbox" value="Electronic tickets" onChange={handleConvenienceChange}/>
                     Electronic tickets
                 </label>
                 <label>
-                    <input type="checkbox" value="Air conditioning" onChange={handleConvenienceChange} />
+                    <input type="checkbox" value="Air conditioning" onChange={handleConvenienceChange}/>
                     Air conditioning
+                </label>
+                <label>
+                    <input type="checkbox" value="Smoking allowed" onChange={handleConvenienceChange}/>
+                    Smoking allowed
+                </label>
+                <label>
+                    <input type="checkbox" value="Pets allowed" onChange={handleConvenienceChange}/>
+                    Pets allowed
                 </label>
             </div>
         </div>

@@ -18,7 +18,7 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    font-family: Arial, sans-serif;
+    font-family: Inter, sans-serif;
 }
 
 .trip-details h2 {
@@ -48,7 +48,7 @@
     width: 400px;
     padding: 10px 20px;
     font-size: 1rem;
-    font-family: Inter, serif !important;
+    font-family: Inter, sans-serif !important;
     color: #fff;
     background-color: #4389E4;
     border: none;

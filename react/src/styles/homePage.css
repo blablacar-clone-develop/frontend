@@ -21,6 +21,7 @@
     /*background-image: url('../assets/logo.png');*/
     /*background-size: 50px 50px;*/
     /*background-repeat: no-repeat;*/
+    font-family:Inter, sans-serif;
     /*background-position: center;*/
 
 }
@@ -45,6 +46,7 @@
     background-size:1920px;
     background-repeat: no-repeat;
     background-position: center;
+
     margin-bottom: 8%;
     margin-top: 5%;
 }
@@ -54,6 +56,7 @@
     max-width: 120px;
     height:45px;
     background-color:#4389E4 !important;
+    font-family:Inter, sans-serif;
     width: 100%;
 }
 .input-container {
@@ -82,6 +85,7 @@
     padding: 10px 40px 10px 15px;
     border-radius: 10px;
     border: 1px solid #ccc;
+    font-family:Inter, sans-serif;
     font-size: 16px;
     padding-left: 40px;
 }
@@ -92,6 +96,7 @@
     background-size: 20px;
     top: 45%;
     left: 10px;
+    font-family:Inter, sans-serif;
     transform: translateY(-50%);
     font-size: 18px;
     color: #888;
@@ -133,7 +138,7 @@
 .cards
 {
     position: relative;
-    font-family: Inter, serif !important;
+    font-family:Inter, sans-serif;
     text-align: left;
     padding: 3%;
 }
@@ -144,6 +149,7 @@
     padding: 20px;
     margin: 10px;
     border-radius: 8px;
+    font-family:Inter, sans-serif;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 280px;
 }
@@ -190,6 +196,7 @@
     min-height: 351px;
     background-size: 351px;
     background-repeat: no-repeat;
+    font-family:Inter, sans-serif;
     background-position: center;
 }
 @font-face {
@@ -211,6 +218,7 @@
     margin-left: 7%;
     color: #0E1429;
     max-width: 800px;
+    font-family:Inter, sans-serif;
 }
 .searchForm .form-control
 {
@@ -273,10 +281,10 @@
 .myLinkStyle {
     color: #4389E4 !important;
     font-size: 20px !important;
-    font-family: Inter, serif !important;
+    font-family:Inter, sans-serif;
     background-image: url('../assets/plus.png') !important;
     background-repeat: no-repeat !important;
-    background-position: 104px !important;
+    background-position: 110px !important;
     padding-right: 40px !important;
 }
 

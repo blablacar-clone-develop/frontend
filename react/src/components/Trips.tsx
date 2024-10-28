@@ -17,6 +17,7 @@ const Trips: React.FC<TripsProps> = ({ rides, info }) => {
             navigate("/pageTrip");
         }*/
         if (!info || Object.keys(info).length === 0) {
+            navigate("/tripDetails", { state: { tripId: trip.id  } });
             return;
         }
         navigate("/trip", { state: { trip, info } });

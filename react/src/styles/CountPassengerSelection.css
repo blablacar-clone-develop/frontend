@@ -1,6 +1,6 @@
 .passenger-selection-container {
     text-align: center;
-    font-family: Inter !important;
+    font-family:Inter, sans-serif;
     padding: 20px;
     margin-left:-16%;
     margin-top:0%;

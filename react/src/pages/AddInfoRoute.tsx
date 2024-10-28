@@ -50,17 +50,19 @@ const AddInfoRoute: React.FC = () => {
             }
         });
         console.log(bookingResponse.data);
+        return bookingResponse.data;
     }
 
     const handleSubmit =  async () => {
-        saveTrip();
+        const tripId = await saveTrip();
+        console.log("hhgh" + tripId);
         try {
             const response = await axios.get(`${API_URL}/api/user/verification/${userId}`);
             setVerificationData(response.data);
             const { emailVerified, phoneVerified, documentVerified } = response.data;
 
             if (!emailVerified || !phoneVerified || !documentVerified) {
-                navigate('/userVerification', {state:{emailVerified, phoneVerified, documentVerified}});
+                navigate('/userVerification', {state:{emailVerified, phoneVerified, documentVerified, tripId}});
             } else {
                 navigate('/');
             }

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import '../styles/UserVerification.module.css';
 import {fetchUserData} from "../utils/tokenUtils.ts";
 import Navbar from "../components/NavbarComponent.tsx";
@@ -8,14 +8,18 @@ import styles from '../styles/UserVerification.module.css';
 
 const UserVerification: React.FC = () => {
    const navigate = useNavigate();
-    // const location = useLocation();
-    // const {emailVerified, phoneVerified, documentVerified} = location.state || {};
+   const location = useLocation();
+   const {emailVerified, phoneVerified, documentVerified, tripId} = location.state || {};
 
     useEffect(() => {
+        console.log(emailVerified);
+        console.log(phoneVerified);
+        console.log(documentVerified);
+        console.log(tripId);
         const fetchData = async () => {
             await fetchUserData(navigate);
-
         };
+
         fetchData();
     }, []);
 
@@ -29,7 +33,9 @@ const UserVerification: React.FC = () => {
     const handleVerifyPhone = () => {
         navigate("/confirmPhone");
     };
-
+    const handleViewTrip = () => {
+        navigate('/tripDetails', { state: { tripId } });
+    };
     // function handleShowTrip() {
     //
     //     console.log(location.state.fromAddress);
@@ -49,19 +55,32 @@ const UserVerification: React.FC = () => {
                     </p>
 
                     <div className={styles.verificationOptions14}>
-                        <button className={styles.button14}
-                                onClick={handleVerifyIdentity}>
+                        <button
+                            className={styles.button14}
+                            onClick={handleVerifyIdentity}
+                            disabled={documentVerified} // Disable if documentVerified is true
+                        >
                             Verify Your Identity
                         </button>
-                        <button className={styles.button14} onClick={handleVerifyEmail}>
+                        <button
+                            className={styles.button14}
+                            onClick={handleVerifyEmail}
+                            disabled={emailVerified} // Disable if emailVerified is true
+                        >
                             Verify Your Email
                         </button>
-                        <button className={styles.button14} onClick={handleVerifyPhone}>
+                        <button
+                            className={styles.button14}
+                            onClick={handleVerifyPhone}
+                            disabled={phoneVerified} // Disable if phoneVerified is true
+                        >
                             Verify Your Phone Number
                         </button>
                     </div>
 
-                    <a href="#" className={styles.link14}>View This Trip</a>
+                    <a onClick={handleViewTrip} className={styles.link14}>
+                        View This Trip
+                    </a>
                 </div>
             </main>
         </main>

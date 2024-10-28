@@ -21,6 +21,10 @@
 
     background-position: center 80%, center 20%;
 }
+.button14:disabled {
+    background-color: #48c78e; /* Example color for disabled button */
+    cursor: not-allowed;
+}
 .title14 {
     font-size: 24px;
     font-weight: bold;

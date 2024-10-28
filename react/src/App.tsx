@@ -34,6 +34,7 @@ import SelectAutoForTrip from "./pages/SelectAutoForTrip.tsx";
 import ShowUsersTrips from "./pages/ShowUsersTrips.tsx";
 import SuccessBooking from "./pages/SuccessBooking.tsx";
 import CommingSoon from "./pages/ComingSoon.tsx";
+import TripDetails from "./pages/TripDetails.tsx";
 function App() {
 
 
@@ -77,6 +78,7 @@ function App() {
                     <Route path="/showUsersTrips" element={<ShowUsersTrips />} />
                     <Route path="/successBooking" element={<SuccessBooking />} />
                     <Route path="/comingson" element={<CommingSoon/>}/>
+                    <Route path="/tripDetails" element={<TripDetails/>}/>
                 </Routes>
 
             </Router>

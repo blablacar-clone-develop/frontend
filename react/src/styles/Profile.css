@@ -34,7 +34,7 @@
     padding: 10px;
     border-radius: 8px;
     border: 1px solid #ccc;
-    background-color: #e9ecef;
+
     font-size: 14px;
 }
 
@@ -42,7 +42,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    background-color: #e9ecef;
+    background-color: #F3F3F3;
     border-radius: 8px;
     padding: 10px;
     cursor: pointer;
@@ -50,7 +50,7 @@
 
 .inputFieldPlaceholder {
     flex-grow: 1;
-    background: none;
+    background-color: #F3F3F3;
     border: none;
     padding-left: 10px;
     font-size: 14px;

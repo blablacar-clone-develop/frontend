@@ -49,7 +49,7 @@
     transition: background-color 0.3s ease;
     position: absolute;
     bottom: 15%;
-    font-family: Inter, serif !important;
+    font-family: Inter, sans-serif !important;
     left: 50%;
     transform: translateX(-50%);
 }

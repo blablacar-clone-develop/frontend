@@ -80,6 +80,13 @@ const ProfilePage: React.FC = () => {
         navigate("/confirmPhone");
     }
 
+    function handleCreatedTrips() {
+        navigate('/showUsersTrips?type=created');
+    }
+
+    function handleReservedTrips() {
+        navigate('/showUsersTrips?type=reserved');
+    }
     return (
         <main className="main">
             <NavBar />
@@ -148,14 +155,12 @@ const ProfilePage: React.FC = () => {
                 </div>
                 <div className="profile-section">
                     <h3>Trips</h3>
-
-                    <Nav.Link href='/showUsersTrips?type=created'>
-                        <p className="add-transport">Created trips <i className="bi bi-box-arrow-up-right"></i></p>
-                    </Nav.Link>
-                    <Nav.Link href='/showUsersTrips?type=reserved'>
-                        <p className="add-transport">Reserved trips <i className="bi bi-box-arrow-up-right"></i></p>
-                    </Nav.Link>
+                    <ul>
+                        <li onClick={handleCreatedTrips}>Created trips <i className="bi bi-box-arrow-up-right"></i></li>
+                        <li onClick={handleReservedTrips}>Reserved trips <i className="bi bi-box-arrow-up-right"></i></li>
+                    </ul>
                 </div>
+
                 <div className="profile-section">
                     <h3>Transport</h3>
                     {cars.length > 0 ? (
