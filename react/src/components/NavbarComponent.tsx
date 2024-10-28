@@ -3,9 +3,7 @@ import { Navbar, Nav, Container, Modal, Button } from 'react-bootstrap';
 import '../styles/homePage.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {fetchUserData} from "../utils/tokenUtils.ts";
 import {useNavigate} from "react-router-dom";
-import {Autos} from "../models/Autos.tsx";
 import axios from "axios";
 
 const NavbarComponent: React.FC = () => {

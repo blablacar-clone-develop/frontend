@@ -2,6 +2,7 @@
 // Функція для обчислення часу прибуття
 export const calculateArrivalTime = (departureTime: string | undefined, duration: string | undefined): string => {
     // Розбиваємо час відправлення "HH:MM:SS"
+    if(departureTime == null) { departureTime = "00-00"}
     const [departureHours, departureMinutes] = departureTime.split(':').map(Number);
 
     // Створюємо об'єкт дати з часом відправлення
@@ -11,6 +12,7 @@ export const calculateArrivalTime = (departureTime: string | undefined, duration
     departureDate.setSeconds(0); // Не беремо до уваги секунди
 
     // Розбиваємо тривалість подорожі "X hours Y minutes"
+    if(duration == null) { duration = "00-00"}
     const durationMatch = duration.match(/(\d+)\s*hours?\s*(\d+)?\s*minutes?/);
     const durationHours = durationMatch ? parseInt(durationMatch[1], 10) : 0;
     const durationMinutes = durationMatch && durationMatch[2] ? parseInt(durationMatch[2], 10) : 0;
@@ -25,6 +27,7 @@ export const calculateArrivalTime = (departureTime: string | undefined, duration
 
     return `${arrivalHours}:${arrivalMinutes}`;
 };
+
 
 // Парсинг travelDuration з підтримкою днів
 export const formatTravelDuration = (duration: string): string => {
