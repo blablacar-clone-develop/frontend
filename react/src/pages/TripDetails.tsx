@@ -5,6 +5,7 @@ import {Nav} from "react-bootstrap";
 import Footer from "../components/main/Footer/Footer.tsx";
 import {useLocation} from "react-router-dom";
 import {Trip} from "../models/Trip.tsx";
+import "../styles/TripDetails.css";
 
 import axios from "axios";
 import {Passenger} from "../models/Passenger.tsx";
@@ -93,14 +94,15 @@ const TripDetails: React.FC = ()=>
                         </div>
                         <div className="time2">
                             <span>{trip?.departureTime.slice(0, 5)}</span> {/* Час відправлення */}
-
+                            <span
+                                className="sec">{calculateArrivalTime(trip?.departureTime, trip?.tripDurationAndDistance?.duration)}</span>
                         </div>
 
                     </div>
 
                     <div className="lineUser f1"></div>
                     <div className="profile-header2">
-                        {trip?.user?.avatar && trip?.user.avatar?.url ? (
+                    {trip?.user?.avatar && trip?.user.avatar?.url ? (
                             <img
                                 src={trip?.user?.avatar.url}
                                 alt="Driver's Avatar"
@@ -116,7 +118,7 @@ const TripDetails: React.FC = ()=>
                             <i className="bi bi-chevron-right"></i>
                         </Nav.Link>
                     </div>
-                    <div className="lineUser"></div>
+                    <div className="lineUser f1"></div>
 
                     <div className="show-trip-info">
                         <span className="show-trip-features">
@@ -125,7 +127,7 @@ const TripDetails: React.FC = ()=>
                     </div>
                     <div className="lineUser f1"></div>
                     <div className="show-trip-passengers">
-                        <h5>Passengers</h5>
+                        <h5 className="pasHeader">Passengers</h5>
                         {passengers.length > 0 ? (
                             passengers.map((passenger) => (
                                 <div key={passenger.id} className="passenger">

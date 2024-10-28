@@ -80,7 +80,7 @@
 }
 
 .driver span {
-    font-size: 20px; /* Font size for driver */
+    font-size: 17px; /* Font size for driver */
     color: #666; /* Color for driver text */
     padding-top: 5px;
 }
@@ -119,16 +119,17 @@
 }
 
 .fzBig {
-    font-size: 30px !important;
+    font-size: 20px !important;
     padding-top: 0 !important;
 }
 
 .amenities {
     display: flex;
+
 }
 
 .amenity {
-
+    font-size: 10px !important;
 }
 
 .iconAmentity {

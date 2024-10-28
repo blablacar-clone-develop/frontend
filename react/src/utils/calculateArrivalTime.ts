@@ -1,6 +1,6 @@
 
 // Функція для обчислення часу прибуття
-export const calculateArrivalTime = (departureTime: string, duration: string): string => {
+export const calculateArrivalTime = (departureTime: string | undefined, duration: string | undefined): string => {
     // Розбиваємо час відправлення "HH:MM:SS"
     const [departureHours, departureMinutes] = departureTime.split(':').map(Number);
 
