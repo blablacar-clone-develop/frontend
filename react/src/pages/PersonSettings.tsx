@@ -87,6 +87,11 @@ const ProfilePage: React.FC = () => {
     function handleReservedTrips() {
         navigate('/showUsersTrips?type=reserved');
     }
+
+    function handleComingSon() {
+        navigate('/comingson');
+    }
+
     return (
         <main className="main">
             <NavBar />
@@ -141,8 +146,8 @@ const ProfilePage: React.FC = () => {
                 <div className="profile-section">
                     <h3>Payment</h3>
                     <ul>
-                        <li>Payment methods <i className="bi bi-box-arrow-up-right"></i></li>
-                        <li>Payments and reimbursements <i className="bi bi-box-arrow-up-right"></i></li>
+                        <li onClick={handleComingSon}>Payment methods <i className="bi bi-box-arrow-up-right"></i></li>
+                        <li onClick={handleComingSon}>Payments and reimbursements <i className="bi bi-box-arrow-up-right"></i></li>
                     </ul>
                 </div>
 
