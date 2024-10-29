@@ -11,11 +11,11 @@ const ComingSonComponent: React.FC = () => {
                     <div className="coming-soon-badge">COMING SOON</div>
                     <h3 className="coming-soon-title">Pay online</h3>
                     <p className="coming-soon-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Vestibulum elementum facilisis tortor vitae dictum. Integer dapibus vitae magna vel auctor.
-                        Fusce at velit mi.
-                        Proin eget enim viverra, tempus magna vitae, ber sollicitudin orci. Orci varius natoque
-                        penatibus et...
+                        We are working on integrating a secure payment system for your convenience. Soon, you will be able to pay for your trips directly on our website using a bank card. Your financial data will be reliably protected by modern security protocols such as data encryption and fraud protection.
+                        How it works:
+                        Choose your trips - just like before, you will be able to find and book a seat on the trip you want.
+                        Pay securely - we'll offer a simple and fast card payment option when you book.
+                        Receive confirmation instantly - after successful payment, you will receive a confirmation of your trip booking via email.
                     </p>
                     <div className="payment-logos">
                         <div className="payment-logo logo-visa"/>
